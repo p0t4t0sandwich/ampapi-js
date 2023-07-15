@@ -170,7 +170,13 @@ def generate_typescript(spec):
     {"}"}\n\n"""
             f.write(template)
 
-    f.write("\n}\nexport { AMPAPI };\n")
+    f.write("}\n\n")
+
+    with open("./ampapi_handler.ts", "r") as ah:
+        ampapi_handler = ah.read()
+        f.write(ampapi_handler)
+
+    f.write("\nexport { AMPAPI, AMPAPIHandler };\n")
     f.close()
 
 

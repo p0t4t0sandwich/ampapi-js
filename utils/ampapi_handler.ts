@@ -1,11 +1,4 @@
 /**
- * @author p0t4t0sandich
- * @description Modified handler class for the AMP API
- */
-
-import { AMPAPI } from "./AMPAPI.js";
-
-/**
  * @class AMPAPIHandler
  * @description Modified handler class for the AMP API
  * @param {string} username Username for the AMP API
@@ -84,5 +77,3 @@ class AMPAPIHandler extends AMPAPI {
         }
     }
 }
-
-export { AMPAPIHandler };

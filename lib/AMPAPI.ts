@@ -240,7 +240,7 @@ class AMPAPI {
      * @param {string} Tag AMPType: String Unrelated to RequiredTags. This is to uniquely identify this instance to your own systems. It may be something like an order ID or service ID so you can find the associated instance again at a later time. If 'UseTagAsInstanceName' is enabled, then this will also be used as the instance name for the created instance - but it must be unique.
      * @param {string} FriendlyName AMPType: String A friendly name for this instance. If left blank, AMP will generate one for you.
      * @param {string} Secret AMPType: String Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request.
-     * @param {any} PostCreate AMPType: PostCreateActions 0: Do nothing, 10: Start instance only, 20: Start instance and update application, 30: Full application startup.
+     * @param {any} PostCreate AMPType: PostCreateActions 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup.
      * @param {{ [key: string]: string }} ExtraProvisionSettings AMPType: Dictionary<String, String> A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
      * @return {any} AMPType: RunningTask
      */
@@ -702,7 +702,7 @@ class AMPAPI {
     /**
      * Name TypeName Description Optional
      * @param {string} InstanceName AMPType: String 
-     * @return {any} AMPType: Task<ActionResult>
+     * @return {any} AMPType: ActionResult
      */
     async ADSModule_UpgradeInstance(InstanceName: string): Promise<any> {
         return this.apiCall("ADSModule/UpgradeInstance", {
@@ -751,7 +751,7 @@ class AMPAPI {
     /**
      * Name TypeName Description Optional
      * @param {string} InstanceName AMPType: String 
-     * @return {any} AMPType: Task<ActionResult>
+     * @return {any} AMPType: ActionResult
      */
     async ADSModule_RestartInstance(InstanceName: string): Promise<any> {
         return this.apiCall("ADSModule/RestartInstance", {
@@ -762,7 +762,7 @@ class AMPAPI {
     /**
      * Name TypeName Description Optional
      * @param {string} InstanceName AMPType: String 
-     * @return {any} AMPType: Task<ActionResult>
+     * @return {any} AMPType: ActionResult
      */
     async ADSModule_StopInstance(InstanceName: string): Promise<any> {
         return this.apiCall("ADSModule/StopInstance", {
@@ -918,15 +918,32 @@ class AMPAPI {
     /**
      * Name TypeName Description Optional
      * @param {string} Filename AMPType: String 
-     * @param {number} Position AMPType: Int64 
-     * @param {string} Data AMPType: String 
-     * @return {void} AMPType: Void
+     * @param {number} Offset AMPType: Int64 
+     * @param {number} ChunkSize AMPType: Int64 
+     * @return {any} AMPType: ActionResult<String>
      */
-    async FileManagerPlugin_WriteFileChunk(Filename: string, Position: number, Data: string): Promise<void> {
+    async FileManagerPlugin_ReadFileChunk(Filename: string, Offset: number, ChunkSize: number): Promise<any> {
+        return this.apiCall("FileManagerPlugin/ReadFileChunk", {
+            "Filename": Filename, 
+            "Offset": Offset, 
+            "ChunkSize": ChunkSize
+        });
+    }
+
+    /**
+     * Name TypeName Description Optional
+     * @param {string} Filename AMPType: String 
+     * @param {string} Data AMPType: String 
+     * @param {number} Offset AMPType: Int64 
+     * @param {boolean} FinalChunk AMPType: Boolean 
+     * @return {any} AMPType: ActionResult
+     */
+    async FileManagerPlugin_WriteFileChunk(Filename: string, Data: string, Offset: number, FinalChunk: boolean): Promise<any> {
         return this.apiCall("FileManagerPlugin/WriteFileChunk", {
             "Filename": Filename, 
-            "Position": Position, 
-            "Data": Data
+            "Data": Data, 
+            "Offset": Offset, 
+            "FinalChunk": FinalChunk
         });
     }
 
@@ -2038,6 +2055,14 @@ class AMPAPI {
      */
     async Core_GetDiagnosticsInfo(): Promise<{ [key: string]: string }> {
         return this.apiCall("Core/GetDiagnosticsInfo");
+    }
+
+    /**
+     * Name TypeName Description Optional
+     * @return {any} AMPType: Object
+     */
+    async Core_GetWebserverMetrics(): Promise<any> {
+        return this.apiCall("Core/GetWebserverMetrics");
     }
 
     /**

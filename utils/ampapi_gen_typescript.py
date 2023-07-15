@@ -170,7 +170,7 @@ def generate_typescript(spec):
     {"}"}\n\n"""
             f.write(template)
 
-    f.write("\n}\n")
+    f.write("\n}\nexport { AMPAPI };\n")
     f.close()
 
 

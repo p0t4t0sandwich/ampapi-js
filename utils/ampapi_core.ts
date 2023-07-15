@@ -11,9 +11,9 @@
  * @param {string} dataSource The complete API URL for the AMP API
  */
 class AMPAPI {
-    private baseUri: string;
-    private sessionId: string;
-    private dataSource: string;
+    public baseUri: string;
+    public sessionId: string;
+    public dataSource: string;
 
     /**
      * @constructor

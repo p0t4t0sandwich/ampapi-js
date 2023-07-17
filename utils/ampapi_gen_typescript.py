@@ -148,12 +148,16 @@ def generate_typescript(spec):
             #####################
 
             data_string = ""
-            for i in range(len(methodParams)):
-                data_string += '\n            "' + methodParams[i]["Name"] + '": ' + methodParams[i]["Name"] + ", "
+            if len(data.keys()) == 1:
+                data_string += " " + methodParams[i]["Name"] + " , "
+            elif len(data.keys()) > 1:
+                for i in range(len(methodParams)):
+                    data_string += '\n            ' + methodParams[i]["Name"] + ", "
+                data_string += '\n          '
 
             if len(data.keys()) != 0:
                 if data_string[-1]==" ": data_string = data_string[:-2]
-                data_string = ", {" + data_string + "\n        }"
+                data_string = ", {" + data_string + "}"
 
             params = ""
             if len(data.keys()) != 0:

@@ -64,9 +64,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_AddDatastore(newDatastore: any): Promise<any> {
-        return this.apiCall("ADSModule/AddDatastore", {
-            "newDatastore": newDatastore
-        });
+        return this.apiCall("ADSModule/AddDatastore", { newDatastore });
     }
 
     /**
@@ -75,9 +73,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_DeleteDatastore(id: number): Promise<any> {
-        return this.apiCall("ADSModule/DeleteDatastore", {
-            "id": id
-        });
+        return this.apiCall("ADSModule/DeleteDatastore", { id });
     }
 
     /**
@@ -86,9 +82,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_UpdateDatastore(updatedDatastore: any): Promise<any> {
-        return this.apiCall("ADSModule/UpdateDatastore", {
-            "updatedDatastore": updatedDatastore
-        });
+        return this.apiCall("ADSModule/UpdateDatastore", { updatedDatastore });
     }
 
     /**
@@ -105,9 +99,7 @@ class AMPAPI {
      * @return {any} AMPType: RunningTask
      */
     async ADSModule_RequestDatastoreSizeCalculation(datastoreId: number): Promise<any> {
-        return this.apiCall("ADSModule/RequestDatastoreSizeCalculation", {
-            "datastoreId": datastoreId
-        });
+        return this.apiCall("ADSModule/RequestDatastoreSizeCalculation", { datastoreId });
     }
 
     /**
@@ -116,9 +108,7 @@ class AMPAPI {
      * @return {any} AMPType: InstanceDatastore
      */
     async ADSModule_GetDatastore(id: number): Promise<any> {
-        return this.apiCall("ADSModule/GetDatastore", {
-            "id": id
-        });
+        return this.apiCall("ADSModule/GetDatastore", { id });
     }
 
     /**
@@ -127,9 +117,7 @@ class AMPAPI {
      * @return {any} AMPType: RunningTask
      */
     async ADSModule_RepairDatastore(id: number): Promise<any> {
-        return this.apiCall("ADSModule/RepairDatastore", {
-            "id": id
-        });
+        return this.apiCall("ADSModule/RepairDatastore", { id });
     }
 
     /**
@@ -138,9 +126,7 @@ class AMPAPI {
      * @return {any[]} AMPType: IEnumerable<JObject>
      */
     async ADSModule_GetDatastoreInstances(datastoreId: number): Promise<any[]> {
-        return this.apiCall("ADSModule/GetDatastoreInstances", {
-            "datastoreId": datastoreId
-        });
+        return this.apiCall("ADSModule/GetDatastoreInstances", { datastoreId });
     }
 
     /**
@@ -151,8 +137,8 @@ class AMPAPI {
      */
     async ADSModule_MoveInstanceDatastore(instanceId: string, datastoreId: number): Promise<any> {
         return this.apiCall("ADSModule/MoveInstanceDatastore", {
-            "instanceId": instanceId, 
-            "datastoreId": datastoreId
+            instanceId, 
+            datastoreId, 
         });
     }
 
@@ -170,9 +156,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_CreateDeploymentTemplate(Name: string): Promise<any> {
-        return this.apiCall("ADSModule/CreateDeploymentTemplate", {
-            "Name": Name
-        });
+        return this.apiCall("ADSModule/CreateDeploymentTemplate", { Name });
     }
 
     /**
@@ -181,9 +165,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_UpdateDeploymentTemplate(templateToUpdate: any): Promise<any> {
-        return this.apiCall("ADSModule/UpdateDeploymentTemplate", {
-            "templateToUpdate": templateToUpdate
-        });
+        return this.apiCall("ADSModule/UpdateDeploymentTemplate", { templateToUpdate });
     }
 
     /**
@@ -192,9 +174,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_DeleteDeploymentTemplate(Id: number): Promise<any> {
-        return this.apiCall("ADSModule/DeleteDeploymentTemplate", {
-            "Id": Id
-        });
+        return this.apiCall("ADSModule/DeleteDeploymentTemplate", { Id });
     }
 
     /**
@@ -205,8 +185,8 @@ class AMPAPI {
      */
     async ADSModule_CloneTemplate(Id: number, NewName: string): Promise<any> {
         return this.apiCall("ADSModule/CloneTemplate", {
-            "Id": Id, 
-            "NewName": NewName
+            Id, 
+            NewName, 
         });
     }
 
@@ -222,11 +202,11 @@ class AMPAPI {
      */
     async ADSModule_ApplyTemplate(InstanceID: string, TemplateID: number, NewFriendlyName: string, Secret: string, RestartIfPreviouslyRunning: boolean): Promise<any> {
         return this.apiCall("ADSModule/ApplyTemplate", {
-            "InstanceID": InstanceID, 
-            "TemplateID": TemplateID, 
-            "NewFriendlyName": NewFriendlyName, 
-            "Secret": Secret, 
-            "RestartIfPreviouslyRunning": RestartIfPreviouslyRunning
+            InstanceID, 
+            TemplateID, 
+            NewFriendlyName, 
+            Secret, 
+            RestartIfPreviouslyRunning, 
         });
     }
 
@@ -246,16 +226,16 @@ class AMPAPI {
      */
     async ADSModule_DeployTemplate(TemplateID: number, NewUsername: string, NewPassword: string, NewEmail: string, RequiredTags: string[], Tag: string, FriendlyName: string, Secret: string, PostCreate: any, ExtraProvisionSettings: { [key: string]: string }): Promise<any> {
         return this.apiCall("ADSModule/DeployTemplate", {
-            "TemplateID": TemplateID, 
-            "NewUsername": NewUsername, 
-            "NewPassword": NewPassword, 
-            "NewEmail": NewEmail, 
-            "RequiredTags": RequiredTags, 
-            "Tag": Tag, 
-            "FriendlyName": FriendlyName, 
-            "Secret": Secret, 
-            "PostCreate": PostCreate, 
-            "ExtraProvisionSettings": ExtraProvisionSettings
+            TemplateID, 
+            NewUsername, 
+            NewPassword, 
+            NewEmail, 
+            RequiredTags, 
+            Tag, 
+            FriendlyName, 
+            Secret, 
+            PostCreate, 
+            ExtraProvisionSettings, 
         });
     }
 
@@ -297,9 +277,7 @@ class AMPAPI {
      * @return {any[]} AMPType: IEnumerable<EndpointInfo>
      */
     async ADSModule_GetApplicationEndpoints(instanceId: string): Promise<any[]> {
-        return this.apiCall("ADSModule/GetApplicationEndpoints", {
-            "instanceId": instanceId
-        });
+        return this.apiCall("ADSModule/GetApplicationEndpoints", { instanceId });
     }
 
     /**
@@ -324,9 +302,7 @@ class AMPAPI {
      * @return {any} AMPType: JObject
      */
     async ADSModule_GetInstance(InstanceId: string): Promise<any> {
-        return this.apiCall("ADSModule/GetInstance", {
-            "InstanceId": InstanceId
-        });
+        return this.apiCall("ADSModule/GetInstance", { InstanceId });
     }
 
     /**
@@ -341,12 +317,12 @@ class AMPAPI {
      */
     async ADSModule_ModifyCustomFirewallRule(instanceId: string, PortNumber: number, Range: number, Protocol: string, Description: string, Open: boolean): Promise<any> {
         return this.apiCall("ADSModule/ModifyCustomFirewallRule", {
-            "instanceId": instanceId, 
-            "PortNumber": PortNumber, 
-            "Range": Range, 
-            "Protocol": Protocol, 
-            "Description": Description, 
-            "Open": Open
+            instanceId, 
+            PortNumber, 
+            Range, 
+            Protocol, 
+            Description, 
+            Open, 
         });
     }
 
@@ -356,9 +332,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult<String>
      */
     async ADSModule_ManageInstance(InstanceId: string): Promise<any> {
-        return this.apiCall("ADSModule/ManageInstance", {
-            "InstanceId": InstanceId
-        });
+        return this.apiCall("ADSModule/ManageInstance", { InstanceId });
     }
 
     /**
@@ -367,9 +341,7 @@ class AMPAPI {
      * @return {boolean} AMPType: IADSInstance
      */
     async ADSModule_GetGroup(GroupId: string): Promise<boolean> {
-        return this.apiCall("ADSModule/GetGroup", {
-            "GroupId": GroupId
-        });
+        return this.apiCall("ADSModule/GetGroup", { GroupId });
     }
 
     /**
@@ -378,9 +350,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_RefreshGroup(GroupId: string): Promise<any> {
-        return this.apiCall("ADSModule/RefreshGroup", {
-            "GroupId": GroupId
-        });
+        return this.apiCall("ADSModule/RefreshGroup", { GroupId });
     }
 
     /**
@@ -418,11 +388,11 @@ class AMPAPI {
      */
     async ADSModule_AttachADS(Friendly: string, IsHTTPS: boolean, Host: string, Port: number, InstanceID: string): Promise<any> {
         return this.apiCall("ADSModule/AttachADS", {
-            "Friendly": Friendly, 
-            "IsHTTPS": IsHTTPS, 
-            "Host": Host, 
-            "Port": Port, 
-            "InstanceID": InstanceID
+            Friendly, 
+            IsHTTPS, 
+            Host, 
+            Port, 
+            InstanceID, 
         });
     }
 
@@ -432,9 +402,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_DetatchTarget(Id: string): Promise<any> {
-        return this.apiCall("ADSModule/DetatchTarget", {
-            "Id": Id
-        });
+        return this.apiCall("ADSModule/DetatchTarget", { Id });
     }
 
     /**
@@ -448,11 +416,11 @@ class AMPAPI {
      */
     async ADSModule_UpdateTargetInfo(Id: string, FriendlyName: string, Url: string, Description: string, Tags: string[]): Promise<any> {
         return this.apiCall("ADSModule/UpdateTargetInfo", {
-            "Id": Id, 
-            "FriendlyName": FriendlyName, 
-            "Url": Url, 
-            "Description": Description, 
-            "Tags": Tags
+            Id, 
+            FriendlyName, 
+            Url, 
+            Description, 
+            Tags, 
         });
     }
 
@@ -462,9 +430,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_ConvertToManaged(InstanceName: string): Promise<any> {
-        return this.apiCall("ADSModule/ConvertToManaged", {
-            "InstanceName": InstanceName
-        });
+        return this.apiCall("ADSModule/ConvertToManaged", { InstanceName });
     }
 
     /**
@@ -473,9 +439,7 @@ class AMPAPI {
      * @return {any[]} AMPType: IEnumerable<PortUsage>
      */
     async ADSModule_GetInstanceNetworkInfo(InstanceName: string): Promise<any[]> {
-        return this.apiCall("ADSModule/GetInstanceNetworkInfo", {
-            "InstanceName": InstanceName
-        });
+        return this.apiCall("ADSModule/GetInstanceNetworkInfo", { InstanceName });
     }
 
     /**
@@ -486,8 +450,8 @@ class AMPAPI {
      */
     async ADSModule_SetInstanceNetworkInfo(InstanceId: string, PortMappings: { [key: string]: number }): Promise<any> {
         return this.apiCall("ADSModule/SetInstanceNetworkInfo", {
-            "InstanceId": InstanceId, 
-            "PortMappings": PortMappings
+            InstanceId, 
+            PortMappings, 
         });
     }
 
@@ -500,9 +464,9 @@ class AMPAPI {
      */
     async ADSModule_ApplyInstanceConfiguration(InstanceID: string, Args: { [key: string]: string }, RebuildConfiguration: boolean): Promise<any> {
         return this.apiCall("ADSModule/ApplyInstanceConfiguration", {
-            "InstanceID": InstanceID, 
-            "Args": Args, 
-            "RebuildConfiguration": RebuildConfiguration
+            InstanceID, 
+            Args, 
+            RebuildConfiguration, 
         });
     }
 
@@ -514,8 +478,8 @@ class AMPAPI {
      */
     async ADSModule_CreateLocalInstance(Instance: any, PostCreate: any): Promise<any> {
         return this.apiCall("ADSModule/CreateLocalInstance", {
-            "Instance": Instance, 
-            "PostCreate": PostCreate
+            Instance, 
+            PostCreate, 
         });
     }
 
@@ -540,21 +504,21 @@ class AMPAPI {
      */
     async ADSModule_CreateInstance(TargetADSInstance: string, NewInstanceId: string, Module: string, InstanceName: string, FriendlyName: string, IPBinding: string, PortNumber: number, AdminUsername: string, AdminPassword: string, ProvisionSettings: { [key: string]: string }, AutoConfigure: boolean, PostCreate: any, StartOnBoot: boolean, DisplayImageSource: string, TargetDatastore: number): Promise<any> {
         return this.apiCall("ADSModule/CreateInstance", {
-            "TargetADSInstance": TargetADSInstance, 
-            "NewInstanceId": NewInstanceId, 
-            "Module": Module, 
-            "InstanceName": InstanceName, 
-            "FriendlyName": FriendlyName, 
-            "IPBinding": IPBinding, 
-            "PortNumber": PortNumber, 
-            "AdminUsername": AdminUsername, 
-            "AdminPassword": AdminPassword, 
-            "ProvisionSettings": ProvisionSettings, 
-            "AutoConfigure": AutoConfigure, 
-            "PostCreate": PostCreate, 
-            "StartOnBoot": StartOnBoot, 
-            "DisplayImageSource": DisplayImageSource, 
-            "TargetDatastore": TargetDatastore
+            TargetADSInstance, 
+            NewInstanceId, 
+            Module, 
+            InstanceName, 
+            FriendlyName, 
+            IPBinding, 
+            PortNumber, 
+            AdminUsername, 
+            AdminPassword, 
+            ProvisionSettings, 
+            AutoConfigure, 
+            PostCreate, 
+            StartOnBoot, 
+            DisplayImageSource, 
+            TargetDatastore, 
         });
     }
 
@@ -567,9 +531,9 @@ class AMPAPI {
      */
     async ADSModule_SetInstanceConfig(InstanceName: string, SettingNode: string, Value: string): Promise<any> {
         return this.apiCall("ADSModule/SetInstanceConfig", {
-            "InstanceName": InstanceName, 
-            "SettingNode": SettingNode, 
-            "Value": Value
+            InstanceName, 
+            SettingNode, 
+            Value, 
         });
     }
 
@@ -579,9 +543,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async ADSModule_RefreshInstanceConfig(InstanceId: string): Promise<any> {
-        return this.apiCall("ADSModule/RefreshInstanceConfig", {
-            "InstanceId": InstanceId
-        });
+        return this.apiCall("ADSModule/RefreshInstanceConfig", { InstanceId });
     }
 
     /**
@@ -593,9 +555,9 @@ class AMPAPI {
      */
     async ADSModule_HandoutInstanceConfigs(ForModule: string, SettingNode: string, Values: string[]): Promise<any> {
         return this.apiCall("ADSModule/HandoutInstanceConfigs", {
-            "ForModule": ForModule, 
-            "SettingNode": SettingNode, 
-            "Values": Values
+            ForModule, 
+            SettingNode, 
+            Values, 
         });
     }
 
@@ -605,9 +567,7 @@ class AMPAPI {
      * @return {any[]} AMPType: IEnumerable<JObject>
      */
     async ADSModule_GetProvisionArguments(ModuleName: string): Promise<any[]> {
-        return this.apiCall("ADSModule/GetProvisionArguments", {
-            "ModuleName": ModuleName
-        });
+        return this.apiCall("ADSModule/GetProvisionArguments", { ModuleName });
     }
 
     /**
@@ -619,9 +579,9 @@ class AMPAPI {
      */
     async ADSModule_TestADSLoginDetails(url: string, username: string, password: string): Promise<any> {
         return this.apiCall("ADSModule/TestADSLoginDetails", {
-            "url": url, 
-            "username": username, 
-            "password": password
+            url, 
+            username, 
+            password, 
         });
     }
 
@@ -637,12 +597,12 @@ class AMPAPI {
      */
     async ADSModule_RegisterTarget(controllerUrl: string, myUrl: string, username: string, password: string, twoFactorToken: string, friendlyName: string): Promise<any> {
         return this.apiCall("ADSModule/RegisterTarget", {
-            "controllerUrl": controllerUrl, 
-            "myUrl": myUrl, 
-            "username": username, 
-            "password": password, 
-            "twoFactorToken": twoFactorToken, 
-            "friendlyName": friendlyName
+            controllerUrl, 
+            myUrl, 
+            username, 
+            password, 
+            twoFactorToken, 
+            friendlyName, 
         });
     }
 
@@ -652,9 +612,7 @@ class AMPAPI {
      * @return {void} AMPType: Void
      */
     async ADSModule_UpdateTarget(TargetID: string): Promise<void> {
-        return this.apiCall("ADSModule/UpdateTarget", {
-            "TargetID": TargetID
-        });
+        return this.apiCall("ADSModule/UpdateTarget", { TargetID });
     }
 
     /**
@@ -673,16 +631,16 @@ class AMPAPI {
      */
     async ADSModule_UpdateInstanceInfo(InstanceId: string, FriendlyName: string, Description: string, StartOnBoot: boolean, Suspended: boolean, ExcludeFromFirewall: boolean, RunInContainer: boolean, ContainerMemory: number, MemoryPolicy: any, ContainerMaxCPU: any): Promise<any> {
         return this.apiCall("ADSModule/UpdateInstanceInfo", {
-            "InstanceId": InstanceId, 
-            "FriendlyName": FriendlyName, 
-            "Description": Description, 
-            "StartOnBoot": StartOnBoot, 
-            "Suspended": Suspended, 
-            "ExcludeFromFirewall": ExcludeFromFirewall, 
-            "RunInContainer": RunInContainer, 
-            "ContainerMemory": ContainerMemory, 
-            "MemoryPolicy": MemoryPolicy, 
-            "ContainerMaxCPU": ContainerMaxCPU
+            InstanceId, 
+            FriendlyName, 
+            Description, 
+            StartOnBoot, 
+            Suspended, 
+            ExcludeFromFirewall, 
+            RunInContainer, 
+            ContainerMemory, 
+            MemoryPolicy, 
+            ContainerMaxCPU, 
         });
     }
 
@@ -694,8 +652,8 @@ class AMPAPI {
      */
     async ADSModule_SetInstanceSuspended(InstanceName: string, Suspended: boolean): Promise<any> {
         return this.apiCall("ADSModule/SetInstanceSuspended", {
-            "InstanceName": InstanceName, 
-            "Suspended": Suspended
+            InstanceName, 
+            Suspended, 
         });
     }
 
@@ -705,9 +663,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_UpgradeInstance(InstanceName: string): Promise<any> {
-        return this.apiCall("ADSModule/UpgradeInstance", {
-            "InstanceName": InstanceName
-        });
+        return this.apiCall("ADSModule/UpgradeInstance", { InstanceName });
     }
 
     /**
@@ -732,9 +688,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async ADSModule_UpgradeAllInstances(RestartRunning: boolean): Promise<any> {
-        return this.apiCall("ADSModule/UpgradeAllInstances", {
-            "RestartRunning": RestartRunning
-        });
+        return this.apiCall("ADSModule/UpgradeAllInstances", { RestartRunning });
     }
 
     /**
@@ -743,9 +697,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async ADSModule_StartInstance(InstanceName: string): Promise<any> {
-        return this.apiCall("ADSModule/StartInstance", {
-            "InstanceName": InstanceName
-        });
+        return this.apiCall("ADSModule/StartInstance", { InstanceName });
     }
 
     /**
@@ -754,9 +706,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_RestartInstance(InstanceName: string): Promise<any> {
-        return this.apiCall("ADSModule/RestartInstance", {
-            "InstanceName": InstanceName
-        });
+        return this.apiCall("ADSModule/RestartInstance", { InstanceName });
     }
 
     /**
@@ -765,9 +715,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async ADSModule_StopInstance(InstanceName: string): Promise<any> {
-        return this.apiCall("ADSModule/StopInstance", {
-            "InstanceName": InstanceName
-        });
+        return this.apiCall("ADSModule/StopInstance", { InstanceName });
     }
 
     /**
@@ -776,9 +724,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async ADSModule_DeleteInstanceUsers(InstanceId: string): Promise<any> {
-        return this.apiCall("ADSModule/DeleteInstanceUsers", {
-            "InstanceId": InstanceId
-        });
+        return this.apiCall("ADSModule/DeleteInstanceUsers", { InstanceId });
     }
 
     /**
@@ -787,9 +733,7 @@ class AMPAPI {
      * @return {any} AMPType: RunningTask
      */
     async ADSModule_DeleteInstance(InstanceName: string): Promise<any> {
-        return this.apiCall("ADSModule/DeleteInstance", {
-            "InstanceName": InstanceName
-        });
+        return this.apiCall("ADSModule/DeleteInstance", { InstanceName });
     }
 
     /**
@@ -798,9 +742,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async ADSModule_ExtractEverywhere(SourceArchive: string): Promise<any> {
-        return this.apiCall("ADSModule/ExtractEverywhere", {
-            "SourceArchive": SourceArchive
-        });
+        return this.apiCall("ADSModule/ExtractEverywhere", { SourceArchive });
     }
 
     /**
@@ -811,8 +753,8 @@ class AMPAPI {
      */
     async ADSModule_Servers(id: string, REQ_RAWJSON: string): Promise<any> {
         return this.apiCall("ADSModule/Servers", {
-            "id": id, 
-            "REQ_RAWJSON": REQ_RAWJSON
+            id, 
+            REQ_RAWJSON, 
         });
     }
 
@@ -830,9 +772,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult<String>
      */
     async FileManagerPlugin_CalculateFileMD5Sum(FilePath: string): Promise<any> {
-        return this.apiCall("FileManagerPlugin/CalculateFileMD5Sum", {
-            "FilePath": FilePath
-        });
+        return this.apiCall("FileManagerPlugin/CalculateFileMD5Sum", { FilePath });
     }
 
     /**
@@ -844,9 +784,9 @@ class AMPAPI {
      */
     async FileManagerPlugin_ChangeExclusion(ModifyPath: string, AsDirectory: boolean, Exclude: boolean): Promise<any> {
         return this.apiCall("FileManagerPlugin/ChangeExclusion", {
-            "ModifyPath": ModifyPath, 
-            "AsDirectory": AsDirectory, 
-            "Exclude": Exclude
+            ModifyPath, 
+            AsDirectory, 
+            Exclude, 
         });
     }
 
@@ -856,9 +796,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async FileManagerPlugin_CreateArchive(PathToArchive: string): Promise<any> {
-        return this.apiCall("FileManagerPlugin/CreateArchive", {
-            "PathToArchive": PathToArchive
-        });
+        return this.apiCall("FileManagerPlugin/CreateArchive", { PathToArchive });
     }
 
     /**
@@ -869,8 +807,8 @@ class AMPAPI {
      */
     async FileManagerPlugin_ExtractArchive(ArchivePath: string, DestinationPath: string): Promise<any> {
         return this.apiCall("FileManagerPlugin/ExtractArchive", {
-            "ArchivePath": ArchivePath, 
-            "DestinationPath": DestinationPath
+            ArchivePath, 
+            DestinationPath, 
         });
     }
 
@@ -880,9 +818,7 @@ class AMPAPI {
      * @return {any[]} AMPType: IEnumerable<JObject>
      */
     async FileManagerPlugin_GetDirectoryListing(Dir: string): Promise<any[]> {
-        return this.apiCall("FileManagerPlugin/GetDirectoryListing", {
-            "Dir": Dir
-        });
+        return this.apiCall("FileManagerPlugin/GetDirectoryListing", { Dir });
     }
 
     /**
@@ -894,9 +830,9 @@ class AMPAPI {
      */
     async FileManagerPlugin_GetFileChunk(Filename: string, Position: number, Length: number): Promise<any> {
         return this.apiCall("FileManagerPlugin/GetFileChunk", {
-            "Filename": Filename, 
-            "Position": Position, 
-            "Length": Length
+            Filename, 
+            Position, 
+            Length, 
         });
     }
 
@@ -909,9 +845,9 @@ class AMPAPI {
      */
     async FileManagerPlugin_AppendFileChunk(Filename: string, Data: string, Delete: boolean): Promise<void> {
         return this.apiCall("FileManagerPlugin/AppendFileChunk", {
-            "Filename": Filename, 
-            "Data": Data, 
-            "Delete": Delete
+            Filename, 
+            Data, 
+            Delete, 
         });
     }
 
@@ -924,9 +860,9 @@ class AMPAPI {
      */
     async FileManagerPlugin_ReadFileChunk(Filename: string, Offset: number, ChunkSize: number): Promise<any> {
         return this.apiCall("FileManagerPlugin/ReadFileChunk", {
-            "Filename": Filename, 
-            "Offset": Offset, 
-            "ChunkSize": ChunkSize
+            Filename, 
+            Offset, 
+            ChunkSize, 
         });
     }
 
@@ -940,10 +876,10 @@ class AMPAPI {
      */
     async FileManagerPlugin_WriteFileChunk(Filename: string, Data: string, Offset: number, FinalChunk: boolean): Promise<any> {
         return this.apiCall("FileManagerPlugin/WriteFileChunk", {
-            "Filename": Filename, 
-            "Data": Data, 
-            "Offset": Offset, 
-            "FinalChunk": FinalChunk
+            Filename, 
+            Data, 
+            Offset, 
+            FinalChunk, 
         });
     }
 
@@ -955,8 +891,8 @@ class AMPAPI {
      */
     async FileManagerPlugin_DownloadFileFromURL(Source: string, TargetDirectory: string): Promise<any> {
         return this.apiCall("FileManagerPlugin/DownloadFileFromURL", {
-            "Source": Source, 
-            "TargetDirectory": TargetDirectory
+            Source, 
+            TargetDirectory, 
         });
     }
 
@@ -968,8 +904,8 @@ class AMPAPI {
      */
     async FileManagerPlugin_RenameFile(Filename: string, NewFilename: string): Promise<any> {
         return this.apiCall("FileManagerPlugin/RenameFile", {
-            "Filename": Filename, 
-            "NewFilename": NewFilename
+            Filename, 
+            NewFilename, 
         });
     }
 
@@ -981,8 +917,8 @@ class AMPAPI {
      */
     async FileManagerPlugin_CopyFile(Origin: string, TargetDirectory: string): Promise<any> {
         return this.apiCall("FileManagerPlugin/CopyFile", {
-            "Origin": Origin, 
-            "TargetDirectory": TargetDirectory
+            Origin, 
+            TargetDirectory, 
         });
     }
 
@@ -993,9 +929,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async FileManagerPlugin_TrashFile(Filename: string): Promise<any> {
-        return this.apiCall("FileManagerPlugin/TrashFile", {
-            "Filename": Filename
-        });
+        return this.apiCall("FileManagerPlugin/TrashFile", { Filename });
     }
 
     /**
@@ -1005,9 +939,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async FileManagerPlugin_TrashDirectory(DirectoryName: string): Promise<any> {
-        return this.apiCall("FileManagerPlugin/TrashDirectory", {
-            "DirectoryName": DirectoryName
-        });
+        return this.apiCall("FileManagerPlugin/TrashDirectory", { DirectoryName });
     }
 
     /**
@@ -1017,9 +949,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async FileManagerPlugin_EmptyTrash(TrashDirectoryName: string): Promise<any> {
-        return this.apiCall("FileManagerPlugin/EmptyTrash", {
-            "TrashDirectoryName": TrashDirectoryName
-        });
+        return this.apiCall("FileManagerPlugin/EmptyTrash", { TrashDirectoryName });
     }
 
     /**
@@ -1029,9 +959,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async FileManagerPlugin_CreateDirectory(NewPath: string): Promise<any> {
-        return this.apiCall("FileManagerPlugin/CreateDirectory", {
-            "NewPath": NewPath
-        });
+        return this.apiCall("FileManagerPlugin/CreateDirectory", { NewPath });
     }
 
     /**
@@ -1043,8 +971,8 @@ class AMPAPI {
      */
     async FileManagerPlugin_RenameDirectory(oldDirectory: string, NewDirectoryName: string): Promise<any> {
         return this.apiCall("FileManagerPlugin/RenameDirectory", {
-            "oldDirectory": oldDirectory, 
-            "NewDirectoryName": NewDirectoryName
+            oldDirectory, 
+            NewDirectoryName, 
         });
     }
 
@@ -1062,9 +990,7 @@ class AMPAPI {
      * @return {any} AMPType: RunningTask
      */
     async LocalFileBackupPlugin_UploadToS3(BackupId: string): Promise<any> {
-        return this.apiCall("LocalFileBackupPlugin/UploadToS3", {
-            "BackupId": BackupId
-        });
+        return this.apiCall("LocalFileBackupPlugin/UploadToS3", { BackupId });
     }
 
     /**
@@ -1073,9 +999,7 @@ class AMPAPI {
      * @return {any} AMPType: RunningTask
      */
     async LocalFileBackupPlugin_DownloadFromS3(BackupId: string): Promise<any> {
-        return this.apiCall("LocalFileBackupPlugin/DownloadFromS3", {
-            "BackupId": BackupId
-        });
+        return this.apiCall("LocalFileBackupPlugin/DownloadFromS3", { BackupId });
     }
 
     /**
@@ -1084,9 +1008,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async LocalFileBackupPlugin_DeleteFromS3(BackupId: string): Promise<any> {
-        return this.apiCall("LocalFileBackupPlugin/DeleteFromS3", {
-            "BackupId": BackupId
-        });
+        return this.apiCall("LocalFileBackupPlugin/DeleteFromS3", { BackupId });
     }
 
     /**
@@ -1105,8 +1027,8 @@ class AMPAPI {
      */
     async LocalFileBackupPlugin_RestoreBackup(BackupId: string, DeleteExistingData: boolean): Promise<any> {
         return this.apiCall("LocalFileBackupPlugin/RestoreBackup", {
-            "BackupId": BackupId, 
-            "DeleteExistingData": DeleteExistingData
+            BackupId, 
+            DeleteExistingData, 
         });
     }
 
@@ -1116,9 +1038,7 @@ class AMPAPI {
      * @return {void} AMPType: Void
      */
     async LocalFileBackupPlugin_DeleteLocalBackup(BackupId: string): Promise<void> {
-        return this.apiCall("LocalFileBackupPlugin/DeleteLocalBackup", {
-            "BackupId": BackupId
-        });
+        return this.apiCall("LocalFileBackupPlugin/DeleteLocalBackup", { BackupId });
     }
 
     /**
@@ -1129,8 +1049,8 @@ class AMPAPI {
      */
     async LocalFileBackupPlugin_SetBackupSticky(BackupId: string, Sticky: boolean): Promise<void> {
         return this.apiCall("LocalFileBackupPlugin/SetBackupSticky", {
-            "BackupId": BackupId, 
-            "Sticky": Sticky
+            BackupId, 
+            Sticky, 
         });
     }
 
@@ -1143,9 +1063,9 @@ class AMPAPI {
      */
     async LocalFileBackupPlugin_TakeBackup(Title: string, Description: string, Sticky: boolean): Promise<any> {
         return this.apiCall("LocalFileBackupPlugin/TakeBackup", {
-            "Title": Title, 
-            "Description": Description, 
-            "Sticky": Sticky
+            Title, 
+            Description, 
+            Sticky, 
         });
     }
 
@@ -1157,8 +1077,8 @@ class AMPAPI {
      */
     async Core_GetAuditLogEntries(Before: any, Count: number): Promise<any[]> {
         return this.apiCall("Core/GetAuditLogEntries", {
-            "Before": Before, 
-            "Count": Count
+            Before, 
+            Count, 
         });
     }
 
@@ -1176,9 +1096,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async Core_RefreshSettingValueList(Node: string): Promise<any> {
-        return this.apiCall("Core/RefreshSettingValueList", {
-            "Node": Node
-        });
+        return this.apiCall("Core/RefreshSettingValueList", { Node });
     }
 
     /**
@@ -1197,8 +1115,8 @@ class AMPAPI {
      */
     async Core_GetSettingValues(SettingNode: string, WithRefresh: boolean): Promise<{ [key: string]: string }> {
         return this.apiCall("Core/GetSettingValues", {
-            "SettingNode": SettingNode, 
-            "WithRefresh": WithRefresh
+            SettingNode, 
+            WithRefresh, 
         });
     }
 
@@ -1216,9 +1134,7 @@ class AMPAPI {
      * @return {any} AMPType: JObject
      */
     async Core_GetConfig(node: string): Promise<any> {
-        return this.apiCall("Core/GetConfig", {
-            "node": node
-        });
+        return this.apiCall("Core/GetConfig", { node });
     }
 
     /**
@@ -1227,9 +1143,7 @@ class AMPAPI {
      * @return {any[]} AMPType: IEnumerable<JObject>
      */
     async Core_GetConfigs(nodes: string[]): Promise<any[]> {
-        return this.apiCall("Core/GetConfigs", {
-            "nodes": nodes
-        });
+        return this.apiCall("Core/GetConfigs", { nodes });
     }
 
     /**
@@ -1238,9 +1152,7 @@ class AMPAPI {
      * @return {boolean} AMPType: Boolean
      */
     async Core_SetConfigs(data: { [key: string]: string }): Promise<boolean> {
-        return this.apiCall("Core/SetConfigs", {
-            "data": data
-        });
+        return this.apiCall("Core/SetConfigs", { data });
     }
 
     /**
@@ -1251,8 +1163,8 @@ class AMPAPI {
      */
     async Core_SetConfig(node: string, value: string): Promise<any> {
         return this.apiCall("Core/SetConfig", {
-            "node": node, 
-            "value": value
+            node, 
+            value, 
         });
     }
 
@@ -1278,9 +1190,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<AuthRoleSummary>
      */
     async Core_GetRole(RoleId: string): Promise<any> {
-        return this.apiCall("Core/GetRole", {
-            "RoleId": RoleId
-        });
+        return this.apiCall("Core/GetRole", { RoleId });
     }
 
     /**
@@ -1291,8 +1201,8 @@ class AMPAPI {
      */
     async Core_CreateRole(Name: string, AsCommonRole: boolean): Promise<any> {
         return this.apiCall("Core/CreateRole", {
-            "Name": Name, 
-            "AsCommonRole": AsCommonRole
+            Name, 
+            AsCommonRole, 
         });
     }
 
@@ -1302,9 +1212,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async Core_DeleteRole(RoleId: string): Promise<any> {
-        return this.apiCall("Core/DeleteRole", {
-            "RoleId": RoleId
-        });
+        return this.apiCall("Core/DeleteRole", { RoleId });
     }
 
     /**
@@ -1315,8 +1223,8 @@ class AMPAPI {
      */
     async Core_RenameRole(RoleId: string, NewName: string): Promise<any> {
         return this.apiCall("Core/RenameRole", {
-            "RoleId": RoleId, 
-            "NewName": NewName
+            RoleId, 
+            NewName, 
         });
     }
 
@@ -1329,9 +1237,9 @@ class AMPAPI {
      */
     async Core_SetAMPRolePermission(RoleId: string, PermissionNode: string, Enabled: boolean | null): Promise<any> {
         return this.apiCall("Core/SetAMPRolePermission", {
-            "RoleId": RoleId, 
-            "PermissionNode": PermissionNode, 
-            "Enabled": Enabled
+            RoleId, 
+            PermissionNode, 
+            Enabled, 
         });
     }
 
@@ -1341,9 +1249,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<IEnumerable<String>>
      */
     async Core_GetAMPRolePermissions(RoleId: string): Promise<any> {
-        return this.apiCall("Core/GetAMPRolePermissions", {
-            "RoleId": RoleId
-        });
+        return this.apiCall("Core/GetAMPRolePermissions", { RoleId });
     }
 
     /**
@@ -1360,9 +1266,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async Core_AddEventTrigger(triggerId: string): Promise<any> {
-        return this.apiCall("Core/AddEventTrigger", {
-            "triggerId": triggerId
-        });
+        return this.apiCall("Core/AddEventTrigger", { triggerId });
     }
 
     /**
@@ -1371,9 +1275,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async Core_RunEventTriggerImmediately(triggerId: string): Promise<any> {
-        return this.apiCall("Core/RunEventTriggerImmediately", {
-            "triggerId": triggerId
-        });
+        return this.apiCall("Core/RunEventTriggerImmediately", { triggerId });
     }
 
     /**
@@ -1388,12 +1290,12 @@ class AMPAPI {
      */
     async Core_AddIntervalTrigger(months: number[], days: number[], hours: number[], minutes: number[], daysOfMonth: number[], description: string): Promise<any> {
         return this.apiCall("Core/AddIntervalTrigger", {
-            "months": months, 
-            "days": days, 
-            "hours": hours, 
-            "minutes": minutes, 
-            "daysOfMonth": daysOfMonth, 
-            "description": description
+            months, 
+            days, 
+            hours, 
+            minutes, 
+            daysOfMonth, 
+            description, 
         });
     }
 
@@ -1403,9 +1305,7 @@ class AMPAPI {
      * @return {any} AMPType: TimeIntervalTrigger
      */
     async Core_GetTimeIntervalTrigger(Id: string): Promise<any> {
-        return this.apiCall("Core/GetTimeIntervalTrigger", {
-            "Id": Id
-        });
+        return this.apiCall("Core/GetTimeIntervalTrigger", { Id });
     }
 
     /**
@@ -1421,13 +1321,13 @@ class AMPAPI {
      */
     async Core_EditIntervalTrigger(Id: string, months: number[], days: number[], hours: number[], minutes: number[], daysOfMonth: number[], description: string): Promise<any> {
         return this.apiCall("Core/EditIntervalTrigger", {
-            "Id": Id, 
-            "months": months, 
-            "days": days, 
-            "hours": hours, 
-            "minutes": minutes, 
-            "daysOfMonth": daysOfMonth, 
-            "description": description
+            Id, 
+            months, 
+            days, 
+            hours, 
+            minutes, 
+            daysOfMonth, 
+            description, 
         });
     }
 
@@ -1439,8 +1339,8 @@ class AMPAPI {
      */
     async Core_SetTriggerEnabled(Id: string, Enabled: boolean): Promise<any> {
         return this.apiCall("Core/SetTriggerEnabled", {
-            "Id": Id, 
-            "Enabled": Enabled
+            Id, 
+            Enabled, 
         });
     }
 
@@ -1453,9 +1353,9 @@ class AMPAPI {
      */
     async Core_AddTask(TriggerID: string, MethodID: string, ParameterMapping: { [key: string]: string }): Promise<any> {
         return this.apiCall("Core/AddTask", {
-            "TriggerID": TriggerID, 
-            "MethodID": MethodID, 
-            "ParameterMapping": ParameterMapping
+            TriggerID, 
+            MethodID, 
+            ParameterMapping, 
         });
     }
 
@@ -1468,9 +1368,9 @@ class AMPAPI {
      */
     async Core_EditTask(TriggerID: string, TaskID: string, ParameterMapping: { [key: string]: string }): Promise<any> {
         return this.apiCall("Core/EditTask", {
-            "TriggerID": TriggerID, 
-            "TaskID": TaskID, 
-            "ParameterMapping": ParameterMapping
+            TriggerID, 
+            TaskID, 
+            ParameterMapping, 
         });
     }
 
@@ -1483,9 +1383,9 @@ class AMPAPI {
      */
     async Core_ChangeTaskOrder(TriggerID: string, TaskID: string, NewOrder: number): Promise<any> {
         return this.apiCall("Core/ChangeTaskOrder", {
-            "TriggerID": TriggerID, 
-            "TaskID": TaskID, 
-            "NewOrder": NewOrder
+            TriggerID, 
+            TaskID, 
+            NewOrder, 
         });
     }
 
@@ -1497,8 +1397,8 @@ class AMPAPI {
      */
     async Core_DeleteTask(TriggerID: string, TaskID: string): Promise<any> {
         return this.apiCall("Core/DeleteTask", {
-            "TriggerID": TriggerID, 
-            "TaskID": TaskID
+            TriggerID, 
+            TaskID, 
         });
     }
 
@@ -1508,9 +1408,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async Core_DeleteTrigger(TriggerID: string): Promise<any> {
-        return this.apiCall("Core/DeleteTrigger", {
-            "TriggerID": TriggerID
-        });
+        return this.apiCall("Core/DeleteTrigger", { TriggerID });
     }
 
     /**
@@ -1527,9 +1425,7 @@ class AMPAPI {
      * @return {void} AMPType: Void
      */
     async Core_EndUserSession(Id: string): Promise<void> {
-        return this.apiCall("Core/EndUserSession", {
-            "Id": Id
-        });
+        return this.apiCall("Core/EndUserSession", { Id });
     }
 
     /**
@@ -1546,9 +1442,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<UserInfo>
      */
     async Core_GetAMPUserInfo(Username: string): Promise<any> {
-        return this.apiCall("Core/GetAMPUserInfo", {
-            "Username": Username
-        });
+        return this.apiCall("Core/GetAMPUserInfo", { Username });
     }
 
     /**
@@ -1568,9 +1462,9 @@ class AMPAPI {
      */
     async Core_SetAMPUserRoleMembership(UserId: string, RoleId: string, IsMember: boolean): Promise<any> {
         return this.apiCall("Core/SetAMPUserRoleMembership", {
-            "UserId": UserId, 
-            "RoleId": RoleId, 
-            "IsMember": IsMember
+            UserId, 
+            RoleId, 
+            IsMember, 
         });
     }
 
@@ -1588,9 +1482,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult<Guid>>
      */
     async Core_CreateUser(Username: string): Promise<any> {
-        return this.apiCall("Core/CreateUser", {
-            "Username": Username
-        });
+        return this.apiCall("Core/CreateUser", { Username });
     }
 
     /**
@@ -1599,9 +1491,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async Core_DeleteUser(Username: string): Promise<any> {
-        return this.apiCall("Core/DeleteUser", {
-            "Username": Username
-        });
+        return this.apiCall("Core/DeleteUser", { Username });
     }
 
     /**
@@ -1616,12 +1506,12 @@ class AMPAPI {
      */
     async Core_UpdateUserInfo(Username: string, Disabled: boolean, PasswordExpires: boolean, CannotChangePassword: boolean, MustChangePassword: boolean, EmailAddress: string): Promise<any> {
         return this.apiCall("Core/UpdateUserInfo", {
-            "Username": Username, 
-            "Disabled": Disabled, 
-            "PasswordExpires": PasswordExpires, 
-            "CannotChangePassword": CannotChangePassword, 
-            "MustChangePassword": MustChangePassword, 
-            "EmailAddress": EmailAddress
+            Username, 
+            Disabled, 
+            PasswordExpires, 
+            CannotChangePassword, 
+            MustChangePassword, 
+            EmailAddress, 
         });
     }
 
@@ -1639,9 +1529,7 @@ class AMPAPI {
      * @return {any} AMPType: WebauthnLoginInfo
      */
     async Core_GetWebauthnCredentialIDs(username: string): Promise<any> {
-        return this.apiCall("Core/GetWebauthnCredentialIDs", {
-            "username": username
-        });
+        return this.apiCall("Core/GetWebauthnCredentialIDs", { username });
     }
 
     /**
@@ -1653,9 +1541,9 @@ class AMPAPI {
      */
     async Core_WebauthnRegister(attestationObject: string, clientDataJSON: string, description: string): Promise<any> {
         return this.apiCall("Core/WebauthnRegister", {
-            "attestationObject": attestationObject, 
-            "clientDataJSON": clientDataJSON, 
-            "description": description
+            attestationObject, 
+            clientDataJSON, 
+            description, 
         });
     }
 
@@ -1673,9 +1561,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async Core_RevokeWebauthnCredential(ID: number): Promise<any> {
-        return this.apiCall("Core/RevokeWebauthnCredential", {
-            "ID": ID
-        });
+        return this.apiCall("Core/RevokeWebauthnCredential", { ID });
     }
 
     /**
@@ -1686,8 +1572,8 @@ class AMPAPI {
      */
     async Core_UpdateAccountInfo(EmailAddress: string, TwoFactorPIN: string): Promise<any> {
         return this.apiCall("Core/UpdateAccountInfo", {
-            "EmailAddress": EmailAddress, 
-            "TwoFactorPIN": TwoFactorPIN
+            EmailAddress, 
+            TwoFactorPIN, 
         });
     }
 
@@ -1700,8 +1586,8 @@ class AMPAPI {
      */
     async Core_EnableTwoFactor(Username: string, Password: string): Promise<any> {
         return this.apiCall("Core/EnableTwoFactor", {
-            "Username": Username, 
-            "Password": Password
+            Username, 
+            Password, 
         });
     }
 
@@ -1714,8 +1600,8 @@ class AMPAPI {
      */
     async Core_ConfirmTwoFactorSetup(Username: string, TwoFactorCode: string): Promise<any> {
         return this.apiCall("Core/ConfirmTwoFactorSetup", {
-            "Username": Username, 
-            "TwoFactorCode": TwoFactorCode
+            Username, 
+            TwoFactorCode, 
         });
     }
 
@@ -1727,8 +1613,8 @@ class AMPAPI {
      */
     async Core_DisableTwoFactor(Password: string, TwoFactorCode: string): Promise<any> {
         return this.apiCall("Core/DisableTwoFactor", {
-            "Password": Password, 
-            "TwoFactorCode": TwoFactorCode
+            Password, 
+            TwoFactorCode, 
         });
     }
 
@@ -1741,8 +1627,8 @@ class AMPAPI {
      */
     async Core_ResetUserPassword(Username: string, NewPassword: string): Promise<any> {
         return this.apiCall("Core/ResetUserPassword", {
-            "Username": Username, 
-            "NewPassword": NewPassword
+            Username, 
+            NewPassword, 
         });
     }
 
@@ -1752,9 +1638,7 @@ class AMPAPI {
      * @return {any} AMPType: Task<ActionResult>
      */
     async Core_DeleteInstanceUsers(InstanceId: string): Promise<any> {
-        return this.apiCall("Core/DeleteInstanceUsers", {
-            "InstanceId": InstanceId
-        });
+        return this.apiCall("Core/DeleteInstanceUsers", { InstanceId });
     }
 
     /**
@@ -1768,10 +1652,10 @@ class AMPAPI {
      */
     async Core_ChangeUserPassword(Username: string, OldPassword: string, NewPassword: string, TwoFactorPIN: string): Promise<any> {
         return this.apiCall("Core/ChangeUserPassword", {
-            "Username": Username, 
-            "OldPassword": OldPassword, 
-            "NewPassword": NewPassword, 
-            "TwoFactorPIN": TwoFactorPIN
+            Username, 
+            OldPassword, 
+            NewPassword, 
+            TwoFactorPIN, 
         });
     }
 
@@ -1807,9 +1691,7 @@ class AMPAPI {
      * @return {boolean} AMPType: Boolean
      */
     async Core_CurrentSessionHasPermission(PermissionNode: string): Promise<boolean> {
-        return this.apiCall("Core/CurrentSessionHasPermission", {
-            "PermissionNode": PermissionNode
-        });
+        return this.apiCall("Core/CurrentSessionHasPermission", { PermissionNode });
     }
 
     /**
@@ -1834,9 +1716,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async Core_CancelTask(TaskId: string): Promise<any> {
-        return this.apiCall("Core/CancelTask", {
-            "TaskId": TaskId
-        });
+        return this.apiCall("Core/CancelTask", { TaskId });
     }
 
     /**
@@ -1845,9 +1725,7 @@ class AMPAPI {
      * @return {any} AMPType: ActionResult
      */
     async Core_DismissTask(TaskId: string): Promise<any> {
-        return this.apiCall("Core/DismissTask", {
-            "TaskId": TaskId
-        });
+        return this.apiCall("Core/DismissTask", { TaskId });
     }
 
     /**
@@ -1865,9 +1743,7 @@ class AMPAPI {
      * @return {any} AMPType: JObject
      */
     async Core_GetUserInfo(UID: string): Promise<any> {
-        return this.apiCall("Core/GetUserInfo", {
-            "UID": UID
-        });
+        return this.apiCall("Core/GetUserInfo", { UID });
     }
 
     /**
@@ -1978,10 +1854,10 @@ class AMPAPI {
      */
     async Core_Login(username: string, password: string, token: string, rememberMe: boolean): Promise<any> {
         return this.apiCall("Core/Login", {
-            "username": username, 
-            "password": password, 
-            "token": token, 
-            "rememberMe": rememberMe
+            username, 
+            password, 
+            token, 
+            rememberMe, 
         });
     }
 
@@ -1993,8 +1869,8 @@ class AMPAPI {
      */
     async Core_GetRemoteLoginToken(Description: string, IsTemporary: boolean): Promise<any> {
         return this.apiCall("Core/GetRemoteLoginToken", {
-            "Description": Description, 
-            "IsTemporary": IsTemporary
+            Description, 
+            IsTemporary, 
         });
     }
 
@@ -2004,9 +1880,7 @@ class AMPAPI {
      * @return {void} AMPType: Void
      */
     async Core_SendConsoleMessage(message: string): Promise<void> {
-        return this.apiCall("Core/SendConsoleMessage", {
-            "message": message
-        });
+        return this.apiCall("Core/SendConsoleMessage", { message });
     }
 
     /**

@@ -6,9 +6,9 @@
 /**
  * @class AMPAPI
  * @description The main class for the AMP API
- * @param {string} baseUri The base URI for the AMP API
- * @param {string} sessionId The session ID for the AMP API
- * @param {string} dataSource The complete API URL for the AMP API
+ * @property {string} baseUri The base URI for the AMP API
+ * @property {string} sessionId The session ID for the AMP API
+ * @property {string} dataSource The complete API URL for the AMP API
  */
 class AMPAPI {
     public baseUri: string;
@@ -1962,9 +1962,9 @@ class AMPAPI {
 /**
  * @class AMPAPIHandler
  * @description Modified handler class for the AMP API
- * @param {string} username Username for the AMP API
- * @param {string} password Password for the AMP API
- * @param {string} rememberMeToken Remember me token for the AMP API
+ * @property {string} username Username for the AMP API
+ * @property {string} password Password for the AMP API
+ * @property {string} rememberMeToken Remember me token for the AMP API
  * @extends AMPAPI
  */
 class AMPAPIHandler extends AMPAPI {
@@ -1981,7 +1981,7 @@ class AMPAPIHandler extends AMPAPI {
      * @param rememberMeToken Remember me token for the AMP API
      * @param sessionId Session ID for the AMP API
      */
-    constructor(baseUri: string, username: string, password: string, rememberMeToken: string, sessionId: string) {
+    constructor(baseUri: string, username: string, password: string, rememberMeToken: string = "", sessionId: string = "") {
         super(baseUri);
         if (!this.baseUri.endsWith("/")) {
             this.baseUri += "/";

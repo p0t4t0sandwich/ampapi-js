@@ -6,9 +6,9 @@
 /**
  * @class AMPAPI
  * @description The main class for the AMP API
- * @param {string} baseUri The base URI for the AMP API
- * @param {string} sessionId The session ID for the AMP API
- * @param {string} dataSource The complete API URL for the AMP API
+ * @property {string} baseUri The base URI for the AMP API
+ * @property {string} sessionId The session ID for the AMP API
+ * @property {string} dataSource The complete API URL for the AMP API
  */
 class AMPAPI {
     public baseUri: string;

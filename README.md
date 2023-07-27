@@ -1,3 +1,3 @@
 # ampapi-typescript
 
-Just a fun WIP at the moment, doubtful that I'll publish it
+This API allows you to communicate with AMP installations from within TypeScript.

@@ -627,9 +627,10 @@ class AMPAPI {
      * @param {number} ContainerMemory AMPType: Int32 
      * @param {any} MemoryPolicy AMPType: ContainerMemoryPolicy 
      * @param {any} ContainerMaxCPU AMPType: Single 
+     * @param {string} ContainerImage AMPType: String 
      * @return {any} AMPType: Task<ActionResult>
      */
-    async ADSModule_UpdateInstanceInfo(InstanceId: string, FriendlyName: string, Description: string, StartOnBoot: boolean, Suspended: boolean, ExcludeFromFirewall: boolean, RunInContainer: boolean, ContainerMemory: number, MemoryPolicy: any, ContainerMaxCPU: any): Promise<any> {
+    async ADSModule_UpdateInstanceInfo(InstanceId: string, FriendlyName: string, Description: string, StartOnBoot: boolean, Suspended: boolean, ExcludeFromFirewall: boolean, RunInContainer: boolean, ContainerMemory: number, MemoryPolicy: any, ContainerMaxCPU: any, ContainerImage: string): Promise<any> {
         return this.apiCall("ADSModule/UpdateInstanceInfo", {
             InstanceId, 
             FriendlyName, 
@@ -641,6 +642,7 @@ class AMPAPI {
             ContainerMemory, 
             MemoryPolicy, 
             ContainerMaxCPU, 
+            ContainerImage, 
         });
     }
 
@@ -1700,6 +1702,14 @@ class AMPAPI {
      */
     async Core_GetTasks(): Promise<any> {
         return this.apiCall("Core/GetTasks");
+    }
+
+    /**
+     * Name TypeName Description Optional
+     * @return {any[]} AMPType: IEnumerable<ListeningPortSummary>
+     */
+    async Core_GetPortSummaries(): Promise<any[]> {
+        return this.apiCall("Core/GetPortSummaries");
     }
 
     /**

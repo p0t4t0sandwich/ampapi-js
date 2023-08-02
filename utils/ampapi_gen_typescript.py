@@ -97,7 +97,8 @@ type_dict = {
     "Dictionary<String, Dictionary<String, MethodInfoSummary>>": "{ [key: string]: any[] }",
     "Object": "any",
     "Task<String>": "any",
-    "UpdateInfo": "any"
+    "UpdateInfo": "any",
+    "IEnumerable<ListeningPortSummary>": "any[]",
 }
 
 def generate_typescript(spec):

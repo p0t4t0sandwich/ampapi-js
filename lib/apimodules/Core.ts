@@ -4,6 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
+import { GetStatusResult } from "../responses/Core/GetStatusResult.js";
 
 /**
  * @class Core
@@ -559,9 +560,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<GetStatusResult>}
      */
-    async GetStatus(): Promise<any> {
+    async GetStatus(): Promise<GetStatusResult> {
         return this.apiCall("Core/GetStatus", { 
         });
     }

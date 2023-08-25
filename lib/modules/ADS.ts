@@ -86,14 +86,20 @@ export class ADS extends AMPAPI {
             const sessionId: string = loginResult.sessionID;
 
             // Return the correct module
+            let newInstance: AMPAPI;
             switch (module) {
                 case "GenericModule":
-                    return <T>new GenericModule(newBaseUri, this.username, "", rememberMeToken, sessionId);
+                    newInstance = new GenericModule(newBaseUri, this.username, "", rememberMeToken, sessionId);
+                    break;
                 case "Minecraft":
-                    return <T>new Minecraft(newBaseUri, this.username, "", rememberMeToken, sessionId);
+                    newInstance = new Minecraft(newBaseUri, this.username, "", rememberMeToken, sessionId);
+                    break;
                 default:
-                    return <T>new AMPAPI(newBaseUri, this.username, "", rememberMeToken, sessionId);
+                    newInstance = new GenericModule(newBaseUri, this.username, "", rememberMeToken, sessionId);
+                    break;
             }
+            await newInstance.APILogin();
+            return <T>newInstance;
         } else {
             return undefined;
         }

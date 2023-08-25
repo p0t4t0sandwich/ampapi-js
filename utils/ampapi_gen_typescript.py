@@ -1,8 +1,11 @@
 #!/bin/python3
 from __future__ import annotations
 
+import sys
+
 import requests
 import json
+
 
 type_dict = {
     "InstanceDatastore": "any",
@@ -70,6 +73,9 @@ type_dict = {
     "Task<String>": "any",
     "UpdateInfo": "any",
     "IEnumerable<ListeningPortSummary>": "any[]",
+
+    # Custom types
+    "GetStatusResult": "GetStatusResult",
 }
 
 def generate_apimodule_method(module: str, method: str, method_spec: dict):
@@ -182,7 +188,19 @@ def generate_spec(spec: dict):
         generate_apimodule(module, spec[module])
 
 if __name__ == "__main__":
-    res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
-    res_json = json.loads(res.content)
+    spec = ""
+    if len(sys.argv) >= 2 and sys.argv[1] == "-l":
+        print("Using local spec...")
+        # Load local file
 
-    generate_spec(res_json)
+        with open("LocalSpec.json", "r") as f:
+            spec = json.load(f)
+            f.close()
+    else:
+        print("Using remote spec...")
+
+        # Load remote file
+        res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
+        spec = json.loads(res.content)
+
+    generate_spec(spec)

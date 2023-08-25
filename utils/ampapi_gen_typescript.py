@@ -4,35 +4,6 @@ from __future__ import annotations
 import requests
 import json
 
-import os
-
-class AMPAPI():
-    def __init__(self, baseUri: str) -> None:
-        self.baseUri = baseUri
-        self.sessionId = ""
-        self.dataSource = ""
-
-        if not self.baseUri[-1] == "/":
-            self.dataSource = self.baseUri + "/API"
-        else:
-            self.dataSource = self.baseUri + "API"
-
-    def APICall(self, endpoint: str, data: dict = {}) -> dict:
-        headers = {'Accept': 'text/javascript',}
-        session = {"SESSIONID": self.sessionId}
-        data_added = dict(session, **data)
-
-        data_json = json.dumps(data_added)
-
-        res = requests.post(
-            url=f"{self.dataSource}/{endpoint}",
-            headers=headers,
-            data=data_json
-        )
-        res_json = json.loads(res.content)
-
-        return res_json
-
 type_dict = {
     "InstanceDatastore": "any",
     "ActionResult": "any",
@@ -101,110 +72,117 @@ type_dict = {
     "IEnumerable<ListeningPortSummary>": "any[]",
 }
 
-def generate_typescript(spec):
-    f = open("../lib/AMPAPI.ts","w+")
+def generate_apimodule_method(module: str, method: str, method_spec: dict):
+    # Read the template file
+    api_module_method_template = ""
+    with open("templates/api_module_method.txt", "r") as tf:
+        api_module_method_template = tf.read()
+        tf.close()
 
-    with open("./ampapi_core.ts", "r") as ac:
-        ampapi_core = ac.read()
-        f.write(ampapi_core)
+    # Get the method description
+    description = ""
+    if "Description" in method_spec.keys():
+        description = "\n     * " + method_spec["Description"]
 
-    for module in spec.keys():
-        methods = spec[module]
-        for method in methods.keys():
-            methodParams = spec[module][method]["Parameters"]
-            data = {methodParams[i]["Name"]:methodParams[i]["Name"] for i in range(len(methodParams))}
+    # Get the method parameters
+    parameters_docs = ""
+    methodParams = method_spec["Parameters"]
+    if len(methodParams) > 0:
+        parameters_docs += "\n"
+    for i in range(len(methodParams)):
+        api_module_method_parameter_doc_template = ""
+        with open("templates/api_module_method_parameter_doc.txt", "r") as tf:
+            api_module_method_parameter_doc_template = tf.read()
+            tf.close()
 
-            ##################### Add docs
-            description = ""
-            if "Description" in spec[module][method].keys():
-                description = "\n     * " + spec[module][method]["Description"]
+        name = methodParams[i]["Name"]
+        type_name = methodParams[i]["TypeName"]
 
-            javadoc = f"    /**{description}\n     * Name TypeName Description Optional"
+        # Print out the type if it hasn't been added to the type_dict
+        if not type_name in type_dict.keys(): print(type_name)
 
-            ########## Parameters
-            for i in range(len(methodParams)):
-                name = methodParams[i]["Name"]
-                type_name = methodParams[i]["TypeName"]
+        description = methodParams[i]["Description"]
+        optional = methodParams[i]["Optional"]
+        if optional == "true": type_name += ", " + optional
 
-                # Print out the type if it hasn't been added to the type_dict
-                if not type_name in type_dict.keys(): print(type_name)
-                description = methodParams[i]["Description"]
-                optional = methodParams[i]["Optional"]
-                if optional == "true": type_name + ", optional"
-                javadoc += f"\n     * @param " + "{" + f"{type_dict[type_name]}" + "}" + f" {name} AMPType: {type_name} {description}"
+        template = api_module_method_parameter_doc_template\
+            .replace("%METHOD_PARAMETER_NAME%", name)\
+            .replace("%METHOD_PARAMETER_TYPE%", type_dict[type_name])\
+            .replace("%METHOD_PARAMETER_DESCRIPTION%", description)\
+            .replace("%METHOD_PARAMETER_OPTIONAL%", str(optional))
 
-            ##########
+        parameters_docs += template
+    parameters_docs = parameters_docs[:-1]
 
-            ########## Return type
-            return_type = spec[module][method]["ReturnTypeName"]
+    # Get the method return type
+    return_type = method_spec["ReturnTypeName"]
 
-            # Print out the type if it hasn't been added to the type_dict
-            if not return_type in type_dict.keys(): print(return_type)
-            javadoc += f"\n     * @return " + "{" + f"{type_dict[return_type]}" + "}" + f" AMPType: {return_type}"
+    # Print out the type if it hasn't been added to the type_dict
+    if not return_type in type_dict.keys(): print(return_type)
+    return_type = type_dict[return_type]
 
-            return_type = type_dict[return_type]
-            ##########
+    # Get the method parameters
+    parameters = ""
+    for i in range(len(methodParams)):
+        name = methodParams[i]["Name"]
+        type_name = methodParams[i]["TypeName"]
 
-            javadoc += "\n     */"
-            #####################
+        # Print out the type if it hasn't been added to the type_dict
+        if not type_name in type_dict.keys(): print(type_name)
+        parameters += f"{name}: {type_dict[type_name]}, "
 
-            data_string = ""
-            if len(data.keys()) == 1:
-                data_string += " " + methodParams[i]["Name"] + " , "
-            elif len(data.keys()) > 1:
-                for i in range(len(methodParams)):
-                    data_string += '\n            ' + methodParams[i]["Name"] + ", "
-                data_string += '\n          '
+    parameters = parameters[:-2]
 
-            if len(data.keys()) != 0:
-                if data_string[-1]==" ": data_string = data_string[:-2]
-                data_string = ", {" + data_string + "}"
+    # Get the parameters for the data map
+    map_string = ""
+    if len(methodParams) > 0:
+        map_string += "\n"
+    for i in range(len(methodParams)):
+        api_module_method_parameter_map_template = ""
+        with open("templates/api_module_method_parameter_map.txt", "r") as tf:
+            api_module_method_parameter_map_template = tf.read()
+            tf.close()
 
-            params = ""
-            if len(data.keys()) != 0:
-                for i in range(len(methodParams)):
-                    param_type = ": any"
-                    if not type_dict[methodParams[i]["TypeName"]] == "":
-                        param_type = f": {type_dict[methodParams[i]['TypeName']]}"
-                    params += methodParams[i]["Name"] + param_type + ", "
-                params = params[:-2]
+        name = methodParams[i]["Name"]
+        map_string += api_module_method_parameter_map_template.replace("%METHOD_PARAMETER_NAME%", name)
+    map_string = map_string[:-2]
 
-            template = f"""{javadoc}
-    async {module}_{method}({params}): Promise<{return_type}> {"{"}
-        return this.apiCall("{module}/{method}"{data_string});
-    {"}"}\n\n"""
-            f.write(template)
+    # Replace placeholders
+    template = api_module_method_template\
+        .replace("%METHOD_DESCRIPTION%", description)\
+        .replace("%METHOD_PARAMETER_DOC%", parameters_docs)\
+        .replace("%MODULE_NAME%", module)\
+        .replace("%METHOD_NAME%", method)\
+        .replace("%METHOD_PARAMETERS%", parameters)\
+        .replace("%METHOD_RETURN_TYPE%", return_type)\
+        .replace("%METHOD_PARAMETER_MAP%", map_string)
 
-    f.write("}\n\n")
+    # End result will return a string
+    return template
 
-    with open("./ampapi_handler.ts", "r") as ah:
-        ampapi_handler = ah.read()
-        f.write(ampapi_handler)
+def generate_apimodule(module: str, methods: dict):
+    # Read the template file
+    api_module_template = ""
+    with open("templates/api_module.txt", "r") as tf:
+        api_module_template = tf.read()
+        tf.close()
 
-    f.write("\nexport { AMPAPI, AMPAPIHandler };\n")
+    # Create a new file called f{module}.java
+    f = open(f"../lib/apimodules/{module}.ts","w+")
+    f.write(api_module_template.replace("%MODULE_NAME%", module))
+
+    for method in methods.keys():
+        f.write(generate_apimodule_method(module, method, methods[method]))
+
+    f.write("}\n")
     f.close()
 
+def generate_spec(spec: dict):
+    for module in spec.keys():
+        generate_apimodule(module, spec[module])
 
-def start() -> None:
-    URL = os.getenv("AMP_URL")
-    USERNAME = os.getenv("AMP_USERNAME")
-    PASSWORD = os.getenv("AMP_PASSWORD")
+if __name__ == "__main__":
+    res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
+    res_json = json.loads(res.content)
 
-    API = AMPAPI(URL)
-
-    loginResult = API.APICall("Core/Login", {"username": USERNAME, "password": PASSWORD, "token": "", "rememberMe": False})
-
-    if "success" in loginResult.keys() and loginResult["success"]:
-        print("Login successful")
-        API.sessionId = loginResult["sessionID"]
-
-        # Grab the APISpec
-        spec = API.APICall("Core/GetAPISpec")["result"]
-
-        generate_typescript(spec)
-
-    else:
-        print("Login failed")
-        print(loginResult)
-
-start()
+    generate_spec(res_json)

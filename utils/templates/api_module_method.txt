@@ -1,0 +1,9 @@
+    /**%METHOD_DESCRIPTION%
+     * Name Description Optional%METHOD_PARAMETER_DOC%
+     * @return {Promise<%METHOD_RETURN_TYPE%>}
+     */
+    async %METHOD_NAME%(%METHOD_PARAMETERS%): Promise<%METHOD_RETURN_TYPE%> {
+        return this.apiCall("%MODULE_NAME%/%METHOD_NAME%", { %METHOD_PARAMETER_MAP%
+        });
+    }
+

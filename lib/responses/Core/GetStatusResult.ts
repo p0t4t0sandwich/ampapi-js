@@ -1,7 +1,21 @@
 /**
  * @author p0t4t0sandich
  * @description Response type for API.Core.GetStatus
+ * @see /lib/apimodules/Core.ts#GetStatus
  */
+
+/**
+ * @interface GetStatusResult
+ * @description Interface for the result of API.Core.GetStatus
+ * @property {number} State The state of the instance
+ * @property {string} Uptime The uptime of the instance
+ * @property {{ [key: string]: StatusMetric }} Metrics The metrics of the instance
+ */
+interface GetStatusResult {
+    State: number;
+    Uptime: string;
+    Metrics: { [key: string]: StatusMetric };
+}
 
 /**
  * @interface StatusMetric
@@ -22,19 +36,6 @@ interface StatusMetric {
     Color?: string;
     Color2?: string;
     Color3?: string;
-}
-
-/**
- * @interface GetStatusResult
- * @description Interface for the result of API.Core.GetStatus
- * @property {number} State The state of the instance
- * @property {string} Uptime The uptime of the instance
- * @property {{ [key: string]: StatusMetric }} Metrics The metrics of the instance
- */
-interface GetStatusResult {
-    State: number;
-    Uptime: string;
-    Metrics: { [key: string]: StatusMetric };
 }
 
 export { GetStatusResult, StatusMetric };

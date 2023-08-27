@@ -5,6 +5,7 @@
 
 import { AMPAPI } from "../AMPAPI.js";
 
+
 /**
  * @class %MODULE_NAME%
  */

@@ -4,6 +4,10 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
+import { Result } from "../types/Result.js";
+import { ActionResult } from "../types/ActionResult.js";
+import { Task } from "../types/Task.js";
+import { RunningTask } from "../types/RunningTask.js";
 
 /**
  * @class MinecraftModule
@@ -30,9 +34,9 @@ export class MinecraftModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} UserOrUUID  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async AddOPEntry(UserOrUUID: string): Promise<any> {
+    async AddOPEntry(UserOrUUID: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("MinecraftModule/AddOPEntry", { 
             UserOrUUID
         });
@@ -41,9 +45,9 @@ export class MinecraftModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} UserOrUUID  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async AddToWhitelist(UserOrUUID: string): Promise<any> {
+    async AddToWhitelist(UserOrUUID: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("MinecraftModule/AddToWhitelist", { 
             UserOrUUID
         });
@@ -62,9 +66,9 @@ export class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<{ [key: string]: any }>}
      */
-    async BukGetCategories(): Promise<any> {
+    async BukGetCategories(): Promise<{ [key: string]: any }> {
         return this.apiCall("MinecraftModule/BukGetCategories", { 
         });
     }
@@ -72,9 +76,9 @@ export class MinecraftModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} pluginId  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<RunningTask>>}
      */
-    async BukGetInstallUpdatePlugin(pluginId: number): Promise<any> {
+    async BukGetInstallUpdatePlugin(pluginId: number): Promise<Task<RunningTask>> {
         return this.apiCall("MinecraftModule/BukGetInstallUpdatePlugin", { 
             pluginId
         });
@@ -82,9 +86,9 @@ export class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<{ [key: string]: any }>}
      */
-    async BukGetInstalledPlugins(): Promise<any> {
+    async BukGetInstalledPlugins(): Promise<{ [key: string]: any }> {
         return this.apiCall("MinecraftModule/BukGetInstalledPlugins", { 
         });
     }
@@ -92,9 +96,9 @@ export class MinecraftModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} PluginId  False
-     * @return {Promise<any>}
+     * @return {Promise<{ [key: string]: any }>}
      */
-    async BukGetPluginInfo(PluginId: number): Promise<any> {
+    async BukGetPluginInfo(PluginId: number): Promise<{ [key: string]: any }> {
         return this.apiCall("MinecraftModule/BukGetPluginInfo", { 
             PluginId
         });
@@ -105,9 +109,9 @@ export class MinecraftModule extends AMPAPI {
      * @param {string} CategoryId  False
      * @param {number} PageNumber  False
      * @param {number} PageSize  False
-     * @return {Promise<any>}
+     * @return {Promise<{ [key: string]: any }>}
      */
-    async BukGetPluginsForCategory(CategoryId: string, PageNumber: number, PageSize: number): Promise<any> {
+    async BukGetPluginsForCategory(CategoryId: string, PageNumber: number, PageSize: number): Promise<{ [key: string]: any }> {
         return this.apiCall("MinecraftModule/BukGetPluginsForCategory", { 
             CategoryId,
             PageNumber,
@@ -117,9 +121,9 @@ export class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<{ [key: string]: any }>}
      */
-    async BukGetPopularPlugins(): Promise<any> {
+    async BukGetPopularPlugins(): Promise<{ [key: string]: any }> {
         return this.apiCall("MinecraftModule/BukGetPopularPlugins", { 
         });
     }
@@ -140,9 +144,9 @@ export class MinecraftModule extends AMPAPI {
      * @param {string} Query  False
      * @param {number} PageNumber  False
      * @param {number} PageSize  False
-     * @return {Promise<any>}
+     * @return {Promise<{ [key: string]: any }>}
      */
-    async BukGetSearch(Query: string, PageNumber: number, PageSize: number): Promise<any> {
+    async BukGetSearch(Query: string, PageNumber: number, PageSize: number): Promise<{ [key: string]: any }> {
         return this.apiCall("MinecraftModule/BukGetSearch", { 
             Query,
             PageNumber,
@@ -183,18 +187,18 @@ export class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<{ [key: string]: any }>}
      */
-    async GetOPWhitelist(): Promise<any> {
+    async GetOPWhitelist(): Promise<{ [key: string]: any }> {
         return this.apiCall("MinecraftModule/GetOPWhitelist", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<{ [key: string]: any }[]>>}
      */
-    async GetWhitelist(): Promise<any[]> {
+    async GetWhitelist(): Promise<Result<{ [key: string]: any }[]>> {
         return this.apiCall("MinecraftModule/GetWhitelist", { 
         });
     }
@@ -223,9 +227,9 @@ export class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<{ [key: string]: any }[]>>}
      */
-    async LoadOPList(): Promise<any[]> {
+    async LoadOPList(): Promise<Result<{ [key: string]: any }[]>> {
         return this.apiCall("MinecraftModule/LoadOPList", { 
         });
     }

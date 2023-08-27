@@ -4,6 +4,9 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
+import { ActionResult } from "../types/ActionResult.js";
+import { Task } from "../types/Task.js";
+
 
 /**
  * @class EmailSenderPlugin
@@ -20,9 +23,9 @@ export class EmailSenderPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async TestSMTPSettings(): Promise<any> {
+    async TestSMTPSettings(): Promise<Task<ActionResult<any>>> {
         return this.apiCall("EmailSenderPlugin/TestSMTPSettings", { 
         });
     }

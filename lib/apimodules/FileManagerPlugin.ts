@@ -4,6 +4,9 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
+import { Result } from "../types/Result.js";
+import { ActionResult } from "../types/ActionResult.js";
+
 
 /**
  * @class FileManagerPlugin
@@ -36,9 +39,9 @@ export class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} FilePath  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<string>>}
      */
-    async CalculateFileMD5Sum(FilePath: string): Promise<any> {
+    async CalculateFileMD5Sum(FilePath: string): Promise<ActionResult<string>> {
         return this.apiCall("FileManagerPlugin/CalculateFileMD5Sum", { 
             FilePath
         });
@@ -49,9 +52,9 @@ export class FileManagerPlugin extends AMPAPI {
      * @param {string} ModifyPath  False
      * @param {boolean} AsDirectory  False
      * @param {boolean} Exclude  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async ChangeExclusion(ModifyPath: string, AsDirectory: boolean, Exclude: boolean): Promise<any> {
+    async ChangeExclusion(ModifyPath: string, AsDirectory: boolean, Exclude: boolean): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/ChangeExclusion", { 
             ModifyPath,
             AsDirectory,
@@ -63,9 +66,9 @@ export class FileManagerPlugin extends AMPAPI {
      * Name Description Optional
      * @param {string} Origin  False
      * @param {string} TargetDirectory  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async CopyFile(Origin: string, TargetDirectory: string): Promise<any> {
+    async CopyFile(Origin: string, TargetDirectory: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/CopyFile", { 
             Origin,
             TargetDirectory
@@ -75,9 +78,9 @@ export class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} PathToArchive  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async CreateArchive(PathToArchive: string): Promise<any> {
+    async CreateArchive(PathToArchive: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/CreateArchive", { 
             PathToArchive
         });
@@ -86,9 +89,9 @@ export class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} NewPath  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async CreateDirectory(NewPath: string): Promise<any> {
+    async CreateDirectory(NewPath: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/CreateDirectory", { 
             NewPath
         });
@@ -96,11 +99,11 @@ export class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} Source  False
+     * @param {URL} Source  False
      * @param {string} TargetDirectory  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async DownloadFileFromURL(Source: string, TargetDirectory: string): Promise<any> {
+    async DownloadFileFromURL(Source: URL, TargetDirectory: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/DownloadFileFromURL", { 
             Source,
             TargetDirectory
@@ -119,9 +122,9 @@ export class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} TrashDirectoryName  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async EmptyTrash(TrashDirectoryName: string): Promise<any> {
+    async EmptyTrash(TrashDirectoryName: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/EmptyTrash", { 
             TrashDirectoryName
         });
@@ -131,9 +134,9 @@ export class FileManagerPlugin extends AMPAPI {
      * Name Description Optional
      * @param {string} ArchivePath  False
      * @param {string} DestinationPath  True
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async ExtractArchive(ArchivePath: string, DestinationPath: string): Promise<any> {
+    async ExtractArchive(ArchivePath: string, DestinationPath: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/ExtractArchive", { 
             ArchivePath,
             DestinationPath
@@ -143,9 +146,9 @@ export class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} Dir  False
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<{ [key: string]: any }[]>>}
      */
-    async GetDirectoryListing(Dir: string): Promise<any[]> {
+    async GetDirectoryListing(Dir: string): Promise<Result<{ [key: string]: any }[]>> {
         return this.apiCall("FileManagerPlugin/GetDirectoryListing", { 
             Dir
         });
@@ -171,9 +174,9 @@ export class FileManagerPlugin extends AMPAPI {
      * @param {string} Filename  False
      * @param {number} Offset  False
      * @param {number} ChunkSize  True
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<string>>}
      */
-    async ReadFileChunk(Filename: string, Offset: number, ChunkSize: number): Promise<any> {
+    async ReadFileChunk(Filename: string, Offset: number, ChunkSize: number): Promise<ActionResult<string>> {
         return this.apiCall("FileManagerPlugin/ReadFileChunk", { 
             Filename,
             Offset,
@@ -185,9 +188,9 @@ export class FileManagerPlugin extends AMPAPI {
      * Name Description Optional
      * @param {string} oldDirectory The full path to the old directory False
      * @param {string} NewDirectoryName The name component of the new directory (not the full path) False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async RenameDirectory(oldDirectory: string, NewDirectoryName: string): Promise<any> {
+    async RenameDirectory(oldDirectory: string, NewDirectoryName: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/RenameDirectory", { 
             oldDirectory,
             NewDirectoryName
@@ -198,9 +201,9 @@ export class FileManagerPlugin extends AMPAPI {
      * Name Description Optional
      * @param {string} Filename  False
      * @param {string} NewFilename  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async RenameFile(Filename: string, NewFilename: string): Promise<any> {
+    async RenameFile(Filename: string, NewFilename: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/RenameFile", { 
             Filename,
             NewFilename
@@ -210,9 +213,9 @@ export class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} DirectoryName  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async TrashDirectory(DirectoryName: string): Promise<any> {
+    async TrashDirectory(DirectoryName: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/TrashDirectory", { 
             DirectoryName
         });
@@ -221,9 +224,9 @@ export class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} Filename  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async TrashFile(Filename: string): Promise<any> {
+    async TrashFile(Filename: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/TrashFile", { 
             Filename
         });
@@ -235,9 +238,9 @@ export class FileManagerPlugin extends AMPAPI {
      * @param {string} Data  False
      * @param {number} Offset  False
      * @param {boolean} FinalChunk  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async WriteFileChunk(Filename: string, Data: string, Offset: number, FinalChunk: boolean): Promise<any> {
+    async WriteFileChunk(Filename: string, Data: string, Offset: number, FinalChunk: boolean): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/WriteFileChunk", { 
             Filename,
             Data,

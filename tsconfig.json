@@ -8,6 +8,6 @@
         "sourceMap": true,
         "outDir": "dist"
     },
-    "include": ["./**/*"],
+    "include": ["./**/*", "node_modules/GetStatusResult.ts"],
     "ts-node": { "esm": true }
 }

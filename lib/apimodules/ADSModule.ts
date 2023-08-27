@@ -3,7 +3,18 @@
  * @description A TypeScript library for the AMP API
  */
 
+import { UUID } from "crypto";
 import { AMPAPI } from "../AMPAPI.js";
+import { IADSInstance } from "../types/IADSInstance.js";
+import { InstanceDatastore } from "../types/InstnaceDatastore.js";
+import { Result } from "../types/Result.js";
+import { Instance } from "../types/Instance.js";
+import { RemoteTargetInfo } from "../types/RemoteTargetInfo.js";
+import { ActionResult } from "../types/ActionResult.js";
+import { Task } from "../types/Task.js";
+import { RunningTask } from "../types/RunningTask.js";
+import { EndpointInfo } from "../types/EndpointInfo.js";
+
 
 /**
  * @class ADSModule
@@ -20,10 +31,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {any} newDatastore  False
-     * @return {Promise<any>}
+     * @param {InstanceDatastore} newDatastore  False
+     * @return {Promise<ActionResult<any>>}
      */
-    async AddDatastore(newDatastore: any): Promise<any> {
+    async AddDatastore(newDatastore: InstanceDatastore): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/AddDatastore", { 
             newDatastore
         });
@@ -31,12 +42,12 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} InstanceID  False
+     * @param {UUID} InstanceID  False
      * @param {{ [key: string]: string }} Args  False
      * @param {boolean} RebuildConfiguration  True
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async ApplyInstanceConfiguration(InstanceID: string, Args: { [key: string]: string }, RebuildConfiguration: boolean): Promise<any> {
+    async ApplyInstanceConfiguration(InstanceID: UUID, Args: { [key: string]: string }, RebuildConfiguration: boolean): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/ApplyInstanceConfiguration", { 
             InstanceID,
             Args,
@@ -46,14 +57,14 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} InstanceID  False
+     * @param {UUID} InstanceID  False
      * @param {number} TemplateID  False
      * @param {string} NewFriendlyName  True
      * @param {string} Secret  True
      * @param {boolean} RestartIfPreviouslyRunning  True
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async ApplyTemplate(InstanceID: string, TemplateID: number, NewFriendlyName: string, Secret: string, RestartIfPreviouslyRunning: boolean): Promise<any> {
+    async ApplyTemplate(InstanceID: UUID, TemplateID: number, NewFriendlyName: string, Secret: string, RestartIfPreviouslyRunning: boolean): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/ApplyTemplate", { 
             InstanceID,
             TemplateID,
@@ -69,10 +80,10 @@ export class ADSModule extends AMPAPI {
      * @param {boolean} IsHTTPS  False
      * @param {string} Host  False
      * @param {number} Port  False
-     * @param {string} InstanceID  False
-     * @return {Promise<any>}
+     * @param {UUID} InstanceID  False
+     * @return {Promise<ActionResult<any>>}
      */
-    async AttachADS(Friendly: string, IsHTTPS: boolean, Host: string, Port: number, InstanceID: string): Promise<any> {
+    async AttachADS(Friendly: string, IsHTTPS: boolean, Host: string, Port: number, InstanceID: UUID): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/AttachADS", { 
             Friendly,
             IsHTTPS,
@@ -86,9 +97,9 @@ export class ADSModule extends AMPAPI {
      * Name Description Optional
      * @param {number} Id  False
      * @param {string} NewName  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async CloneTemplate(Id: number, NewName: string): Promise<any> {
+    async CloneTemplate(Id: number, NewName: string): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/CloneTemplate", { 
             Id,
             NewName
@@ -98,9 +109,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} InstanceName  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async ConvertToManaged(InstanceName: string): Promise<any> {
+    async ConvertToManaged(InstanceName: string): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/ConvertToManaged", { 
             InstanceName
         });
@@ -109,9 +120,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} Name  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async CreateDeploymentTemplate(Name: string): Promise<any> {
+    async CreateDeploymentTemplate(Name: string): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/CreateDeploymentTemplate", { 
             Name
         });
@@ -119,8 +130,8 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} TargetADSInstance  False
-     * @param {string} NewInstanceId  False
+     * @param {UUID} TargetADSInstance  False
+     * @param {UUID} NewInstanceId  False
      * @param {string} Module  False
      * @param {string} InstanceName  False
      * @param {string} FriendlyName  False
@@ -134,9 +145,9 @@ export class ADSModule extends AMPAPI {
      * @param {boolean} StartOnBoot  True
      * @param {string} DisplayImageSource  True
      * @param {number} TargetDatastore  True
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async CreateInstance(TargetADSInstance: string, NewInstanceId: string, Module: string, InstanceName: string, FriendlyName: string, IPBinding: string, PortNumber: number, AdminUsername: string, AdminPassword: string, ProvisionSettings: { [key: string]: string }, AutoConfigure: boolean, PostCreate: any, StartOnBoot: boolean, DisplayImageSource: string, TargetDatastore: number): Promise<any> {
+    async CreateInstance(TargetADSInstance: UUID, NewInstanceId: UUID, Module: string, InstanceName: string, FriendlyName: string, IPBinding: string, PortNumber: number, AdminUsername: string, AdminPassword: string, ProvisionSettings: { [key: string]: string }, AutoConfigure: boolean, PostCreate: any, StartOnBoot: boolean, DisplayImageSource: string, TargetDatastore: number): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/CreateInstance", { 
             TargetADSInstance,
             NewInstanceId,
@@ -160,9 +171,9 @@ export class ADSModule extends AMPAPI {
      * Name Description Optional
      * @param {any} Instance  False
      * @param {any} PostCreate  True
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async CreateLocalInstance(Instance: any, PostCreate: any): Promise<any> {
+    async CreateLocalInstance(Instance: any, PostCreate: any): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/CreateLocalInstance", { 
             Instance,
             PostCreate
@@ -172,9 +183,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} id  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async DeleteDatastore(id: number): Promise<any> {
+    async DeleteDatastore(id: number): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/DeleteDatastore", { 
             id
         });
@@ -183,9 +194,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} Id  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async DeleteDeploymentTemplate(Id: number): Promise<any> {
+    async DeleteDeploymentTemplate(Id: number): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/DeleteDeploymentTemplate", { 
             Id
         });
@@ -194,9 +205,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} InstanceName  False
-     * @return {Promise<any>}
+     * @return {Promise<Result<RunningTask>>}
      */
-    async DeleteInstance(InstanceName: string): Promise<any> {
+    async DeleteInstance(InstanceName: string): Promise<Result<RunningTask>> {
         return this.apiCall("ADSModule/DeleteInstance", { 
             InstanceName
         });
@@ -204,10 +215,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} InstanceId  False
-     * @return {Promise<any>}
+     * @param {UUID} InstanceId  False
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async DeleteInstanceUsers(InstanceId: string): Promise<any> {
+    async DeleteInstanceUsers(InstanceId: UUID): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/DeleteInstanceUsers", { 
             InstanceId
         });
@@ -225,9 +236,9 @@ export class ADSModule extends AMPAPI {
      * @param {string} Secret Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request. True
      * @param {any} PostCreate 0: Do nothing, 1: Start instance only, 2: Start instance and update application, 3: Full application startup. True
      * @param {{ [key: string]: string }} ExtraProvisionSettings A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself. True
-     * @return {Promise<any>}
+     * @return {Promise<Result<RunningTask>>}
      */
-    async DeployTemplate(TemplateID: number, NewUsername: string, NewPassword: string, NewEmail: string, RequiredTags: string[], Tag: string, FriendlyName: string, Secret: string, PostCreate: any, ExtraProvisionSettings: { [key: string]: string }): Promise<any> {
+    async DeployTemplate(TemplateID: number, NewUsername: string, NewPassword: string, NewEmail: string, RequiredTags: string[], Tag: string, FriendlyName: string, Secret: string, PostCreate: any, ExtraProvisionSettings: { [key: string]: string }): Promise<Result<RunningTask>> {
         return this.apiCall("ADSModule/DeployTemplate", { 
             TemplateID,
             NewUsername,
@@ -244,10 +255,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} Id  False
-     * @return {Promise<any>}
+     * @param {UUID} Id  False
+     * @return {Promise<ActionResult<any>>}
      */
-    async DetatchTarget(Id: string): Promise<any> {
+    async DetatchTarget(Id: UUID): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/DetatchTarget", { 
             Id
         });
@@ -256,9 +267,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} SourceArchive  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async ExtractEverywhere(SourceArchive: string): Promise<any> {
+    async ExtractEverywhere(SourceArchive: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/ExtractEverywhere", { 
             SourceArchive
         });
@@ -266,10 +277,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} instanceId  False
-     * @return {Promise<any[]>}
+     * @param {UUID} instanceId  False
+     * @return {Promise<Result<EndpointInfo[]>>}
      */
-    async GetApplicationEndpoints(instanceId: string): Promise<any[]> {
+    async GetApplicationEndpoints(instanceId: UUID): Promise<Result<EndpointInfo[]>> {
         return this.apiCall("ADSModule/GetApplicationEndpoints", { 
             instanceId
         });
@@ -278,9 +289,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} id  False
-     * @return {Promise<any>}
+     * @return {Promise<InstanceDatastore>}
      */
-    async GetDatastore(id: number): Promise<any> {
+    async GetDatastore(id: number): Promise<InstanceDatastore> {
         return this.apiCall("ADSModule/GetDatastore", { 
             id
         });
@@ -289,9 +300,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} datastoreId  False
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<{ [key: string]: any }[]>>}
      */
-    async GetDatastoreInstances(datastoreId: number): Promise<any[]> {
+    async GetDatastoreInstances(datastoreId: number): Promise<Result<{ [key: string]: any }[]>> {
         return this.apiCall("ADSModule/GetDatastoreInstances", { 
             datastoreId
         });
@@ -299,28 +310,28 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<InstanceDatastore[]>>}
      */
-    async GetDatastores(): Promise<any[]> {
+    async GetDatastores(): Promise<Result<InstanceDatastore[]>> {
         return this.apiCall("ADSModule/GetDatastores", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<any[]>>}
      */
-    async GetDeploymentTemplates(): Promise<any[]> {
+    async GetDeploymentTemplates(): Promise<Result<any[]>> {
         return this.apiCall("ADSModule/GetDeploymentTemplates", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @param {string} GroupId  False
-     * @return {Promise<boolean>}
+     * @param {UUID} GroupId  False
+     * @return {Promise<Result<IADSInstance>>}
      */
-    async GetGroup(GroupId: string): Promise<boolean> {
+    async GetGroup(GroupId: UUID): Promise<Result<IADSInstance>> {
         return this.apiCall("ADSModule/GetGroup", { 
             GroupId
         });
@@ -328,10 +339,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} InstanceId  False
-     * @return {Promise<any>}
+     * @param {UUID} InstanceId  False
+     * @return {Promise<Result<Instance>>}
      */
-    async GetInstance(InstanceId: string): Promise<any> {
+    async GetInstance(InstanceId: UUID): Promise<Result<Instance>> {
         return this.apiCall("ADSModule/GetInstance", { 
             InstanceId
         });
@@ -340,9 +351,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} InstanceName  False
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<any[]>>}
      */
-    async GetInstanceNetworkInfo(InstanceName: string): Promise<any[]> {
+    async GetInstanceNetworkInfo(InstanceName: string): Promise<Result<any[]>> {
         return this.apiCall("ADSModule/GetInstanceNetworkInfo", { 
             InstanceName
         });
@@ -350,27 +361,27 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<{ [key: string]: any }[]>>}
      */
-    async GetInstanceStatuses(): Promise<any[]> {
+    async GetInstanceStatuses(): Promise<Result<{ [key: string]: any }[]>> {
         return this.apiCall("ADSModule/GetInstanceStatuses", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<IADSInstance[]>>}
      */
-    async GetInstances(): Promise<any[]> {
+    async GetInstances(): Promise<Result<IADSInstance[]>> {
         return this.apiCall("ADSModule/GetInstances", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<{ [key: string]: any }[]>>}
      */
-    async GetLocalInstances(): Promise<any[]> {
+    async GetLocalInstances(): Promise<Result<{ [key: string]: any }[]>> {
         return this.apiCall("ADSModule/GetLocalInstances", { 
         });
     }
@@ -378,9 +389,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} ModuleName  False
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<{ [key: string]: any }[]>>}
      */
-    async GetProvisionArguments(ModuleName: string): Promise<any[]> {
+    async GetProvisionArguments(ModuleName: string): Promise<Result<{ [key: string]: any }[]>> {
         return this.apiCall("ADSModule/GetProvisionArguments", { 
             ModuleName
         });
@@ -388,27 +399,27 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<{ [key: string]: any }>}
      */
-    async GetProvisionFitness(): Promise<any> {
+    async GetProvisionFitness(): Promise<{ [key: string]: any }> {
         return this.apiCall("ADSModule/GetProvisionFitness", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @return {Promise<any[]>}
+     * @return {Promise<Result<any[]>>}
      */
-    async GetSupportedApplications(): Promise<any[]> {
+    async GetSupportedApplications(): Promise<Result<any[]>> {
         return this.apiCall("ADSModule/GetSupportedApplications", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<Result<RemoteTargetInfo>>}
      */
-    async GetTargetInfo(): Promise<any> {
+    async GetTargetInfo(): Promise<Result<RemoteTargetInfo>> {
         return this.apiCall("ADSModule/GetTargetInfo", { 
         });
     }
@@ -418,9 +429,9 @@ export class ADSModule extends AMPAPI {
      * @param {string} ForModule  False
      * @param {string} SettingNode  False
      * @param {string[]} Values  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async HandoutInstanceConfigs(ForModule: string, SettingNode: string, Values: string[]): Promise<any> {
+    async HandoutInstanceConfigs(ForModule: string, SettingNode: string, Values: string[]): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/HandoutInstanceConfigs", { 
             ForModule,
             SettingNode,
@@ -430,10 +441,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} InstanceId  False
-     * @return {Promise<any>}
+     * @param {UUID} InstanceId  False
+     * @return {Promise<ActionResult<string>>}
      */
-    async ManageInstance(InstanceId: string): Promise<any> {
+    async ManageInstance(InstanceId: UUID): Promise<ActionResult<string>> {
         return this.apiCall("ADSModule/ManageInstance", { 
             InstanceId
         });
@@ -441,15 +452,15 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} instanceId  False
+     * @param {UUID} instanceId  False
      * @param {number} PortNumber  False
      * @param {number} Range  False
-     * @param {string} Protocol  False
+     * @param {any} Protocol  False
      * @param {string} Description  False
      * @param {boolean} Open  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async ModifyCustomFirewallRule(instanceId: string, PortNumber: number, Range: number, Protocol: string, Description: string, Open: boolean): Promise<any> {
+    async ModifyCustomFirewallRule(instanceId: UUID, PortNumber: number, Range: number, Protocol: any, Description: string, Open: boolean): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/ModifyCustomFirewallRule", { 
             instanceId,
             PortNumber,
@@ -462,11 +473,11 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} instanceId  False
+     * @param {UUID} instanceId  False
      * @param {number} datastoreId  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<RunningTask>>}
      */
-    async MoveInstanceDatastore(instanceId: string, datastoreId: number): Promise<any> {
+    async MoveInstanceDatastore(instanceId: UUID, datastoreId: number): Promise<Task<RunningTask>> {
         return this.apiCall("ADSModule/MoveInstanceDatastore", { 
             instanceId,
             datastoreId
@@ -475,9 +486,9 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<Result<RunningTask>>}
      */
-    async ReactivateLocalInstances(): Promise<any> {
+    async ReactivateLocalInstances(): Promise<Result<RunningTask>> {
         return this.apiCall("ADSModule/ReactivateLocalInstances", { 
         });
     }
@@ -493,10 +504,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} GroupId  False
-     * @return {Promise<any>}
+     * @param {UUID} GroupId  False
+     * @return {Promise<ActionResult<any>>}
      */
-    async RefreshGroup(GroupId: string): Promise<any> {
+    async RefreshGroup(GroupId: UUID): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/RefreshGroup", { 
             GroupId
         });
@@ -505,9 +516,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} InstanceId  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async RefreshInstanceConfig(InstanceId: string): Promise<any> {
+    async RefreshInstanceConfig(InstanceId: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/RefreshInstanceConfig", { 
             InstanceId
         });
@@ -530,9 +541,9 @@ export class ADSModule extends AMPAPI {
      * @param {string} password  False
      * @param {string} twoFactorToken  False
      * @param {string} friendlyName  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async RegisterTarget(controllerUrl: string, myUrl: string, username: string, password: string, twoFactorToken: string, friendlyName: string): Promise<any> {
+    async RegisterTarget(controllerUrl: string, myUrl: string, username: string, password: string, twoFactorToken: string, friendlyName: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/RegisterTarget", { 
             controllerUrl,
             myUrl,
@@ -546,9 +557,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} id  False
-     * @return {Promise<any>}
+     * @return {Promise<Result<RunningTask>>}
      */
-    async RepairDatastore(id: number): Promise<any> {
+    async RepairDatastore(id: number): Promise<Result<RunningTask>> {
         return this.apiCall("ADSModule/RepairDatastore", { 
             id
         });
@@ -557,9 +568,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} datastoreId  False
-     * @return {Promise<any>}
+     * @return {Promise<Result<RunningTask>>}
      */
-    async RequestDatastoreSizeCalculation(datastoreId: number): Promise<any> {
+    async RequestDatastoreSizeCalculation(datastoreId: number): Promise<Result<RunningTask>> {
         return this.apiCall("ADSModule/RequestDatastoreSizeCalculation", { 
             datastoreId
         });
@@ -568,9 +579,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} InstanceName  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async RestartInstance(InstanceName: string): Promise<any> {
+    async RestartInstance(InstanceName: string): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/RestartInstance", { 
             InstanceName
         });
@@ -580,9 +591,9 @@ export class ADSModule extends AMPAPI {
      * Name Description Optional
      * @param {string} id  False
      * @param {string} REQ_RAWJSON  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<{ [key: string]: any }>>}
      */
-    async Servers(id: string, REQ_RAWJSON: string): Promise<any> {
+    async Servers(id: string, REQ_RAWJSON: string): Promise<Task<{ [key: string]: any }>> {
         return this.apiCall("ADSModule/Servers", { 
             id,
             REQ_RAWJSON
@@ -594,9 +605,9 @@ export class ADSModule extends AMPAPI {
      * @param {string} InstanceName  False
      * @param {string} SettingNode  False
      * @param {string} Value  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async SetInstanceConfig(InstanceName: string, SettingNode: string, Value: string): Promise<any> {
+    async SetInstanceConfig(InstanceName: string, SettingNode: string, Value: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/SetInstanceConfig", { 
             InstanceName,
             SettingNode,
@@ -606,11 +617,11 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} InstanceId  False
+     * @param {UUID} InstanceId  False
      * @param {{ [key: string]: number }} PortMappings  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async SetInstanceNetworkInfo(InstanceId: string, PortMappings: { [key: string]: number }): Promise<any> {
+    async SetInstanceNetworkInfo(InstanceId: UUID, PortMappings: { [key: string]: number }): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/SetInstanceNetworkInfo", { 
             InstanceId,
             PortMappings
@@ -621,9 +632,9 @@ export class ADSModule extends AMPAPI {
      * Name Description Optional
      * @param {string} InstanceName  False
      * @param {boolean} Suspended  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async SetInstanceSuspended(InstanceName: string, Suspended: boolean): Promise<any> {
+    async SetInstanceSuspended(InstanceName: string, Suspended: boolean): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/SetInstanceSuspended", { 
             InstanceName,
             Suspended
@@ -632,9 +643,9 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async StartAllInstances(): Promise<any> {
+    async StartAllInstances(): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/StartAllInstances", { 
         });
     }
@@ -642,9 +653,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} InstanceName  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async StartInstance(InstanceName: string): Promise<any> {
+    async StartInstance(InstanceName: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/StartInstance", { 
             InstanceName
         });
@@ -652,9 +663,9 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async StopAllInstances(): Promise<any> {
+    async StopAllInstances(): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/StopAllInstances", { 
         });
     }
@@ -662,9 +673,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} InstanceName  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async StopInstance(InstanceName: string): Promise<any> {
+    async StopInstance(InstanceName: string): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/StopInstance", { 
             InstanceName
         });
@@ -675,9 +686,9 @@ export class ADSModule extends AMPAPI {
      * @param {string} url  False
      * @param {string} username  False
      * @param {string} password  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async TestADSLoginDetails(url: string, username: string, password: string): Promise<any> {
+    async TestADSLoginDetails(url: string, username: string, password: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/TestADSLoginDetails", { 
             url,
             username,
@@ -687,10 +698,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {any} updatedDatastore  False
-     * @return {Promise<any>}
+     * @param {InstanceDatastore} updatedDatastore  False
+     * @return {Promise<ActionResult<any>>}
      */
-    async UpdateDatastore(updatedDatastore: any): Promise<any> {
+    async UpdateDatastore(updatedDatastore: InstanceDatastore): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/UpdateDatastore", { 
             updatedDatastore
         });
@@ -699,9 +710,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {any} templateToUpdate  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async UpdateDeploymentTemplate(templateToUpdate: any): Promise<any> {
+    async UpdateDeploymentTemplate(templateToUpdate: any): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/UpdateDeploymentTemplate", { 
             templateToUpdate
         });
@@ -720,9 +731,9 @@ export class ADSModule extends AMPAPI {
      * @param {any} MemoryPolicy  False
      * @param {any} ContainerMaxCPU  False
      * @param {string} ContainerImage  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async UpdateInstanceInfo(InstanceId: string, FriendlyName: string, Description: string, StartOnBoot: boolean, Suspended: boolean, ExcludeFromFirewall: boolean, RunInContainer: boolean, ContainerMemory: number, MemoryPolicy: any, ContainerMaxCPU: any, ContainerImage: string): Promise<any> {
+    async UpdateInstanceInfo(InstanceId: string, FriendlyName: string, Description: string, StartOnBoot: boolean, Suspended: boolean, ExcludeFromFirewall: boolean, RunInContainer: boolean, ContainerMemory: number, MemoryPolicy: any, ContainerMaxCPU: any, ContainerImage: string): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/UpdateInstanceInfo", { 
             InstanceId,
             FriendlyName,
@@ -740,10 +751,10 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} TargetID  False
+     * @param {UUID} TargetID  False
      * @return {Promise<void>}
      */
-    async UpdateTarget(TargetID: string): Promise<void> {
+    async UpdateTarget(TargetID: UUID): Promise<void> {
         return this.apiCall("ADSModule/UpdateTarget", { 
             TargetID
         });
@@ -751,14 +762,14 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} Id  False
+     * @param {UUID} Id  False
      * @param {string} FriendlyName  False
-     * @param {string} Url  False
+     * @param {URL} Url  False
      * @param {string} Description  False
      * @param {string[]} Tags  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async UpdateTargetInfo(Id: string, FriendlyName: string, Url: string, Description: string, Tags: string[]): Promise<any> {
+    async UpdateTargetInfo(Id: UUID, FriendlyName: string, Url: URL, Description: string, Tags: string[]): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/UpdateTargetInfo", { 
             Id,
             FriendlyName,
@@ -771,9 +782,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {boolean} RestartRunning  False
-     * @return {Promise<any>}
+     * @return {Promise<Task<ActionResult<any>>>}
      */
-    async UpgradeAllInstances(RestartRunning: boolean): Promise<any> {
+    async UpgradeAllInstances(RestartRunning: boolean): Promise<Task<ActionResult<any>>> {
         return this.apiCall("ADSModule/UpgradeAllInstances", { 
             RestartRunning
         });
@@ -782,9 +793,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} InstanceName  False
-     * @return {Promise<any>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async UpgradeInstance(InstanceName: string): Promise<any> {
+    async UpgradeInstance(InstanceName: string): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/UpgradeInstance", { 
             InstanceName
         });

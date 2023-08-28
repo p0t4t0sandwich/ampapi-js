@@ -641,9 +641,9 @@ export class Core extends AMPAPI {
     /**
      * Returns a list of in-application users
      * Name Description Optional
-     * @return {Promise<{ [key: string]: string }>}
+     * @return {Promise<Result<{ [key: string]: string }>>}
      */
-    async GetUserList(): Promise<{ [key: string]: string }> {
+    async GetUserList(): Promise<Result<{ [key: string]: string }>> {
         return this.apiCall("Core/GetUserList", { 
         });
     }

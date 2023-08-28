@@ -87,6 +87,8 @@ type_dict = {
     "API.Core.GetStatus": "Status",
     # API.Core.GetUpdates
     "API.Core.GetUpdates": "Updates",
+    # API.Core.GetUserList
+    "API.Core.GetUserList": "Result<{ [key: string]: string }>",
     # API.Core.Login
     "API.Core.Login": "LoginResult",
 }

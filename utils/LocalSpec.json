@@ -1752,7 +1752,7 @@
             "Description": "Returns a list of in-application users",
             "Returns": "",
             "Parameters": [],
-            "ReturnTypeName": "Dictionary<String, String>",
+            "ReturnTypeName": "API.Core.GetUserList",
             "IsComplexType": false
         },
         "GetWebauthnChallenge": {

@@ -3,24 +3,16 @@
  * @description A TypeScript library for the AMP API
  */
 
-import { AMPAPI } from "../AMPAPI.js";
 import { ADSModule } from "../apimodules/ADSModule.js";
-import { Core } from "../apimodules/Core.js";
-import { EmailSenderPlugin } from "../apimodules/EmailSenderPlugin.js";
-import { FileManagerPlugin } from "../apimodules/FileManagerPlugin.js";
-import { LocalFileBackupPlugin } from "../apimodules/LocalFileBackupPlugin.js";
+import { CommonAPI } from "./CommonAPI.js";
 import { GenericModule } from "./GenericModule.js";
 import { Minecraft } from "./Minecraft.js";
 
 /**
  * @class ADS
  */
-export class ADS extends AMPAPI {
+export class ADS extends CommonAPI {
     public ADSModule: ADSModule = new ADSModule(this);
-    public Core: Core = new Core(this);
-    public EmailSenderPlugin: EmailSenderPlugin = new EmailSenderPlugin(this);
-    public FileManagerPlugin: FileManagerPlugin = new FileManagerPlugin(this);
-    public LocalFileBackupPlugin: LocalFileBackupPlugin = new LocalFileBackupPlugin(this);
 
     /**
      * @constructor
@@ -41,25 +33,15 @@ export class ADS extends AMPAPI {
      */
     override async APILogin(): Promise<any> {
         const loginResult: any = await super.APILogin();
-        let rememberMeToken: string = "";
-        let sessionId: string = "";
 
         if (loginResult != null && loginResult.hasOwnProperty("success") && loginResult.success === true) {
-            rememberMeToken = loginResult.rememberMeToken;
-            sessionId = loginResult.sessionID;
-        }
+            this.rememberMeToken = loginResult.rememberMeToken;
+            this.sessionId = loginResult.sessionID;
 
-        // Update the session ID and remember me token of submodules
-        this.ADSModule.sessionId = sessionId;
-        this.ADSModule.rememberMeToken = rememberMeToken;
-        this.Core.sessionId = sessionId;
-        this.Core.rememberMeToken = rememberMeToken;
-        this.EmailSenderPlugin.sessionId = sessionId;
-        this.EmailSenderPlugin.rememberMeToken = rememberMeToken;
-        this.FileManagerPlugin.sessionId = sessionId;
-        this.FileManagerPlugin.rememberMeToken = rememberMeToken;
-        this.LocalFileBackupPlugin.sessionId = sessionId;
-        this.LocalFileBackupPlugin.rememberMeToken = rememberMeToken;
+            // Update the session ID and remember me token of submodules
+            this.ADSModule.sessionId = this.sessionId;
+            this.ADSModule.rememberMeToken = this.rememberMeToken;
+        }
 
         return loginResult;
     }
@@ -86,7 +68,7 @@ export class ADS extends AMPAPI {
             const sessionId: string = loginResult.sessionID;
 
             // Return the correct module
-            let newInstance: AMPAPI;
+            let newInstance: CommonAPI;
             switch (module) {
                 case "GenericModule":
                     newInstance = new GenericModule(newBaseUri, this.username, "", rememberMeToken, sessionId);

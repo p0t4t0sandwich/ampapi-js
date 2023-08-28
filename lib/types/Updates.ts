@@ -2,7 +2,7 @@ import { Status } from "./Status.js";
 
 
 /**
- * @interface GetUpdatesResult
+ * @interface Updates
  * @author p0t4t0sandwich
  * @description Response type for API.Core.GetUpdates
  * @link lib/apimodules/Core#GetUpdates
@@ -12,7 +12,7 @@ import { Status } from "./Status.js";
  * @property {string[]} Tasks - The tasks of the server
  * @property {string[]} Ports - The ports of the server
  */
-interface GetUpdatesResult {
+interface Updates {
     Status: Status;
     ConsoleEntries: string[];
     Messages: Message[];
@@ -24,7 +24,7 @@ interface GetUpdatesResult {
  * @interface Message
  * @author p0t4t0sandwich
  * @description Message type for API.Core.GetUpdatesResult status messages
- * @see GetUpdatesResult
+ * @see Updates
  * @link lib/apimodules/Core#GetUpdates
  * @property {string} Id - The ID of the message
  * @property {boolean} Expired - Whether the message has expired
@@ -40,4 +40,4 @@ interface Message {
     AgeMinutes: number;
 }
 
-export { GetUpdatesResult, Message };
+export { Updates, Message };

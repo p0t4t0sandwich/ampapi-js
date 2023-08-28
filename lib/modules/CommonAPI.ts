@@ -3,14 +3,20 @@
  * @description A TypeScript library for the AMP API
  */
 
-import { MinecraftModule } from "../apimodules/MinecraftModule.js";
-import { CommonAPI } from "./CommonAPI.js";
+import { AMPAPI } from "../AMPAPI.js";
+import { Core } from "../apimodules/Core.js";
+import { EmailSenderPlugin } from "../apimodules/EmailSenderPlugin.js";
+import { FileManagerPlugin } from "../apimodules/FileManagerPlugin.js";
+import { LocalFileBackupPlugin } from "../apimodules/LocalFileBackupPlugin.js";
 
 /**
- * @class Minecraft
+ * @class CommonAPI
  */
-export class Minecraft extends CommonAPI {
-    public MinecraftModule: MinecraftModule = new MinecraftModule(this);
+export class CommonAPI extends AMPAPI {
+    public Core: Core = new Core(this);
+    public EmailSenderPlugin: EmailSenderPlugin = new EmailSenderPlugin(this);
+    public FileManagerPlugin: FileManagerPlugin = new FileManagerPlugin(this);
+    public LocalFileBackupPlugin: LocalFileBackupPlugin = new LocalFileBackupPlugin(this);
 
     /**
      * @constructor
@@ -37,8 +43,14 @@ export class Minecraft extends CommonAPI {
             this.sessionId = loginResult.sessionID;
 
             // Update the session ID and remember me token of submodules
-            this.MinecraftModule.sessionId = this.sessionId;
-            this.MinecraftModule.rememberMeToken = this.rememberMeToken;
+            this.Core.sessionId = this.sessionId;
+            this.Core.rememberMeToken = this.rememberMeToken;
+            this.EmailSenderPlugin.sessionId = this.sessionId;
+            this.EmailSenderPlugin.rememberMeToken = this.rememberMeToken;
+            this.FileManagerPlugin.sessionId = this.sessionId;
+            this.FileManagerPlugin.rememberMeToken = this.rememberMeToken;
+            this.LocalFileBackupPlugin.sessionId = this.sessionId;
+            this.LocalFileBackupPlugin.rememberMeToken = this.rememberMeToken;
         }
 
         return loginResult;

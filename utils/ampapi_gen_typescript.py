@@ -76,19 +76,19 @@ type_dict = {
 
     ## Custom types
 
-    # API.ADS.GetInstance
-    "Result<Instance>": "Result<Instance>",
-    # API.ADS.GetTargetInfo
-    "Result<RemoteTargetInfo>": "Result<RemoteTargetInfo>",
+    # API.ADSModule.GetInstance
+    "API.ADSModule.GetInstance": "Result<Instance>",
+    # API.ADSModule.GetTargetInfo
+    "API.ADSModule.GetTargetInfo": "Result<RemoteTargetInfo>",
 
     # API.Core.GetSettingsSpec
-    "Dictionary<String, IEnumerable<SettingSpec>>": "Result<{ [key: string]: SettingSpec[] }>",
+    "API.Core.GetSettingsSpec": "SettingsSpec",
     # API.Core.GetStatus
-    "Status": "Status",
+    "API.Core.GetStatus": "Status",
     # API.Core.GetUpdates
-    "GetUpdatesResult": "GetUpdatesResult",
+    "API.Core.GetUpdates": "Updates",
     # API.Core.Login
-    "LoginResult": "LoginResult",
+    "API.Core.Login": "LoginResult",
 }
 
 def generate_apimodule_method(module: str, method: str, method_spec: dict):

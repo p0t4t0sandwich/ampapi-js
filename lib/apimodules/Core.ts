@@ -12,9 +12,9 @@ import { RunningTask } from "../types/RunningTask.js";
 import { UserInfo } from "../types/UserInfo.js";
 import { ModuleInfo } from "../types/ModuleInfo.js";
 import { Status } from "../types/Status.js";
-import { SettingSpec } from "../types/SettingSpec.js";
+import { SettingsSpec } from "../types/SettingsSpec.js";
 import { UpdateInfo } from "../types/UpdateInfo.js";
-import { GetUpdatesResult } from "../types/GetUpdatesResult.js";
+import { Updates } from "../types/Updates.js";
 import { LoginResult } from "../types/LoginResult.js";
 
 
@@ -563,9 +563,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<{ [key: string]: SettingSpec[] }>>}
+     * @return {Promise<SettingsSpec>}
      */
-    async GetSettingsSpec(): Promise<Result<{ [key: string]: SettingSpec[] }>> {
+    async GetSettingsSpec(): Promise<SettingsSpec> {
         return this.apiCall("Core/GetSettingsSpec", { 
         });
     }
@@ -611,9 +611,9 @@ export class Core extends AMPAPI {
     /**
      * Gets changes to the server status, in addition to any notifications or console output that have occured since the last time GetUpdates() was called by the current session.
      * Name Description Optional
-     * @return {Promise<GetUpdatesResult>}
+     * @return {Promise<Updates>}
      */
-    async GetUpdates(): Promise<GetUpdatesResult> {
+    async GetUpdates(): Promise<Updates> {
         return this.apiCall("Core/GetUpdates", { 
         });
     }

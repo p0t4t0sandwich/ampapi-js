@@ -1,8 +1,18 @@
 /**
- * @interface SettingSpec
+ * @interface SettingsSpec
+ * @author p0t4t0sandwich
+ * @description Response object for GetSettingsSpec()
+ * @link lib/apimodules/Core#GetSettingsSpec()
+ * @property {Spec[]} result - The result
+ */
+interface SettingsSpec {
+    result: { [key: string]: Spec[] };
+}
+
+/**
+ * @interface Spec
  * @author p0t4t0sandwich
  * @description A setting specification object
- * @link lib/apimodules/Core#GetSettingsSpec()
  * @property {boolean} ReadOnly - Whether the setting is read-only
  * @property {string} Name - The name
  * @property {string} Description - The description
@@ -26,7 +36,7 @@
  * @property {string} Meta - The meta
  * @property {boolean} RequiresRestart - Whether the setting requires a restart
  */
-interface SettingSpec {
+interface Spec {
     ReadOnly: boolean;
     Name: string;
     Description: string;
@@ -51,4 +61,4 @@ interface SettingSpec {
     RequiresRestart: boolean;
 }
 
-export { SettingSpec };
+export { SettingsSpec, Spec };

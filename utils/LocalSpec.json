@@ -492,7 +492,7 @@
                     "Optional": false
                 }
             ],
-            "ReturnTypeName": "Result<Instance>",
+            "ReturnTypeName": "API.ADSModule.GetInstance",
             "IsComplexType": true
         },
         "GetInstanceNetworkInfo": {
@@ -546,7 +546,7 @@
         },
         "GetTargetInfo": {
             "Parameters": [],
-            "ReturnTypeName": "Result<RemoteTargetInfo>",
+            "ReturnTypeName": "API.ADSModule.GetTargetInfo",
             "IsComplexType": false
         },
         "HandoutInstanceConfigs": {
@@ -1692,12 +1692,12 @@
         },
         "GetSettingsSpec": {
             "Parameters": [],
-            "ReturnTypeName": "Dictionary<String, IEnumerable<SettingSpec>>",
+            "ReturnTypeName": "API.Core.GetSettingsSpec",
             "IsComplexType": true
         },
         "GetStatus": {
             "Parameters": [],
-            "ReturnTypeName": "Status",
+            "ReturnTypeName": "API.Core.GetStatus",
             "IsComplexType": true
         },
         "GetTasks": {
@@ -1726,7 +1726,7 @@
             "Description": "Gets changes to the server status, in addition to any notifications or console output that have occured since the last time GetUpdates() was called by the current session.",
             "Returns": "",
             "Parameters": [],
-            "ReturnTypeName": "GetUpdatesResult",
+            "ReturnTypeName": "API.Core.GetUpdates",
             "IsComplexType": true
         },
         "GetUserActionsSpec": {
@@ -1814,7 +1814,7 @@
                     "Optional": false
                 }
             ],
-            "ReturnTypeName": "LoginResult",
+            "ReturnTypeName": "API.Core.Login",
             "IsComplexType": true
         },
         "Logout": {

@@ -36,11 +36,11 @@ export class AMPAPI {
         this.dataSource = "";
 
         // Check if the base URI ends with a slash
-        this.dataSource = this.baseUri.endsWith("/") ? this.baseUri + "API" : this.baseUri + "/API";
-
         if (!this.baseUri.endsWith("/")) {
             this.baseUri += "/";
         }
+        this.dataSource = this.baseUri + "API/";
+
         this.username = username;
         this.password = password;
         this.rememberMeToken = rememberMeToken;

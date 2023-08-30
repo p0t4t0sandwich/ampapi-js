@@ -75,22 +75,31 @@ type_dict = {
     "Task<ActionResult<Guid>>": "Task<ActionResult<UUID>>",
 
     ## Custom types
+    "Result<Instance>": "Result<Instance>",
+    "Result<RemoteTargetInfo>": "Result<RemoteTargetInfo>",
+    "SettingsSpec": "SettingsSpec",
+    "Status": "Status",
+    "Updates": "Updates",
+    "Result<{ [key: string]: string }>": "Result<{ [key: string]: string }>",
+    "LoginResult": "LoginResult"
+}
 
+custom_types = {
     # API.ADSModule.GetInstance
-    "API.ADSModule.GetInstance": "Result<Instance>",
+    "ADSModule.GetInstance": "Result<Instance>",
     # API.ADSModule.GetTargetInfo
-    "API.ADSModule.GetTargetInfo": "Result<RemoteTargetInfo>",
+    "ADSModule.GetTargetInfo": "Result<RemoteTargetInfo>",
 
     # API.Core.GetSettingsSpec
-    "API.Core.GetSettingsSpec": "SettingsSpec",
+    "Core.GetSettingsSpec": "SettingsSpec",
     # API.Core.GetStatus
-    "API.Core.GetStatus": "Status",
+    "Core.GetStatus": "Status",
     # API.Core.GetUpdates
-    "API.Core.GetUpdates": "Updates",
+    "Core.GetUpdates": "Updates",
     # API.Core.GetUserList
-    "API.Core.GetUserList": "Result<{ [key: string]: string }>",
+    "Core.GetUserList": "Result<{ [key: string]: string }>",
     # API.Core.Login
-    "API.Core.Login": "LoginResult",
+    "Core.Login": "LoginResult",
 }
 
 def generate_apimodule_method(module: str, method: str, method_spec: dict):
@@ -203,20 +212,20 @@ def generate_spec(spec: dict):
         if module == "CommonCorePlugin": continue
         generate_apimodule(module, spec[module])
 
+def load_custom_types(spec: dict):
+    for type_index in custom_types.keys():
+        type_module = type_index.split(".")[0]
+        type_method = type_index.split(".")[1]
+
+        # Update the return type
+        spec[type_module][type_method]["ReturnTypeName"] = custom_types[type_index]
+
 if __name__ == "__main__":
-    spec = ""
-    if len(sys.argv) >= 2 and sys.argv[1] == "-l":
-        print("Using local spec...")
-        # Load local file
+    # Load remote file
+    res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
+    spec = json.loads(res.content)
 
-        with open("LocalSpec.json", "r") as f:
-            spec = json.load(f)
-            f.close()
-    else:
-        print("Using remote spec...")
-
-        # Load remote file
-        res = requests.get("https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/main/APISpec.json")
-        spec = json.loads(res.content)
+    # Load custom types
+    load_custom_types(spec)
 
     generate_spec(spec)

@@ -32,7 +32,7 @@ export class AMPAPI {
      * @param rememberMeToken Remember me token for the AMP API
      * @param sessionId Session ID for the AMP API
      */
-    constructor(baseUri: string, username: string, password: string, rememberMeToken: string = "", sessionId: string = "") {
+    constructor(baseUri: string, username: string = "", password: string = "", rememberMeToken: string = "", sessionId: string = "") {
         this.baseUri = baseUri;
 
         // Check if the base URI ends with a slash

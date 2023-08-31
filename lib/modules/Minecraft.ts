@@ -22,7 +22,7 @@ export class Minecraft extends CommonAPI {
      * @param {string} rememberMeToken Remember me token for the AMP API
      * @param {string} sessionId Session ID for the AMP API
      */
-    constructor(baseUri: string, username: string, password: string, rememberMeToken: string = "", sessionId: string = "") {
+    constructor(baseUri: string, username: string = "", password: string = "", rememberMeToken: string = "", sessionId: string = "") {
         super(baseUri, username, password, rememberMeToken, sessionId);
     }
 

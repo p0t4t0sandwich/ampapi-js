@@ -3,6 +3,8 @@
  * @description A TypeScript library for the AMP API
  */
 
+import { LoginResult } from "./types/LoginResult.js";
+
 /**
  * @class AMPAPI
  * @description The main class for the AMP API
@@ -32,8 +34,6 @@ export class AMPAPI {
      */
     constructor(baseUri: string, username: string, password: string, rememberMeToken: string = "", sessionId: string = "") {
         this.baseUri = baseUri;
-        this.sessionId = "";
-        this.dataSource = "";
 
         // Check if the base URI ends with a slash
         if (!this.baseUri.endsWith("/")) {
@@ -89,7 +89,7 @@ export class AMPAPI {
             rememberMe: true,
         }
 
-        const loginResult: any = await this.apiCall("Core/Login", data);
+        const loginResult: LoginResult = await this.apiCall("Core/Login", data);
 
         if (loginResult.success === true) {
             this.rememberMeToken = loginResult.rememberMeToken;

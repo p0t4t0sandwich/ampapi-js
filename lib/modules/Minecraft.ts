@@ -4,6 +4,7 @@
  */
 
 import { MinecraftModule } from "../apimodules/MinecraftModule.js";
+import { LoginResult } from "../types/LoginResult.js";
 import { CommonAPI } from "./CommonAPI.js";
 
 /**
@@ -30,7 +31,7 @@ export class Minecraft extends CommonAPI {
      * @return The result of the login
      */
     override async APILogin(): Promise<any> {
-        const loginResult: any = await super.APILogin();
+        const loginResult: LoginResult = await super.APILogin();
 
         if (loginResult != null && loginResult.hasOwnProperty("success") && loginResult.success === true) {
             this.rememberMeToken = loginResult.rememberMeToken;

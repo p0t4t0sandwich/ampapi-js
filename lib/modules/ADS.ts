@@ -4,6 +4,7 @@
  */
 
 import { ADSModule } from "../apimodules/ADSModule.js";
+import { LoginResult } from "../types/LoginResult.js";
 import { CommonAPI } from "./CommonAPI.js";
 import { GenericModule } from "./GenericModule.js";
 import { Minecraft } from "./Minecraft.js";
@@ -32,7 +33,7 @@ export class ADS extends CommonAPI {
      * @return The result of the login
      */
     override async APILogin(): Promise<any> {
-        const loginResult: any = await super.APILogin();
+        const loginResult: LoginResult = await super.APILogin();
 
         if (loginResult != null && loginResult.hasOwnProperty("success") && loginResult.success === true) {
             this.rememberMeToken = loginResult.rememberMeToken;
@@ -50,6 +51,7 @@ export class ADS extends CommonAPI {
      * @method InstanceLogin
      * @description Proxies a login request to an instance and returns a new AMPAPI for that instance.
      * @param {string} instance_id The instance ID to login to
+     * @param {string} module The module the instance is running
      * @return {Promise<T>} A new AMPAPI for the instance
      */
     public async InstanceLogin<T>(instance_id: string, module: string): Promise<T> {
@@ -70,6 +72,9 @@ export class ADS extends CommonAPI {
             // Return the correct module
             let newInstance: CommonAPI;
             switch (module) {
+                case "ADS":
+                    newInstance = new ADS(newBaseUri, this.username, "", rememberMeToken, sessionId);
+                    break;
                 case "GenericModule":
                     newInstance = new GenericModule(newBaseUri, this.username, "", rememberMeToken, sessionId);
                     break;
@@ -77,7 +82,7 @@ export class ADS extends CommonAPI {
                     newInstance = new Minecraft(newBaseUri, this.username, "", rememberMeToken, sessionId);
                     break;
                 default:
-                    newInstance = new GenericModule(newBaseUri, this.username, "", rememberMeToken, sessionId);
+                    newInstance = new CommonAPI(newBaseUri, this.username, "", rememberMeToken, sessionId);
                     break;
             }
             await newInstance.APILogin();

@@ -4,6 +4,8 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
+import { ActionResult } from "../types/ActionResult.js";
+import { Result } from "../types/Result.js";
 
 
 /**

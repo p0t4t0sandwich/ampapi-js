@@ -39,7 +39,7 @@ export class AMPAPI {
         if (!this.baseUri.endsWith("/")) {
             this.baseUri += "/";
         }
-        this.dataSource = this.baseUri + "API/";
+        this.dataSource = this.baseUri + "API";
 
         this.username = username;
         this.password = password;

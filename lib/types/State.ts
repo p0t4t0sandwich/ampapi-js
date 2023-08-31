@@ -63,4 +63,47 @@ enum State {
     Indeterminate = 999
 }
 
-export { State };
+function lookupState(state: number): string {
+    switch (state) {
+        case State.Undefined:
+            return 'Undefined';
+        case State.Stopped:
+            return 'Stopped';
+        case State.PreStart:
+            return 'PreStart';
+        case State.Configuring:
+            return 'Configuring';
+        case State.Starting:
+            return 'Starting';
+        case State.Ready:
+            return 'Ready';
+        case State.Restarting:
+            return 'Restarting';
+        case State.Stopping:
+            return 'Stopping';
+        case State.PreparingForSleep:
+            return 'PreparingForSleep';
+        case State.Sleeping:
+            return 'Sleeping';
+        case State.Waiting:
+            return 'Waiting';
+        case State.Installing:
+            return 'Installing';
+        case State.Updating:
+            return 'Updating';
+        case State.AwaitingUserInput:
+            return 'AwaitingUserInput';
+        case State.Failed:
+            return 'Failed';
+        case State.Suspended:
+            return 'Suspended';
+        case State.Maintainence:
+            return 'Maintainence';
+        case State.Indeterminate:
+            return 'Indeterminate';
+        default:
+            return 'Unknown';
+    }
+}
+
+export { State, lookupState };

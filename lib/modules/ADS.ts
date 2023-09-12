@@ -4,7 +4,7 @@
  */
 
 import { ADSModule } from "../apimodules/ADSModule.js";
-import { LoginResult } from "../types/LoginResult.js";
+import { LoginResult } from "../types.js";
 import { CommonAPI } from "./CommonAPI.js";
 import { GenericModule } from "./GenericModule.js";
 import { Minecraft } from "./Minecraft.js";
@@ -88,7 +88,7 @@ export class ADS extends CommonAPI {
             await newInstance.APILogin();
             return <T>newInstance;
         } else {
-            return undefined;
+            return <T>undefined;
         }
     }
 }

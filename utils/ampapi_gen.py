@@ -70,7 +70,7 @@ type_dict = {
     "Task<String>": "Task<string>",
     "Task<AuthRoleSummary>": "Task<Object>",
     "Task<IEnumerable<AuthRoleSummary>>": "Task<any[]>",
-    "Task<IDictionary<Guid, String>>": "Task<{ [key: UUID]: any }>",
+    "Task<IDictionary<Guid, String>>": "Task<Map<UUID, any>>",
     "Task<ActionResult>": "Task<ActionResult<any>>",
     "Task<ActionResult<Guid>>": "Task<ActionResult<UUID>>",
 

@@ -8,7 +8,7 @@ import { Core } from "../apimodules/Core.js";
 import { EmailSenderPlugin } from "../apimodules/EmailSenderPlugin.js";
 import { FileManagerPlugin } from "../apimodules/FileManagerPlugin.js";
 import { LocalFileBackupPlugin } from "../apimodules/LocalFileBackupPlugin.js";
-import { LoginResult } from "../types/LoginResult.js";
+import { LoginResult } from "../types.js";
 
 /**
  * @class CommonAPI

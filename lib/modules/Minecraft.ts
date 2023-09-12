@@ -4,7 +4,7 @@
  */
 
 import { MinecraftModule } from "../apimodules/MinecraftModule.js";
-import { LoginResult } from "../types/LoginResult.js";
+import { LoginResult } from "../types.js";
 import { CommonAPI } from "./CommonAPI.js";
 
 /**

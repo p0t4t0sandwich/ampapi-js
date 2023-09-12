@@ -3,7 +3,8 @@
  * @description A TypeScript library for the AMP API
  */
 
-import { LoginResult } from "./types/LoginResult.js";
+import { LoginResult } from "./types.js";
+
 
 /**
  * @class AMPAPI

@@ -4,10 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult } from "../types/ActionResult.js";
-import { Result } from "../types/Result.js";
-import { RunningTask } from "../types/RunningTask.js";
-import { Task } from "../types/Task.js";
+import { ActionResult, Result, RunningTask, Task } from "../types.js";
 
 
 /**

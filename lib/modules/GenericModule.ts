@@ -5,7 +5,7 @@
 
 import { RCONPlugin } from "../apimodules/RCONPlugin.js";
 import { steamcmdplugin } from "../apimodules/steamcmdplugin.js";
-import { LoginResult } from "../types/LoginResult.js";
+import { LoginResult } from "../types.js";
 import { CommonAPI } from "./CommonAPI.js";
 
 /**

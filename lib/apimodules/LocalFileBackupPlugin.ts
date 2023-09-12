@@ -3,12 +3,8 @@
  * @description A TypeScript library for the AMP API
  */
 
-import { UUID } from "crypto";
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult } from "../types/ActionResult.js";
-import { Task } from "../types/Task.js";
-import { RunningTask } from "../types/RunningTask.js";
-import { Result } from "../types/Result.js";
+import { ActionResult, Result, RunningTask, Task, UUID } from "../types.js";
 
 
 /**

@@ -3,17 +3,8 @@
  * @description A TypeScript library for the AMP API
  */
 
-import { UUID } from "crypto";
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult } from "../types/ActionResult.js";
-import { InstanceDatastore } from "../types/InstnaceDatastore.js";
-import { RunningTask } from "../types/RunningTask.js";
-import { Result } from "../types/Result.js";
-import { Task } from "../types/Task.js";
-import { EndpointInfo } from "../types/EndpointInfo.js";
-import { IADSInstance } from "../types/IADSInstance.js";
-import { Instance } from "../types/Instance.js";
-import { RemoteTargetInfo } from "../types/RemoteTargetInfo.js";
+import { ActionResult, InstanceDatastore, RunningTask, Result, Task, EndpointInfo, IADSInstance, Instance, RemoteTargetInfo, UUID } from "../types.js";
 
 
 /**

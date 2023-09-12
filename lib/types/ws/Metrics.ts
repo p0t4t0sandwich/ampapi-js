@@ -1,5 +1,4 @@
-import { UUID } from "crypto";
-import { Status } from "../Status.js";
+import { Status, UUID } from "../../types";
 
 
 /**

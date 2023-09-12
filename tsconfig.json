@@ -10,8 +10,8 @@
 
         // if TS 5.x+
         "moduleResolution": "bundler",
-        "noEmit": true,
-        "allowImportingTsExtensions": true,
+        // "noEmit": true,
+        // "allowImportingTsExtensions": true,
         "moduleDetection": "force",
 
         "allowJs": true, // allow importing `.js` from `.ts`
@@ -29,5 +29,5 @@
 
         "outDir": "./dist"
     },
-    "include": ["./**/*"]
+    "include": ["./lib/**/*", "./index.ts"]
 }

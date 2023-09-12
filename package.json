@@ -1,8 +1,16 @@
 {
-  "name": "ampapi-js",
+  "name": "@neuralnexus/ampapi",
   "version": "1.0.0",
-  "description": "A JavaScript/TypeScript library for the AMP API",
   "author": "p0t4t0sandwich <p0t4t0sandwich@gmail.com>",
+  "module": "./index.ts",
+  "devDependencies": {
+    "bun-types": "latest",
+    "@types/node": "^20.6.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "description": "An API that allows you to communicate with AMP installations from within JavaScript/TypeScript.",
   "licenses": [
     {
       "type": "GPL3",
@@ -13,15 +21,20 @@
       "url": "https://github.com/p0t4t0sandwich/ampapi-typescript/blob/main/LICENSE-API"
     }
   ],
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "bun-types": "latest"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p0t4t0sandwich/ampapi-js.git"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "keywords": [
+    "amp",
+    "api",
+    "ampapi",
+    "typescript"
+  ],
+  "scripts": {
+    "gen": "cd ./utils && python3 ./ampapi_gen.py",
+    "build": "bun tsc",
+    "bundle": "bun build --outfile=./bundle/ampapi-js.js ./index.ts && bun build --minify --outfile=./bundle/ampapi-js.min.js ./index.ts"
   },
-  "dependencies": {
-    "ws": "^8.14.1"
-  }
+  "type": "module"
 }

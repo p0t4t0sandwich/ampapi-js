@@ -1,0 +1,22 @@
+---
+  name: Re-bundle 
+  
+  on: [push, pull_request]
+
+  jobs:
+    update_spec:
+      name: Update AMP API Spec
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: actions/checkout@v3
+        - uses: oven-sh/setup-bun@v1
+
+        - name: Run Bun Bundle
+          run: bun bundle
+
+        - uses: EndBug/add-and-commit@v9
+          with:
+            message: "Update bundle with latest commit"
+            push: origin HEAD:main
+            add: '["./bundle"]'

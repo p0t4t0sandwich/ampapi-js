@@ -29,21 +29,21 @@ yarn add @neuralnexus/ampapi
 bun install @neuralnexus/ampapi
 ```
 
-### In The Browser
+### In The Browser via CDN (WIP)
 
-```html
-<script src="https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-js/main/bundle/ampapi-js.js"></script>
+<!-- ```html
+<script src="https://cdn.neuralnexus.dev/ampapi-js/ampapi.js"></script>
 
 <!-- Or for a minified version -->
 
-<script src="https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-js/main/bundle/ampapi-js.min.js"></script>
-```
+<!-- <script src="https://cdn.neuralnexus.dev/ampapi-js/ampapi.min.js"></script>
+``` -->
 
 ## Notes
 
 - If you find that some return types aren't matching up, please make an issue or a pull request.
 
-## Examples - JavaScript
+## Examples
 
 ### CommonAPI Example
 
@@ -66,26 +66,26 @@ console.log(`Current CPU usage is: " + ${CPUUsagePercent} "%`);
 
 ### Example using the ADS to manage an instance
 
-```typescript
-import { ADS, IADSInstance, Instance, Minecraft, Result, Status, UUID } from "@neuralnexus/ampapi";
+```javascript
+import { ADS } from "@neuralnexus/ampapi";
 
 
-const API: ADS = new ADS("http://localhost:8080/", "admin", "myfancypassword123", "", "");
+const API = new ADS("http://localhost:8080/", "admin", "myfancypassword123", "", "");
 await API.APILogin();
 
 // Get the available instances
-const instancesResult: Result<IADSInstance[]> = await API.ADSModule.GetInstances();
+const instancesResult = await API.ADSModule.GetInstances();
 
-const targets: IADSInstance[] = instancesResult.result;
+const targets = instancesResult.result;
 
 // In this example, my Hub server is on the second target
 // If you're running a standalone setup, you can just use targets[0]
-const target: IADSInstance = targets[1]
+const target = targets[1]
 
-let hub_instance_id: UUID;
+let hub_instance_id = "";
 
 // Get the available instances
-const instances: Instance[] = target.AvailableInstances;
+const instances = target.AvailableInstances;
 
 for (const instance of instances) {
     // Find the instance named "Hub"
@@ -96,27 +96,27 @@ for (const instance of instances) {
 }
 
 // Use the instance ID to get the API for the instance
-const Hub: Minecraft = await API.InstanceLogin(hub_instance_id, "Minecraft");
+const Hub = await API.InstanceLogin(hub_instance_id, "Minecraft");
 
 // Get the current CPU usage
-const currentStatus: Status = await Hub.Core.GetStatus();
-const CPUUsagePercent: number = currentStatus.Metrics["CPU Usage"].Percent;
+const currentStatus = await Hub.Core.GetStatus();
+const CPUUsagePercent = currentStatus.Metrics["CPU Usage"].Percent;
 
 // Send a message to the console
-Hub.Core.SendConsoleMessage(`say Current CPU usage is: ${CPUUsagePercent}%`)
+await Hub.Core.SendConsoleMessage(`say Current CPU usage is: ${CPUUsagePercent}%`)
 ```
 
 ### CommonAPI Example, handling the sessionId and rememberMeToken manually (not recommended)
 
-```typescript
-import { CommonAPI, LoginResult, Status } from "@neuralnexus/ampapi";
+```javascript
+import { CommonAPI } from "@neuralnexus/ampapi";
 
 
 try {
-    const API: CommonAPI = new CommonAPI("http://localhost:8080/");
+    const API = new CommonAPI("http://localhost:8080/");
 
     // The third parameter is either used for 2FA logins, or if no password is specified to use a remembered token from a previous login, or a service login token.
-    const loginResult: LoginResult = await API.Core.Login("admin", "myfancypassword123", "", false);
+    const loginResult = await API.Core.Login("admin", "myfancypassword123", "", false);
 
     if (loginResult.hasOwnProperty("success") && loginResult.success === true) {
         console.log("Login successful");
@@ -124,8 +124,8 @@ try {
 
         // API call parameters are simply in the same order as shown in the documentation.
         await API.Core.SendConsoleMessage("say Hello Everyone, this message was sent from the Python API!");
-        const currentStatus: Status = await API.Core.GetStatus();
-        const CPUUsagePercent: number = currentStatus.Metrics["CPU Usage"].Percent;
+        const currentStatus = await API.Core.GetStatus();
+        const CPUUsagePercent = currentStatus.Metrics["CPU Usage"].Percent;
         console.log(`Current CPU usage is: ${CPUUsagePercent}%`);
     } else {
         console.log("Login failed");
@@ -137,9 +137,7 @@ try {
 }
 ```
 
-## Examples - TypeScript
-
-### CommonAPI Example
+### TypeScript - CommonAPI Example
 
 ```typescript
 import { CommonAPI, Status } from "@neuralnexus/ampapi";
@@ -158,7 +156,7 @@ const CPUUsagePercent: number = currentStatus.Metrics["CPU Usage"].Percent;
 console.log(`Current CPU usage is: " + ${CPUUsagePercent} "%`);
 ```
 
-### Example using the ADS to manage an instance
+### TypeScript - Example using the ADS to manage an instance
 
 ```typescript
 import { ADS, IADSInstance, Instance, Minecraft, Result, Status, UUID } from "@neuralnexus/ampapi";
@@ -197,10 +195,10 @@ const currentStatus: Status = await Hub.Core.GetStatus();
 const CPUUsagePercent: number = currentStatus.Metrics["CPU Usage"].Percent;
 
 // Send a message to the console
-Hub.Core.SendConsoleMessage(`say Current CPU usage is: ${CPUUsagePercent}%`)
+await Hub.Core.SendConsoleMessage(`say Current CPU usage is: ${CPUUsagePercent}%`)
 ```
 
-### CommonAPI Example, handling the sessionId and rememberMeToken manually (not recommended)
+### TypeScript - CommonAPI Example, handling the sessionId and rememberMeToken manually (not recommended)
 
 ```typescript
 import { CommonAPI, LoginResult, Status } from "@neuralnexus/ampapi";
@@ -234,3 +232,4 @@ try {
 ## TODO
 
 - Add a check to see if it's been 5min since the last API call, and if so, attempt to re-log
+- Figure out proper browser support (or wait till bun can build to cjs)

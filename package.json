@@ -1,7 +1,11 @@
 {
   "name": "@neuralnexus/ampapi",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "p0t4t0sandwich <p0t4t0sandwich@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p0t4t0sandwich/ampapi-js.git"
+  },
   "module": "./index.ts",
   "devDependencies": {
     "bun-types": "latest",
@@ -10,7 +14,24 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "exports": {
+    ".": {
+      "import": "./wrapper.mjs",
+      "require": "./index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bugs": {
+    "url": "https://github.com/p0t4t0sandwich/ampapi-js/issues"
+  },
   "description": "An API that allows you to communicate with AMP installations from within JavaScript/TypeScript.",
+  "homepage": "https://github.com/p0t4t0sandwich/ampapi-js#ampapi-js",
+  "keywords": [
+    "amp",
+    "api",
+    "ampapi",
+    "typescript"
+  ],
   "licenses": [
     {
       "type": "GPL3",
@@ -21,24 +42,9 @@
       "url": "https://github.com/p0t4t0sandwich/ampapi-js/blob/main/LICENSE-API"
     }
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/p0t4t0sandwich/ampapi-js.git"
-  },
-  "bugs": {
-    "url": "https://github.com/p0t4t0sandwich/ampapi-js/issues"
-  },
-  "homepage": "https://github.com/p0t4t0sandwich/ampapi-js#ampapi-js",
-  "keywords": [
-    "amp",
-    "api",
-    "ampapi",
-    "typescript"
-  ],
   "scripts": {
     "gen": "cd ./utils && python3 ./ampapi_gen.py",
     "build": "bun tsc",
-    "bundle": "bun build --outfile=./bundle/ampapi-js.js ./index.ts && bun build --minify --outfile=./bundle/ampapi-js.min.js ./index.ts"
-  },
-  "type": "module"
+    "bundle": "bun build --outfile=./bundle/ampapi.js ./index.js && bun build --minify --outfile=./bundle/ampapi.min.js ./index.js"
+  }
 }

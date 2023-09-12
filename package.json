@@ -14,17 +14,21 @@
   "licenses": [
     {
       "type": "GPL3",
-      "url": "https://github.com/p0t4t0sandwich/ampapi-typescript/blob/main/LICENSE"
+      "url": "https://github.com/p0t4t0sandwich/ampapi-js/blob/main/LICENSE"
     },
     {
       "type": "MIT",
-      "url": "https://github.com/p0t4t0sandwich/ampapi-typescript/blob/main/LICENSE-API"
+      "url": "https://github.com/p0t4t0sandwich/ampapi-js/blob/main/LICENSE-API"
     }
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/p0t4t0sandwich/ampapi-js.git"
   },
+  "bugs": {
+    "url": "https://github.com/p0t4t0sandwich/ampapi-js/issues"
+  },
+  "homepage": "https://github.com/p0t4t0sandwich/ampapi-js#ampapi-js",
   "keywords": [
     "amp",
     "api",

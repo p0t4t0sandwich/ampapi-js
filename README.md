@@ -11,10 +11,22 @@ Support:
 
 ## Installation
 
-Currently you can only install this package from GitHub.
+### NPM
 
 ```bash
-git clone https://github.com/p0t4t0sandwich/ampapi-js.git
+npm install @neuralnexus/ampapi
+```
+
+### Yarn
+
+```bash
+yarn add @neuralnexus/ampapi
+```
+
+### Bun
+
+```bash
+bun install @neuralnexus/ampapi
 ```
 
 ### In The Browser
@@ -36,7 +48,7 @@ git clone https://github.com/p0t4t0sandwich/ampapi-js.git
 ### CommonAPI Example
 
 ```javascript
-import { CommonAPI } from "ampapi-js";
+import { CommonAPI } from "@neuralnexus/ampapi";
 
 
 // If you know the module that the instance is using, specify it instead of CommonAPI
@@ -55,7 +67,7 @@ console.log(`Current CPU usage is: " + ${CPUUsagePercent} "%`);
 ### Example using the ADS to manage an instance
 
 ```typescript
-import { ADS, IADSInstance, Instance, Minecraft, Result, Status, UUID } from "ampapi-js";
+import { ADS, IADSInstance, Instance, Minecraft, Result, Status, UUID } from "@neuralnexus/ampapi";
 
 
 const API: ADS = new ADS("http://localhost:8080/", "admin", "myfancypassword123", "", "");
@@ -97,7 +109,7 @@ Hub.Core.SendConsoleMessage(`say Current CPU usage is: ${CPUUsagePercent}%`)
 ### CommonAPI Example, handling the sessionId and rememberMeToken manually (not recommended)
 
 ```typescript
-import { CommonAPI, LoginResult, Status } from "ampapi-js";
+import { CommonAPI, LoginResult, Status } from "@neuralnexus/ampapi";
 
 
 try {
@@ -130,7 +142,7 @@ try {
 ### CommonAPI Example
 
 ```typescript
-import { CommonAPI, Status } from "ampapi-js";
+import { CommonAPI, Status } from "@neuralnexus/ampapi";
 
 
 // If you know the module that the instance is using, specify it instead of CommonAPI
@@ -149,7 +161,7 @@ console.log(`Current CPU usage is: " + ${CPUUsagePercent} "%`);
 ### Example using the ADS to manage an instance
 
 ```typescript
-import { ADS, IADSInstance, Instance, Minecraft, Result, Status, UUID } from "ampapi-js";
+import { ADS, IADSInstance, Instance, Minecraft, Result, Status, UUID } from "@neuralnexus/ampapi";
 
 
 const API: ADS = new ADS("http://localhost:8080/", "admin", "myfancypassword123", "", "");
@@ -191,7 +203,7 @@ Hub.Core.SendConsoleMessage(`say Current CPU usage is: ${CPUUsagePercent}%`)
 ### CommonAPI Example, handling the sessionId and rememberMeToken manually (not recommended)
 
 ```typescript
-import { CommonAPI, LoginResult, Status } from "ampapi-js";
+import { CommonAPI, LoginResult, Status } from "@neuralnexus/ampapi";
 
 
 try {

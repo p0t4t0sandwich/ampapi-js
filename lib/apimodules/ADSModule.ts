@@ -4,7 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, Metrics, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, UUID } from "../types.js";
+import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, URL, UUID } from "../types.js";
 
 
 /**
@@ -755,12 +755,12 @@ export class ADSModule extends AMPAPI {
      * Name Description Optional
      * @param {UUID} Id  False
      * @param {string} FriendlyName  False
-     * @param {URL} Url  False
+     * @param {string} Url  False
      * @param {string} Description  False
      * @param {string[]} Tags  False
      * @return {Promise<ActionResult<any>>}
      */
-    async UpdateTargetInfo(Id: UUID, FriendlyName: string, Url: URL, Description: string, Tags: string[]): Promise<ActionResult<any>> {
+    async UpdateTargetInfo(Id: UUID, FriendlyName: string, Url: string, Description: string, Tags: string[]): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/UpdateTargetInfo", { 
             Id,
             FriendlyName,

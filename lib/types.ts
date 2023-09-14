@@ -35,7 +35,7 @@ interface AMPVersion {
 /**
  * @interface Branding
  * @author p0t4t0sandwich
- * @description An interface to represent the Branding object as part of the ModuleInfo object.
+ * @description Defines the Branding object as part of the ModuleInfo object.
  * @property {boolean} DisplayBranding - Whether to display branding
  * @property {string} PageTitle - The page title
  * @property {string} CompanyName - The company name
@@ -699,8 +699,15 @@ interface UserInfo {
 }
 
 /**
+ * @type URL
+ * @description A URL is a string that represents a URL
+ * @author p0t4t0sandich
+ */
+type URL = string;
+
+/**
  * @type UUID
- * @description A UUID is a string that represents a unique identifier.
+ * @description A UUID is a string that represents a unique identifier
  * @author p0t4t0sandich
  */
 type UUID = "${string}-${string}-${string}-${string}-${string}";
@@ -732,5 +739,6 @@ export {
     UpdateInfo,
     Updates,
     UserInfo,
+    URL,
     UUID
 };

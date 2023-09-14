@@ -32,7 +32,7 @@ type_dict = {
     "PortProtocol": "any",
     "ActionResult<String>": "ActionResult<string>",
     "IADSInstance": "Result<IADSInstance>",
-    "Uri": "URL",
+    "Uri": "string",
     "IEnumerable<PortUsage>": "Result<any[]>",
     "Dictionary<String, Int32>": "{ [key: string]: number }",
     "LocalAMPInstance": "any",

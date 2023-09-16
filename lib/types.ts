@@ -258,14 +258,14 @@ interface LoginResult {
  * @description Message type for API.Core.GetUpdatesResult status messages
  * @see Updates
  * @link lib/apimodules/Core#GetUpdates
- * @property {string} Id - The ID of the message
+ * @property {UUID} Id - The ID of the message
  * @property {boolean} Expired - Whether the message has expired
  * @property {string} Source - The source of the message
  * @property {string} Message - The message
  * @property {number} AgeMinutes - The age of the message in minutes
  */
 interface Message {
-    Id: string;
+    Id: UUID;
     Expired: boolean;
     Source: string;
     Message: string;
@@ -295,33 +295,13 @@ interface Metric {
 }
 
 /**
- * @interface Metrics
- * @author p0t4t0sandwich
- * @description Metrics information from the websocket connection
- * @property {UUID} Id - The UUID of the message
- * @property {boolean} Expired - Whether the message has expired
- * @property {string} Source - The source of the message
- * @property {string} Message - The message
- * @property {Status} Parameters - The parameters of the message
- * @property {number} AgeMinutes - The age of the message in minutes
- */
-interface Metrics {
-    Id: UUID;
-    Expired: boolean;
-    Source: string;
-    Message: string;
-    Parameters: Status;
-    AgeMinutes: number;
-}
-
-/**
  * @interface ModuleInfo
  * @author p0t4t0sandwich
- * @description An interface to represent the object returned by the ADSModule#GetModuleInfo() method.
+ * @description An interface to represent the object returned by the ADSModule#GetModuleInfo() method
  * @property {string} Name - The name of the module
  * @property {string} Author - The author of the module
  * @property {string} AppName - The app name
- * @property {boolean} SupportsSleep - Whether the module supports sleep
+ * @property {boolean} SupportsSleep - Whether the module supports sleep mode
  * @property {string[]} LoadedPlugins - The loaded plugins
  * @property {string} AMPVersion - The AMP version
  * @property {string} AMPBuild - The AMP build
@@ -333,7 +313,7 @@ interface Metrics {
  * @property {Branding} Branding - The branding object
  * @property {boolean} Analytics - Whether analytics are enabled
  * @property {string[]} FeatureSet - The feature set
- * @property {string} InstanceId - The instance ID
+ * @property {UUID} InstanceId - The instance ID
  * @property {string} InstanceName - The instance name
  * @property {string} FriendlyName - The friendly name
  * @property {string} EndpointURI - The endpoint URI
@@ -341,7 +321,7 @@ interface Metrics {
  * @property {string} ModuleName - The module name
  * @property {boolean} IsRemoteInstance - Whether the instance is remote
  * @property {string} DisplayBaseURI - The display base URI
- * @property {boolean} RequiresFullLoad - Whether a full load is required
+ * @property {boolean} RequiresFullLoad - Whether the module requires a full load
  * @property {boolean} AllowRememberMe - Whether remember me is allowed
  */
 interface ModuleInfo {
@@ -423,11 +403,25 @@ interface Result<T> {
  * @author p0t4t0sandwich
  * @description A running task object
  * @link lib/apimodules/Core#GetTasks()
+ * @property {boolean} IsPrimaryTask - Whether the task is the primary task
+ * @property {string} StartTime - The start time
+ * @property {UUID} Id - The ID
+ * @property {string} Name - The name
+ * @property {string} Description - The description
+ * @property {boolean} HideFromUI - Whether the task is hidden from the UI
+ * @property {boolean} FastDismiss - Whether the task can be dismissed quickly
+ * @property {string} LastUpdatePushed - The last update pushed
+ * @property {number} ProgressPercent - The progress percentage
+ * @property {boolean} IsCancellable - Whether the task is cancellable
+ * @property {string} Origin - The origin
+ * @property {boolean} IsIndeterminate - Whether the task is indeterminate
+ * @property {number} State - The state
+ * @property {boolean} Status - The status
  */
 interface RunningTask {
     IsPrimaryTask: boolean;
     StartTime: string;
-    Id: string;
+    Id: UUID;
     Name: string;
     Description: string;
     HideFromUI: boolean;
@@ -444,7 +438,7 @@ interface RunningTask {
 /**
  * @interface SettingsSpec
  * @author p0t4t0sandwich
- * @description Response object for GetSettingsSpec()
+ * @description Response object for Core.GetSettingsSpec()
  * @link lib/apimodules/Core#GetSettingsSpec()
  * @property {Spec[]} result - The result
  */
@@ -680,7 +674,7 @@ interface Updates {
  * @interface UserInfo
  * @description Interface for the user info
  * @author p0t4t0sandich
- * @property {string} ID The ID of the user
+ * @property {UUID} ID The ID of the user
  * @property {string} Username The username of the user
  * @property {boolean} IsTwoFactorEnabled Whether two factor authentication is enabled for the user
  * @property {boolean} Disabled Whether the user is disabled
@@ -689,7 +683,7 @@ interface Updates {
  * @property {boolean} IsLDAPUser Whether the user is an LDAP user
  */
 interface UserInfo {
-    ID: string;
+    ID: UUID;
     Username: string;
     IsTwoFactorEnabled: boolean;
     Disabled: boolean;
@@ -725,7 +719,6 @@ export {
     LoginResult,
     Message,
     Metric,
-    Metrics,
     ModuleInfo,
     PlatformInfo,
     RemoteTargetInfo,

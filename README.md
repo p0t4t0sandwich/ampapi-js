@@ -1,5 +1,15 @@
 # ampapi-js
 
+[![License](https://img.shields.io/github/license/p0t4t0sandwich/ampapi-js?color=blue)](https://img.shields.io/github/downloads/p0t4t0sandwich/ampapi-js/LICENSE)
+[![Github](https://img.shields.io/github/stars/p0t4t0sandwich/ampapi-js)](https://github.com/p0t4t0sandwich/ampapi-js)
+[![Github Issues](https://img.shields.io/github/issues/p0t4t0sandwich/ampapi-js?label=Issues)](https://github.com/p0t4t0sandwich/ampapi-js/issues)
+[![Discord](https://img.shields.io/discord/1067482396246683708?color=7289da&logo=discord&logoColor=white)](https://discord.neuralnexus.dev)
+[![wakatime](https://wakatime.com/badge/github/p0t4t0sandwich/ampapi-js.svg)](https://wakatime.com/badge/github/p0t4t0sandwich/ampapi-js)
+
+[![Github Releases](https://img.shields.io/github/downloads/p0t4t0sandwich/ampapi-js/total?label=Github&logo=github&color=181717)](https://github.com/p0t4t0sandwich/ampapi-js/releases)
+[![NPM v](https://img.shields.io/npm/v/@neuralnexus/ampapi?label=NPM&logo=npm&color=CB3837)](https://www.npmjs.com/package/@neuralnexus/ampapi)
+[![NPM](https://img.shields.io/npm/dt/@neuralnexus/ampapi?label=NPM&logo=npm&color=CB3837)](https://www.npmjs.com/package/@neuralnexus/ampapi)
+
 An API that allows you to communicate with AMP installations from within JavaScript/TypeScript.
 
 Documentation for available API calls can be found by appending /API to the URL of any existing AMP installation.

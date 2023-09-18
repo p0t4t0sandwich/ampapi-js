@@ -23,6 +23,9 @@ export class AMPAPI {
     public password: string;
     public rememberMeToken: string;
     public sessionId: string;
+    public requestMethod: string = "POST";
+    private lastAPICall: number = Date.now();
+    public relogInterval: number = 1000 * 60 * 5;
 
     /**
      * @constructor
@@ -57,13 +60,23 @@ export class AMPAPI {
      * @throws {Error} An error if the API call fails
      */
     async apiCall(endpoint: string, data: any = {}): Promise<any> {
-        // Create the session object
+        // Check the last API call time, and if it's been more than the relog interval, relog.
+        if (Date.now() - this.lastAPICall > this.relogInterval) {
+            this.lastAPICall = Date.now();
+            await this.APILogin();
+        } else {
+            this.lastAPICall = Date.now();
+        }
         const session = { "SESSIONID": this.sessionId }
 
         // Make the request
         const response = await fetch(this.dataSource + "/" + endpoint, {
-            method: "POST",
-            headers: { "Accept": "text/javascript" },
+            method: this.requestMethod,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'text/javascript',
+                'User-Agent': 'ampapi-js/1.0.4'
+            },
             body: JSON.stringify({ ...data, ...session })
         });
 
@@ -85,9 +98,13 @@ export class AMPAPI {
     public async APILogin(): Promise<any> {
         const data = {
             username: this.username,
-            password: this.password,
+            password: "",
             token: this.rememberMeToken,
             rememberMe: true,
+        }
+        // If remember me token is empty, use the password.
+        if (this.rememberMeToken === "") {
+            data.password = this.password;
         }
 
         const loginResult: LoginResult = await this.apiCall("Core/Login", data);

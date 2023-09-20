@@ -129,9 +129,10 @@ interface EndpointInfo {
  * @property {number} Id - The ADS instance ID
  * @property {UUID} InstanceId - The instance ID
  * @property {string} FriendlyName - The friendly name
+ * @property {string} Description - The description
  * @property {boolean} Disabled - Whether the instance is disabled
  * @property {boolean} isRemote - Whether the instance is remote
- * @property {PlatformInfo} PlatformInfo - PlatformInfo information object
+ * @property {PlatformInfo} Platform - Platform information object
  * @property {InstanceDatastore[]} Datastores - The datastores
  * @property {boolean} CreatesInContainers - Whether the instance creates in containers
  * @property {State} State - The state
@@ -140,14 +141,18 @@ interface EndpointInfo {
  * @property {string} LastUpdated - The last updated
  * @property {Instance[]} AvailableInstances - The available instances
  * @property {string[]} AvailableIPs - The available IPs
+ * @property {string} URL - The URL
+ * @property {string[]} Tags - The tags
+ * @property {string[]} TagsNames - The tag names
  */
 interface IADSInstance {
     Id: number;
     InstanceId: UUID;
     FriendlyName: string;
+    Description: string;
     Disabled: boolean;
     isRemote: boolean;
-    PlatformInfo: PlatformInfo;
+    Platform: PlatformInfo;
     Datastores: InstanceDatastore[];
     CreatesInContainers: boolean;
     State: State;
@@ -156,6 +161,9 @@ interface IADSInstance {
     LastUpdated: string;
     AvailableInstances: Instance[];
     AvailableIPs: string[];
+    URL: string;
+    Tags: string[];
+    TagsNames: string[];
 }
 
 /**
@@ -166,7 +174,9 @@ interface IADSInstance {
  * @property {UUID} TargetID - The target ID
  * @property {string} InstanceName - The instance name
  * @property {string} FriendlyName - The friendly name
+ * @property {string} Description - The description
  * @property {string} Module - The module
+ * @property {string} ModuleDisplayName - The module display name
  * @property {AMPVersion} AMPVersion - The AMP version
  * @property {boolean} IsHTTPS - Whether HTTPS is enabled
  * @property {string} IP - The IP address
@@ -185,6 +195,7 @@ interface IADSInstance {
  * @property {number} ContainerMemoryMB - The container memory in MB
  * @property {number} ContainerMemoryPolicy - The container memory policy
  * @property {number} ContainerCPUs - The container CPUs
+ * @property {string} SpecificDockerImage - The specific docker image
  * @property {{ [key: string]: Metric }} Metrics - The metrics
  * @property {EndpointInfo[]} ApplicationEndpoints - The application endpoints
  * @property {{ [key: string]: string }} DeploymentArgs - The deployment arguments
@@ -195,7 +206,9 @@ interface Instance {
     TargetID: UUID;
     InstanceName: string;
     FriendlyName: string;
+    Description: string;
     Module: string;
+    ModuleDisplayName: string;
     AMPVersion: AMPVersion;
     IsHTTPS: boolean;
     IP: string;
@@ -214,6 +227,7 @@ interface Instance {
     ContainerMemoryMB: number;
     ContainerMemoryPolicy: number;
     ContainerCPUs: number;
+    SpecificDockerImage: string;
     Metrics: { [key: string]: Metric };
     ApplicationEndpoints: EndpointInfo[];
     DeploymentArgs: { [key: string]: string };
@@ -676,6 +690,7 @@ interface Updates {
  * @author p0t4t0sandich
  * @property {UUID} ID The ID of the user
  * @property {string} Username The username of the user
+ * @property {string} EmailAddress The email address of the user
  * @property {boolean} IsTwoFactorEnabled Whether two factor authentication is enabled for the user
  * @property {boolean} Disabled Whether the user is disabled
  * @property {string} LastLogin The last login of the user
@@ -685,6 +700,7 @@ interface Updates {
 interface UserInfo {
     ID: UUID;
     Username: string;
+    EmailAddress: string;
     IsTwoFactorEnabled: boolean;
     Disabled: boolean;
     LastLogin: string;

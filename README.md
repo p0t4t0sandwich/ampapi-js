@@ -238,8 +238,3 @@ try {
     throw new Error(err)
 }
 ```
-
-## TODO
-
-- Add a check to see if it's been 5min since the last API call, and if so, attempt to re-log
-- Figure out proper browser support (or wait till bun can build to cjs)

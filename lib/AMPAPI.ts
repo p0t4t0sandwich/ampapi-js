@@ -61,11 +61,12 @@ export class AMPAPI {
      */
     async apiCall(endpoint: string, data: any = {}): Promise<any> {
         // Check the last API call time, and if it's been more than the relog interval, relog.
-        if (Date.now() - this.lastAPICall > this.relogInterval) {
-            this.lastAPICall = Date.now();
+        const now: number = Date.now();
+        if (now - this.lastAPICall > this.relogInterval) {
+            this.lastAPICall = now;
             await this.APILogin();
         } else {
-            this.lastAPICall = Date.now();
+            this.lastAPICall = now;
         }
         const session = { "SESSIONID": this.sessionId }
 

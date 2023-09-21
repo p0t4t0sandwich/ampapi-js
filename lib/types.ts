@@ -380,7 +380,7 @@ interface ModuleInfo {
 interface PlatformInfo {
     CPUInfo: CPUInfo;
     InstalledRAMMB: number;
-    OS: string;
+    OS: number;
     PlatformName: string;
     SystemType: number;
     Virtualization: number;

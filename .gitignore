@@ -169,5 +169,6 @@ dist
 .pnp.\*
 
 # Extras
+dist
 test.ts
 test.js

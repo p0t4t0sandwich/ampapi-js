@@ -1,29 +1,23 @@
 {
   "name": "@neuralnexus/ampapi",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "p0t4t0sandwich <p0t4t0sandwich@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/p0t4t0sandwich/ampapi-js.git"
   },
-  "module": "./index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "devDependencies": {
     "bun-types": "latest",
     "@types/node": "^20.6.0",
     "typescript": "^5.2.2"
   },
-  "exports": {
-    ".": {
-      "import": "./wrapper.mjs",
-      "require": "./index.js"
-    },
-    "./package.json": "./package.json"
-  },
   "bugs": {
     "url": "https://github.com/p0t4t0sandwich/ampapi-js/issues"
   },
   "description": "An API that allows you to communicate with AMP installations from within JavaScript/TypeScript.",
-  "homepage": "https://github.com/p0t4t0sandwich/ampapi-js#ampapi-js",
+  "homepage": "https://github.com/p0t4t0sandwich/ampapi-js#readme",
   "keywords": [
     "amp",
     "api",

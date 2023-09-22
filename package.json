@@ -1,6 +1,6 @@
 {
   "name": "@neuralnexus/ampapi",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "author": "p0t4t0sandwich <p0t4t0sandwich@gmail.com>",
   "repository": {
     "type": "git",
@@ -9,6 +9,7 @@
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
+  "types": "./dist/types.d.ts",
   "devDependencies": {
     "bun-types": "latest",
     "@types/node": "^20.6.0",

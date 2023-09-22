@@ -1,6 +1,6 @@
 /**
  * @author p0t4t0sandich
- * @description A TypeScript library for the AMP API
+ * @description An API that allows you to communicate with AMP installations from within JavaScript/TypeScript
  */
 
 import { MinecraftModule } from "../apimodules/MinecraftModule.js";

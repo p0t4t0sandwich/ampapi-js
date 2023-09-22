@@ -1,6 +1,6 @@
 {
   "name": "@neuralnexus/ampapi",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "p0t4t0sandwich <p0t4t0sandwich@gmail.com>",
   "repository": {
     "type": "git",
@@ -13,6 +13,24 @@
     "@types/node": "^20.6.0",
     "typescript": "^5.2.2"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "bundle",
+    "lib/*",
+    "index.js",
+    "index.mjs",
+    "package.json",
+    "LICENSE",
+    "LICENSE-API",
+    "README.md"
+  ],
   "bugs": {
     "url": "https://github.com/p0t4t0sandwich/ampapi-js/issues"
   },

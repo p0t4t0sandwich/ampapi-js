@@ -99,7 +99,7 @@ export class AMPAPI {
     public async APILogin(): Promise<any> {
         const data = {
             username: this.username,
-            password: "",
+            password: this.password,
             token: this.rememberMeToken,
             rememberMe: true,
         }

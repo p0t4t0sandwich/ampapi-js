@@ -62,7 +62,7 @@ import { CommonAPI } from "@neuralnexus/ampapi";
 
 
 // If you know the module that the instance is using, specify it instead of CommonAPI
-const API = new CommonAPI("http://localhost:8080/", "admin", "myfancypassword123", "");
+const API = new CommonAPI("http://localhost:8080/", "admin", "myfancypassword123");
 await API.APILogin();
 
 // API call parameters are simply in the same order as shown in the documentation.
@@ -80,7 +80,7 @@ console.log(`Current CPU usage is: " + ${CPUUsagePercent} "%`);
 import { ADS } from "@neuralnexus/ampapi";
 
 
-const API = new ADS("http://localhost:8080/", "admin", "myfancypassword123", "", "");
+const API = new ADS("http://localhost:8080/", "admin", "myfancypassword123");
 await API.APILogin();
 
 // Get the available instances
@@ -154,7 +154,7 @@ import { CommonAPI, Status } from "@neuralnexus/ampapi";
 
 
 // If you know the module that the instance is using, specify it instead of CommonAPI
-const API: CommonAPI = new CommonAPI("http://localhost:8080/", "admin", "myfancypassword123", "");
+const API: CommonAPI = new CommonAPI("http://localhost:8080/", "admin", "myfancypassword123");
 await API.APILogin();
 
 // API call parameters are simply in the same order as shown in the documentation.
@@ -172,7 +172,7 @@ console.log(`Current CPU usage is: " + ${CPUUsagePercent} "%`);
 import { ADS, IADSInstance, Instance, Minecraft, Result, Status, UUID } from "@neuralnexus/ampapi";
 
 
-const API: ADS = new ADS("http://localhost:8080/", "admin", "myfancypassword123", "", "");
+const API: ADS = new ADS("http://localhost:8080/", "admin", "myfancypassword123");
 await API.APILogin();
 
 // Get the available instances

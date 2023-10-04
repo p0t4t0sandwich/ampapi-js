@@ -4,7 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, URL, UUID } from "../types.js";
+import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
 
 
 /**
@@ -26,6 +26,19 @@ export class Core extends AMPAPI {
      */
     async AcknowledgeAMPUpdate(): Promise<void> {
         return this.apiCall("Core/AcknowledgeAMPUpdate", { 
+        });
+    }
+
+    /**
+     * Name Description Optional
+     * @param {string} LicenceKey  False
+     * @param {boolean} QueryOnly  True
+     * @return {Promise<Task<ActionResult<LicenceInfo>>>}
+     */
+    async ActivateAMPLicence(LicenceKey: string, QueryOnly: boolean): Promise<Task<ActionResult<LicenceInfo>>> {
+        return this.apiCall("Core/ActivateAMPLicence", { 
+            LicenceKey,
+            QueryOnly
         });
     }
 

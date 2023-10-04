@@ -4,7 +4,7 @@
  * @description Generic response type for calls that return a result and a reason for failure
  * @property {boolean} Status - true if successful, false if not
  * @property {string} Reason - reason for failure
- * @property {T} Result - result of the call
+ * @property {T} Result - result of the call if successful
  */
 interface ActionResult<T> {
     Status: boolean;
@@ -244,6 +244,28 @@ interface Instance {
 interface InstanceDatastore {
     Id: number;
     FriendlyName: string;
+}
+
+/**
+ * @interface LicenceInfo
+ * @description Interface for the result of API.Core.ActivateAMPLicence
+ * @link lib/apimodules/Core#ActivateAMPLicence
+ * @property {UUID} LicenceKey - The licence key
+ * @property {UUID} Grade - The grade
+ * @property {string} GradeName - The grade name
+ * @property {UUID} Product - The product
+ * @property {string} ProductName - The product name
+ * @property {string} Expires - The expiry date
+ * @property {number} Usage - The usage
+ */
+interface LicenceInfo {
+    LicenceKey: UUID;
+    Grade: UUID;
+    GradeName: string;
+    Product: UUID;
+    ProductName: string;
+    Expires: string;
+    Usage: number;
 }
 
 /**
@@ -732,6 +754,7 @@ export {
     IADSInstance,
     Instance,
     InstanceDatastore,
+    LicenceInfo,
     LoginResult,
     Message,
     Metric,

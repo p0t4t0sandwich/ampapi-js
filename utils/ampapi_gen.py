@@ -73,6 +73,7 @@ type_dict = {
     "Task<IDictionary<Guid, String>>": "Task<Map<UUID, any>>",
     "Task<ActionResult>": "Task<ActionResult<any>>",
     "Task<ActionResult<Guid>>": "Task<ActionResult<UUID>>",
+    "Task<ActionResult<LicenceInfo>>": "Task<ActionResult<LicenceInfo>>",
 
     ## Custom types
     "Result<Instance>": "Result<Instance>",

@@ -517,10 +517,12 @@ export class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
+     * @param {boolean} force  True
      * @return {Promise<void>}
      */
-    async RefreshRemoteConfigStores(): Promise<void> {
+    async RefreshRemoteConfigStores(force: boolean): Promise<void> {
         return this.apiCall("ADSModule/RefreshRemoteConfigStores", { 
+            force
         });
     }
 
@@ -722,9 +724,9 @@ export class ADSModule extends AMPAPI {
      * @param {any} MemoryPolicy  False
      * @param {any} ContainerMaxCPU  False
      * @param {string} ContainerImage  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async UpdateInstanceInfo(InstanceId: string, FriendlyName: string, Description: string, StartOnBoot: boolean, Suspended: boolean, ExcludeFromFirewall: boolean, RunInContainer: boolean, ContainerMemory: number, MemoryPolicy: any, ContainerMaxCPU: any, ContainerImage: string): Promise<Task<ActionResult<any>>> {
+    async UpdateInstanceInfo(InstanceId: string, FriendlyName: string, Description: string, StartOnBoot: boolean, Suspended: boolean, ExcludeFromFirewall: boolean, RunInContainer: boolean, ContainerMemory: number, MemoryPolicy: any, ContainerMaxCPU: any, ContainerImage: string): Promise<ActionResult<any>> {
         return this.apiCall("ADSModule/UpdateInstanceInfo", { 
             InstanceId,
             FriendlyName,

@@ -4,7 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
+import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, RunningTask, SettingsSpec, Spec, State, lookupState, Status, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
 
 
 /**
@@ -22,9 +22,9 @@ export class EmailSenderPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async TestSMTPSettings(): Promise<Task<ActionResult<any>>> {
+    async TestSMTPSettings(): Promise<ActionResult<any>> {
         return this.apiCall("EmailSenderPlugin/TestSMTPSettings", { 
         });
     }

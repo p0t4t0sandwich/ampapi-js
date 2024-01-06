@@ -4,7 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
+import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, RunningTask, SettingsSpec, Spec, State, lookupState, Status, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
 
 
 /**
@@ -23,9 +23,9 @@ export class LocalFileBackupPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {UUID} BackupId  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async DeleteFromS3(BackupId: UUID): Promise<Task<ActionResult<any>>> {
+    async DeleteFromS3(BackupId: UUID): Promise<ActionResult<any>> {
         return this.apiCall("LocalFileBackupPlugin/DeleteFromS3", { 
             BackupId
         });
@@ -45,9 +45,9 @@ export class LocalFileBackupPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {UUID} BackupId  False
-     * @return {Promise<Result<RunningTask>>}
+     * @return {Promise<RunningTask>}
      */
-    async DownloadFromS3(BackupId: UUID): Promise<Result<RunningTask>> {
+    async DownloadFromS3(BackupId: UUID): Promise<RunningTask> {
         return this.apiCall("LocalFileBackupPlugin/DownloadFromS3", { 
             BackupId
         });
@@ -55,9 +55,9 @@ export class LocalFileBackupPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<any[]>>}
+     * @return {Promise<any[]>}
      */
-    async GetBackups(): Promise<Result<any[]>> {
+    async GetBackups(): Promise<any[]> {
         return this.apiCall("LocalFileBackupPlugin/GetBackups", { 
         });
     }
@@ -106,9 +106,9 @@ export class LocalFileBackupPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {UUID} BackupId  False
-     * @return {Promise<Result<RunningTask>>}
+     * @return {Promise<RunningTask>}
      */
-    async UploadToS3(BackupId: UUID): Promise<Result<RunningTask>> {
+    async UploadToS3(BackupId: UUID): Promise<RunningTask> {
         return this.apiCall("LocalFileBackupPlugin/UploadToS3", { 
             BackupId
         });

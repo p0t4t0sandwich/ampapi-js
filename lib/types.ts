@@ -464,18 +464,7 @@ interface RunningTask {
 }
 
 /**
- * @interface SettingsSpec
- * @author p0t4t0sandwich
- * @description Response object for Core.GetSettingsSpec()
- * @link lib/apimodules/Core#GetSettingsSpec()
- * @property {Spec[]} result - The result
- */
-interface SettingsSpec {
-    result: { [key: string]: Spec[] };
-}
-
-/**
- * @interface Spec
+ * @interface SettingSpec
  * @author p0t4t0sandwich
  * @description A setting specification object
  * @property {boolean} ReadOnly - Whether the setting is read-only
@@ -744,8 +733,7 @@ export {
     PlatformInfo,
     RemoteTargetInfo,
     RunningTask,
-    SettingsSpec,
-    Spec,
+    SettingSpec,
     State, lookupState,
     Status,
     UpdateInfo,

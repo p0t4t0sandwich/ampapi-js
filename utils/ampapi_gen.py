@@ -12,7 +12,7 @@ type_dict = {
     "ActionResult<Guid>": "ActionResult<UUID>",
     "ActionResult<LicenceInfo>": "ActionResult<LicenceInfo>",
     "ActionResult<String>": "ActionResult<string>",
-    "ActionResult<TwoFactorSetupInfo>": "ActionResult<Any>",
+    "ActionResult<TwoFactorSetupInfo>": "ActionResult<any>",
     "RunningTask": "RunningTask",
     "IEnumerable<RunningTask>": "RunningTask[]",
 
@@ -34,7 +34,7 @@ type_dict = {
     "Dictionary<String, Int32>": "{ [key: string]: number }",
     "Dictionary<String, SettingSpec>": "{ [key: string]: SettingSpec }",
     "Dictionary<String, String>": "{ [key: string]: string }",
-    "IDictionary<Guid, String>": "{ [key: UUID]: string }",
+    "IDictionary<Guid, String>": "Map<UUID, string>",
     "IDictionary<String, String>": "{ [key: string]: string }",
     "IEnumerable<ApplicationSpec>": "any[]",
     "IEnumerable<AuthRoleSummary>": "any[]",

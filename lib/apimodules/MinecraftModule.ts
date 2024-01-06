@@ -4,7 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
+import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, RunningTask, SettingsSpec, Spec, State, lookupState, Status, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
 
 
 /**
@@ -32,9 +32,9 @@ export class MinecraftModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} UserOrUUID  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async AddOPEntry(UserOrUUID: string): Promise<Task<ActionResult<any>>> {
+    async AddOPEntry(UserOrUUID: string): Promise<ActionResult<any>> {
         return this.apiCall("MinecraftModule/AddOPEntry", { 
             UserOrUUID
         });
@@ -43,9 +43,9 @@ export class MinecraftModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} UserOrUUID  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async AddToWhitelist(UserOrUUID: string): Promise<Task<ActionResult<any>>> {
+    async AddToWhitelist(UserOrUUID: string): Promise<ActionResult<any>> {
         return this.apiCall("MinecraftModule/AddToWhitelist", { 
             UserOrUUID
         });
@@ -74,9 +74,9 @@ export class MinecraftModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {number} pluginId  False
-     * @return {Promise<Task<RunningTask>>}
+     * @return {Promise<RunningTask>}
      */
-    async BukGetInstallUpdatePlugin(pluginId: number): Promise<Task<RunningTask>> {
+    async BukGetInstallUpdatePlugin(pluginId: number): Promise<RunningTask> {
         return this.apiCall("MinecraftModule/BukGetInstallUpdatePlugin", { 
             pluginId
         });
@@ -194,9 +194,9 @@ export class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<{ [key: string]: any }[]>>}
+     * @return {Promise<{ [key: string]: any }[]>}
      */
-    async GetWhitelist(): Promise<Result<{ [key: string]: any }[]>> {
+    async GetWhitelist(): Promise<{ [key: string]: any }[]> {
         return this.apiCall("MinecraftModule/GetWhitelist", { 
         });
     }
@@ -225,9 +225,9 @@ export class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<{ [key: string]: any }[]>>}
+     * @return {Promise<{ [key: string]: any }[]>}
      */
-    async LoadOPList(): Promise<Result<{ [key: string]: any }[]>> {
+    async LoadOPList(): Promise<{ [key: string]: any }[]> {
         return this.apiCall("MinecraftModule/LoadOPList", { 
         });
     }

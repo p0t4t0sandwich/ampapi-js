@@ -76,15 +76,21 @@ export class AMPAPI {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'text/javascript',
-                'User-Agent': 'ampapi-js/1.0.4'
+                'User-Agent': 'ampapi-js/1.0.14'
             },
             body: JSON.stringify({ ...data, ...session })
         });
 
         // Check if the response is valid
         if (response.ok) {
+            // Check for API errors
+            const json = await response.json();
+            if (json != null && (json.hasOwnProperty("Title") || json.hasOwnProperty("Message") || json.hasOwnProperty("StackTrace"))) {
+                throw new Error(`API call failed: ${json.Title}: ${json.Message}\n${json.StackTrace}`);
+            }
+
             // Return the response
-            return response.json();
+            return json;
         } else {
             // Throw an error
             throw new Error("API call failed");

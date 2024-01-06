@@ -8,12 +8,12 @@ import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo
 
 
 /**
- * @class RCONPlugin
+ * @class GenericModule
  */
-export class RCONPlugin extends AMPAPI {
+export class GenericModule extends AMPAPI {
     /**
      * @constructor
-     * @description Constructor for the RCONPlugin class
+     * @description Constructor for the GenericModule class
      * @param {AMPAPI} ampapi The AMP API handler
      */
     constructor(ampapi: AMPAPI) {
@@ -22,10 +22,12 @@ export class RCONPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<void>}
+     * @param {string} filename  False
+     * @return {Promise<{ [key: string]: string }>}
      */
-    async Dummy(): Promise<void> {
-        return this.apiCall("RCONPlugin/Dummy", { 
+    async ImportConfig(filename: string): Promise<{ [key: string]: string }> {
+        return this.apiCall("GenericModule/ImportConfig", { 
+            filename
         });
     }
 

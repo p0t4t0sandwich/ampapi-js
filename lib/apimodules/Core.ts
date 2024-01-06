@@ -4,7 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
+import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, RunningTask, SettingsSpec, Spec, State, lookupState, Status, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
 
 
 /**
@@ -33,9 +33,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} LicenceKey  False
      * @param {boolean} QueryOnly  True
-     * @return {Promise<Task<ActionResult<LicenceInfo>>>}
+     * @return {Promise<ActionResult<LicenceInfo>>}
      */
-    async ActivateAMPLicence(LicenceKey: string, QueryOnly: boolean): Promise<Task<ActionResult<LicenceInfo>>> {
+    async ActivateAMPLicence(LicenceKey: string, QueryOnly: boolean): Promise<ActionResult<LicenceInfo>> {
         return this.apiCall("Core/ActivateAMPLicence", { 
             LicenceKey,
             QueryOnly
@@ -92,9 +92,9 @@ export class Core extends AMPAPI {
     /**
      * DEV: Async test method
      * Name Description Optional
-     * @return {Promise<Task<string>>}
+     * @return {Promise<string>}
      */
-    async AsyncTest(): Promise<Task<string>> {
+    async AsyncTest(): Promise<string> {
         return this.apiCall("Core/AsyncTest", { 
         });
     }
@@ -131,9 +131,9 @@ export class Core extends AMPAPI {
      * @param {string} OldPassword  False
      * @param {string} NewPassword  False
      * @param {string} TwoFactorPIN  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async ChangeUserPassword(Username: string, OldPassword: string, NewPassword: string, TwoFactorPIN: string): Promise<Task<ActionResult<any>>> {
+    async ChangeUserPassword(Username: string, OldPassword: string, NewPassword: string, TwoFactorPIN: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/ChangeUserPassword", { 
             Username,
             OldPassword,
@@ -146,9 +146,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} Username  False
      * @param {string} TwoFactorCode  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async ConfirmTwoFactorSetup(Username: string, TwoFactorCode: string): Promise<Task<ActionResult<any>>> {
+    async ConfirmTwoFactorSetup(Username: string, TwoFactorCode: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/ConfirmTwoFactorSetup", { 
             Username,
             TwoFactorCode
@@ -159,9 +159,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} Name  False
      * @param {boolean} AsCommonRole  True
-     * @return {Promise<Task<ActionResult<UUID>>>}
+     * @return {Promise<ActionResult<UUID>>}
      */
-    async CreateRole(Name: string, AsCommonRole: boolean): Promise<Task<ActionResult<UUID>>> {
+    async CreateRole(Name: string, AsCommonRole: boolean): Promise<ActionResult<UUID>> {
         return this.apiCall("Core/CreateRole", { 
             Name,
             AsCommonRole
@@ -181,9 +181,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} Username  False
-     * @return {Promise<Task<ActionResult<UUID>>>}
+     * @return {Promise<ActionResult<UUID>>}
      */
-    async CreateUser(Username: string): Promise<Task<ActionResult<UUID>>> {
+    async CreateUser(Username: string): Promise<ActionResult<UUID>> {
         return this.apiCall("Core/CreateUser", { 
             Username
         });
@@ -203,9 +203,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {UUID} InstanceId  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async DeleteInstanceUsers(InstanceId: UUID): Promise<Task<ActionResult<any>>> {
+    async DeleteInstanceUsers(InstanceId: UUID): Promise<ActionResult<any>> {
         return this.apiCall("Core/DeleteInstanceUsers", { 
             InstanceId
         });
@@ -214,9 +214,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {UUID} RoleId  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async DeleteRole(RoleId: UUID): Promise<Task<ActionResult<any>>> {
+    async DeleteRole(RoleId: UUID): Promise<ActionResult<any>> {
         return this.apiCall("Core/DeleteRole", { 
             RoleId
         });
@@ -249,9 +249,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} Username  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async DeleteUser(Username: string): Promise<Task<ActionResult<any>>> {
+    async DeleteUser(Username: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/DeleteUser", { 
             Username
         });
@@ -261,9 +261,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} Password  False
      * @param {string} TwoFactorCode  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async DisableTwoFactor(Password: string, TwoFactorCode: string): Promise<Task<ActionResult<any>>> {
+    async DisableTwoFactor(Password: string, TwoFactorCode: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/DisableTwoFactor", { 
             Password,
             TwoFactorCode
@@ -332,9 +332,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} Username  False
      * @param {string} Password  False
-     * @return {Promise<Task<any>>}
+     * @return {Promise<ActionResult<Any>>}
      */
-    async EnableTwoFactor(Username: string, Password: string): Promise<Task<any>> {
+    async EnableTwoFactor(Username: string, Password: string): Promise<ActionResult<Any>> {
         return this.apiCall("Core/EnableTwoFactor", { 
             Username,
             Password
@@ -355,9 +355,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {UUID} RoleId  False
-     * @return {Promise<Task<string[]>>}
+     * @return {Promise<string[]>}
      */
-    async GetAMPRolePermissions(RoleId: UUID): Promise<Task<string[]>> {
+    async GetAMPRolePermissions(RoleId: UUID): Promise<string[]> {
         return this.apiCall("Core/GetAMPRolePermissions", { 
             RoleId
         });
@@ -366,9 +366,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} Username  False
-     * @return {Promise<Task<UserInfo>>}
+     * @return {Promise<UserInfo>}
      */
-    async GetAMPUserInfo(Username: string): Promise<Task<UserInfo>> {
+    async GetAMPUserInfo(Username: string): Promise<UserInfo> {
         return this.apiCall("Core/GetAMPUserInfo", { 
             Username
         });
@@ -376,9 +376,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Task<any[]>>}
+     * @return {Promise<any[]>}
      */
-    async GetAMPUsersSummary(): Promise<Task<any[]>> {
+    async GetAMPUsersSummary(): Promise<any[]> {
         return this.apiCall("Core/GetAMPUsersSummary", { 
         });
     }
@@ -394,18 +394,18 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<any[]>>}
+     * @return {Promise<any[]>}
      */
-    async GetActiveAMPSessions(): Promise<Result<any[]>> {
+    async GetActiveAMPSessions(): Promise<any[]> {
         return this.apiCall("Core/GetActiveAMPSessions", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @return {Promise<Task<UserInfo[]>>}
+     * @return {Promise<UserInfo[]>}
      */
-    async GetAllAMPUserInfo(): Promise<Task<UserInfo[]>> {
+    async GetAllAMPUserInfo(): Promise<UserInfo[]> {
         return this.apiCall("Core/GetAllAMPUserInfo", { 
         });
     }
@@ -414,9 +414,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {any} Before  False
      * @param {number} Count  False
-     * @return {Promise<Result<any[]>>}
+     * @return {Promise<any[]>}
      */
-    async GetAuditLogEntries(Before: any, Count: number): Promise<Result<any[]>> {
+    async GetAuditLogEntries(Before: any, Count: number): Promise<any[]> {
         return this.apiCall("Core/GetAuditLogEntries", { 
             Before,
             Count
@@ -437,9 +437,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string[]} nodes  False
-     * @return {Promise<Result<{ [key: string]: any }[]>>}
+     * @return {Promise<{ [key: string]: any }[]>}
      */
-    async GetConfigs(nodes: string[]): Promise<Result<{ [key: string]: any }[]>> {
+    async GetConfigs(nodes: string[]): Promise<{ [key: string]: any }[]> {
         return this.apiCall("Core/GetConfigs", { 
             nodes
         });
@@ -456,9 +456,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<ModuleInfo>>}
+     * @return {Promise<ModuleInfo>}
      */
-    async GetModuleInfo(): Promise<Result<ModuleInfo>> {
+    async GetModuleInfo(): Promise<ModuleInfo> {
         return this.apiCall("Core/GetModuleInfo", { 
         });
     }
@@ -483,9 +483,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<any[]>>}
+     * @return {Promise<any[]>}
      */
-    async GetPortSummaries(): Promise<Result<any[]>> {
+    async GetPortSummaries(): Promise<any[]> {
         return this.apiCall("Core/GetPortSummaries", { 
         });
     }
@@ -503,9 +503,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} Description  True
      * @param {boolean} IsTemporary  True
-     * @return {Promise<Task<string>>}
+     * @return {Promise<string>}
      */
-    async GetRemoteLoginToken(Description: string, IsTemporary: boolean): Promise<Task<string>> {
+    async GetRemoteLoginToken(Description: string, IsTemporary: boolean): Promise<string> {
         return this.apiCall("Core/GetRemoteLoginToken", { 
             Description,
             IsTemporary
@@ -515,9 +515,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {UUID} RoleId  False
-     * @return {Promise<Task<Object>>}
+     * @return {Promise<any>}
      */
-    async GetRole(RoleId: UUID): Promise<Task<Object>> {
+    async GetRole(RoleId: UUID): Promise<any> {
         return this.apiCall("Core/GetRole", { 
             RoleId
         });
@@ -525,18 +525,18 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Task<any[]>>}
+     * @return {Promise<any[]>}
      */
-    async GetRoleData(): Promise<Task<any[]>> {
+    async GetRoleData(): Promise<any[]> {
         return this.apiCall("Core/GetRoleData", { 
         });
     }
 
     /**
      * Name Description Optional
-     * @return {Promise<Task<Map<UUID, any>>>}
+     * @return {Promise<{ [key: UUID]: string }>}
      */
-    async GetRoleIds(): Promise<Task<Map<UUID, any>>> {
+    async GetRoleIds(): Promise<{ [key: UUID]: string }> {
         return this.apiCall("Core/GetRoleIds", { 
         });
     }
@@ -565,9 +565,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<SettingsSpec>}
+     * @return {Promise<{ [key: string]: SettingSpec }>}
      */
-    async GetSettingsSpec(): Promise<SettingsSpec> {
+    async GetSettingsSpec(): Promise<{ [key: string]: SettingSpec }> {
         return this.apiCall("Core/GetSettingsSpec", { 
         });
     }
@@ -583,9 +583,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<RunningTask[]>>}
+     * @return {Promise<RunningTask[]>}
      */
-    async GetTasks(): Promise<Result<RunningTask[]>> {
+    async GetTasks(): Promise<RunningTask[]> {
         return this.apiCall("Core/GetTasks", { 
         });
     }
@@ -603,9 +603,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<UpdateInfo>>}
+     * @return {Promise<UpdateInfo>}
      */
-    async GetUpdateInfo(): Promise<Result<UpdateInfo>> {
+    async GetUpdateInfo(): Promise<UpdateInfo> {
         return this.apiCall("Core/GetUpdateInfo", { 
         });
     }
@@ -632,9 +632,9 @@ export class Core extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} UID  False
-     * @return {Promise<{ [key: string]: any }>}
+     * @return {Promise<any>}
      */
-    async GetUserInfo(UID: string): Promise<{ [key: string]: any }> {
+    async GetUserInfo(UID: string): Promise<any> {
         return this.apiCall("Core/GetUserInfo", { 
             UID
         });
@@ -643,9 +643,9 @@ export class Core extends AMPAPI {
     /**
      * Returns a list of in-application users
      * Name Description Optional
-     * @return {Promise<Result<{ [key: string]: string }>>}
+     * @return {Promise<{ [key: string]: string }>}
      */
-    async GetUserList(): Promise<Result<{ [key: string]: string }>> {
+    async GetUserList(): Promise<{ [key: string]: string }> {
         return this.apiCall("Core/GetUserList", { 
         });
     }
@@ -672,9 +672,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<Result<any[]>>}
+     * @return {Promise<any[]>}
      */
-    async GetWebauthnCredentialSummaries(): Promise<Result<any[]>> {
+    async GetWebauthnCredentialSummaries(): Promise<any[]> {
         return this.apiCall("Core/GetWebauthnCredentialSummaries", { 
         });
     }
@@ -747,9 +747,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {UUID} RoleId  False
      * @param {string} NewName  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async RenameRole(RoleId: UUID, NewName: string): Promise<Task<ActionResult<any>>> {
+    async RenameRole(RoleId: UUID, NewName: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/RenameRole", { 
             RoleId,
             NewName
@@ -760,9 +760,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} Username  False
      * @param {string} NewPassword  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async ResetUserPassword(Username: string, NewPassword: string): Promise<Task<ActionResult<any>>> {
+    async ResetUserPassword(Username: string, NewPassword: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/ResetUserPassword", { 
             Username,
             NewPassword
@@ -835,9 +835,9 @@ export class Core extends AMPAPI {
      * @param {UUID} RoleId  False
      * @param {string} PermissionNode  False
      * @param {boolean} Enabled  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async SetAMPRolePermission(RoleId: UUID, PermissionNode: string, Enabled: boolean): Promise<Task<ActionResult<any>>> {
+    async SetAMPRolePermission(RoleId: UUID, PermissionNode: string, Enabled: boolean): Promise<ActionResult<any>> {
         return this.apiCall("Core/SetAMPRolePermission", { 
             RoleId,
             PermissionNode,
@@ -850,9 +850,9 @@ export class Core extends AMPAPI {
      * @param {UUID} UserId  False
      * @param {UUID} RoleId  False
      * @param {boolean} IsMember  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async SetAMPUserRoleMembership(UserId: UUID, RoleId: UUID, IsMember: boolean): Promise<Task<ActionResult<any>>> {
+    async SetAMPUserRoleMembership(UserId: UUID, RoleId: UUID, IsMember: boolean): Promise<ActionResult<any>> {
         return this.apiCall("Core/SetAMPUserRoleMembership", { 
             UserId,
             RoleId,
@@ -947,9 +947,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} EmailAddress  False
      * @param {string} TwoFactorPIN  False
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async UpdateAccountInfo(EmailAddress: string, TwoFactorPIN: string): Promise<Task<ActionResult<any>>> {
+    async UpdateAccountInfo(EmailAddress: string, TwoFactorPIN: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/UpdateAccountInfo", { 
             EmailAddress,
             TwoFactorPIN
@@ -973,9 +973,9 @@ export class Core extends AMPAPI {
      * @param {boolean} CannotChangePassword  False
      * @param {boolean} MustChangePassword  False
      * @param {string} EmailAddress  True
-     * @return {Promise<Task<ActionResult<any>>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async UpdateUserInfo(Username: string, Disabled: boolean, PasswordExpires: boolean, CannotChangePassword: boolean, MustChangePassword: boolean, EmailAddress: string): Promise<Task<ActionResult<any>>> {
+    async UpdateUserInfo(Username: string, Disabled: boolean, PasswordExpires: boolean, CannotChangePassword: boolean, MustChangePassword: boolean, EmailAddress: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/UpdateUserInfo", { 
             Username,
             Disabled,

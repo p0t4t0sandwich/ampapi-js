@@ -7,99 +7,86 @@ import json
 import sys
 
 type_dict = {
-    "InstanceDatastore": "InstanceDatastore",
+    # Generic types
     "ActionResult": "ActionResult<any>",
-    "Int32": "number",
-    "IEnumerable<InstanceDatastore>": "Result<InstanceDatastore[]>",
-    "RunningTask": "Result<RunningTask>",
-    "Task<RunningTask>": "Task<RunningTask>",
-    "IEnumerable<JObject>": "Result<{ [key: string]: any }[]>",
-    "Guid": "UUID",
-    "IEnumerable<DeploymentTemplate>": "Result<any[]>",
-    "String": "string",
-    "DeploymentTemplate": "any",
-    "Boolean": "boolean",
-    "List<String>": "string[]",
-    "PostCreateActions": "any",
-    "Dictionary<String, String>": "{ [key: string]: string }",
-    "RemoteTargetInfo": "RemoteTargetInfo",
-    "IEnumerable<ApplicationSpec>": "Result<any[]>",
-    "Void": "void",
-    "IEnumerable<EndpointInfo>": "Result<EndpointInfo[]>",
-    "IEnumerable<IADSInstance>": "Result<IADSInstance[]>",
-    "JObject": "{ [key: string]: any }",
-    "PortProtocol": "any",
+    "ActionResult<Guid>": "ActionResult<UUID>",
+    "ActionResult<LicenceInfo>": "ActionResult<LicenceInfo>",
     "ActionResult<String>": "ActionResult<string>",
-    "IADSInstance": "Result<IADSInstance>",
-    "Uri": "string",
-    "IEnumerable<PortUsage>": "Result<any[]>",
-    "Dictionary<String, Int32>": "{ [key: string]: number }",
-    "LocalAMPInstance": "any",
-    "ContainerMemoryPolicy": "any",
-    "Single": "any",
-    "Int64": "number",
-    "FileChunkData": "any",
-    "IEnumerable<BackupManifest>": "Result<any[]>",
-    "Nullable<DateTime>": "any", # Optional?
-    "IEnumerable<IAuditLogEntry>": "Result<any[]>",
-    "Dictionary<String, IEnumerable<JObject>>": "Result<{ [key: string]: { [key: string]: any }[] }>",
-    "IDictionary<String, String>": "{ [key: string]: string }",
-    "List<JObject>": "{ [key: string]: any }[]",
-    "String[]": "string[]",
-    "Nullable<Boolean>": "boolean", # Optional?
-    "ScheduleInfo": "any",
-    "Int32[]": "number[]",
-    "TimeIntervalTrigger": "any",
-    "IEnumerable<WebSessionSummary>": "Result<any[]>",
-    "IList<IPermissionsTreeNode>": "any[]",
-    "WebauthnLoginInfo": "any",
-    "IEnumerable<WebauthnCredentialSummary>": "Result<any[]>",
-    "IEnumerable<RunningTask>": "Result<RunningTask[]>",
-    "ModuleInfo": "Result<ModuleInfo>",
-    "Dictionary<String, Dictionary<String, MethodInfoSummary>>": "{ [key: string]: { [key: string]: any } }",
-    "Object": "any",
-    "UpdateInfo": "Result<UpdateInfo>",
-    "IEnumerable<ListeningPortSummary>": "Result<any[]>",
-    "Task<JObject>": "Task<{ [key: string]: any }>",
-    "Task<ActionResult<TwoFactorSetupInfo>>": "Task<any>",
-    "Task<IEnumerable<String>>": "Task<string[]>",
-    "Task<UserInfo>": "Task<UserInfo>",
-    "Task<IEnumerable<UserInfoSummary>>": "Task<any[]>",
-    "Task<IEnumerable<UserInfo>>": "Task<UserInfo[]>",
-    "Task<String>": "Task<string>",
-    "Task<AuthRoleSummary>": "Task<Object>",
-    "Task<IEnumerable<AuthRoleSummary>>": "Task<any[]>",
-    "Task<IDictionary<Guid, String>>": "Task<Map<UUID, any>>",
-    "Task<ActionResult>": "Task<ActionResult<any>>",
-    "Task<ActionResult<Guid>>": "Task<ActionResult<UUID>>",
-    "Task<ActionResult<LicenceInfo>>": "Task<ActionResult<LicenceInfo>>",
+    "ActionResult<TwoFactorSetupInfo>": "ActionResult<Any>",
+    "RunningTask": "RunningTask",
+    "IEnumerable<RunningTask>": "RunningTask[]",
 
-    ## Custom types
-    "Result<Instance>": "Result<Instance>",
-    "Result<RemoteTargetInfo>": "Result<RemoteTargetInfo>",
-    "SettingsSpec": "SettingsSpec",
+    # Primitive types
+    "Boolean": "boolean",
+    "Guid": "UUID",
+    "Int32": "number",
+    "Int32[]": "number[]",
+    "Int64": "number",
+    "JObject": "{ [key: string]: any }",
+    "Object": "any",
+    "String": "string",
+    "String[]": "string[]",
+    "Uri": "URL",
+    "Void": "void",
+
+    # Nested types
+    "Dictionary<String, Dictionary<String, MethodInfoSummary>>": "{ [key: string]: { [key: string]: any } }",
+    "Dictionary<String, Int32>": "{ [key: string]: number }",
+    "Dictionary<String, SettingSpec>": "{ [key: string]: SettingSpec }",
+    "Dictionary<String, String>": "{ [key: string]: string }",
+    "IDictionary<Guid, String>": "{ [key: UUID]: string }",
+    "IDictionary<String, String>": "{ [key: string]: string }",
+    "IEnumerable<ApplicationSpec>": "any[]",
+    "IEnumerable<AuthRoleSummary>": "any[]",
+    "IEnumerable<BackupManifest>": "any[]",
+    "IEnumerable<DeploymentTemplate>": "any[]",
+    "IEnumerable<EndpointInfo>": "EndpointInfo[]",
+    "IEnumerable<IADSInstance>": "IADSInstance[]",
+    "IEnumerable<IAuditLogEntry>": "any[]",
+    "IEnumerable<InstanceDatastore>": "InstanceDatastore[]",
+    "IEnumerable<JObject>": "{ [key: string]: any }[]",
+    "IEnumerable<ListeningPortSummary>": "any[]",
+    "IEnumerable<PortUsage>": "any[]",
+    "IEnumerable<ProvisionSettingInfo>": "any[]",
+    "IEnumerable<String>": "string[]",
+    "IEnumerable<UserInfo>": "UserInfo[]",
+    "IEnumerable<UserInfoSummary>": "any[]",
+    "IEnumerable<WebauthnCredentialSummary>": "any[]",
+    "IEnumerable<WebSessionSummary>": "any[]",
+    "IList<IPermissionsTreeNode>": "any[]",
+    "List<JObject>": "{ [key: string]: any }[]",
+    "List<String>": "string[]",
+    "Nullable<Boolean>": "boolean", # Optional?
+    "Nullable<DateTime>": "any", # Optional?
+
+    # Object types
+    "AuthRoleSummary": "any",
+    "ContainerMemoryPolicy": "any",
+    "DeploymentTemplate": "any",
+    "FileChunkData": "any",
+    "IADSInstance": "IADSInstance",
+    "Instance": "Instance",
+    "InstanceDatastore": "InstanceDatastore",
+    "LocalAMPInstance": "any",
+    "LoginResult": "LoginResult",
+    "ModuleInfo": "ModuleInfo",
+    "PortProtocol": "any",
+    "PostCreateActions": "any",
+    "RemoteTargetInfo": "RemoteTargetInfo",
+    "ScheduleInfo": "any",
+    "SimpleUser": "any",
+    "Single": "any",
     "Status": "Status",
+    "TimeIntervalTrigger": "any",
+    "UpdateInfo": "UpdateInfo",
     "Updates": "Updates",
-    "Result<{ [key: string]: string }>": "Result<{ [key: string]: string }>",
-    "LoginResult": "LoginResult"
+    "UserInfo": "UserInfo",
+    "WebauthnLoginInfo": "any",
 }
 
 custom_types = {
     # API.ADSModule.GetInstance
-    "ADSModule.GetInstance": "Result<Instance>",
-    # API.ADSModule.GetTargetInfo
-    "ADSModule.GetTargetInfo": "Result<RemoteTargetInfo>",
-
-    # API.Core.GetSettingsSpec
-    "Core.GetSettingsSpec": "SettingsSpec",
-    # API.Core.GetStatus
-    "Core.GetStatus": "Status",
-    # API.Core.GetUpdates
-    "Core.GetUpdates": "Updates",
-    # API.Core.GetUserList
-    "Core.GetUserList": "Result<{ [key: string]: string }>",
-    # API.Core.Login
-    "Core.Login": "LoginResult",
+    # "ADSModule.GetInstance": "Result<Instance>",
 }
 
 def generate_apimodule_method(module: str, method: str, method_spec: dict):
@@ -226,7 +213,7 @@ if __name__ == "__main__":
         branch = sys.argv[1]
 
     # Load remote file
-    res = requests.get(f"https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/{branch}/APISpec.json")
+    res = requests.get(f"https://raw.githubusercontent.com/p0t4t0sandwich/ampapi-spec/{branch}/OldAPISpec.json")
     spec = json.loads(res.content)
 
     # Load custom types

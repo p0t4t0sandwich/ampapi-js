@@ -4,7 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, Result, RunningTask, SettingsSpec, Spec, State, lookupState, Status, Task, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
+import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, RunningTask, SettingsSpec, Spec, State, lookupState, Status, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
 
 
 /**
@@ -98,11 +98,11 @@ export class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param {string} Source  False
+     * @param {URL} Source  False
      * @param {string} TargetDirectory  False
      * @return {Promise<ActionResult<any>>}
      */
-    async DownloadFileFromURL(Source: string, TargetDirectory: string): Promise<ActionResult<any>> {
+    async DownloadFileFromURL(Source: URL, TargetDirectory: string): Promise<ActionResult<any>> {
         return this.apiCall("FileManagerPlugin/DownloadFileFromURL", { 
             Source,
             TargetDirectory
@@ -145,9 +145,9 @@ export class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} Dir  False
-     * @return {Promise<Result<{ [key: string]: any }[]>>}
+     * @return {Promise<{ [key: string]: any }[]>}
      */
-    async GetDirectoryListing(Dir: string): Promise<Result<{ [key: string]: any }[]>> {
+    async GetDirectoryListing(Dir: string): Promise<{ [key: string]: any }[]> {
         return this.apiCall("FileManagerPlugin/GetDirectoryListing", { 
             Dir
         });

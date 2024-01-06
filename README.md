@@ -84,9 +84,7 @@ const API = new ADS("http://localhost:8080/", "admin", "myfancypassword123");
 await API.APILogin();
 
 // Get the available instances
-const instancesResult = await API.ADSModule.GetInstances();
-
-const targets = instancesResult.result;
+const targets = await API.ADSModule.GetInstances();
 
 // In this example, my Hub server is on the second target
 // If you're running a standalone setup, you can just use targets[0]

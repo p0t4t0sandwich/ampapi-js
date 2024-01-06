@@ -277,6 +277,7 @@ interface LicenceInfo {
  * @property {string} sessionID The session ID of the user
  * @property {string} rememberMeToken The remember me token of the user
  * @property {UserInfo} userInfo The user info of the user
+ * @property {string} resultReason The reason for the result
  * @property {number} result The result of the login
  */
 interface LoginResult {
@@ -285,6 +286,7 @@ interface LoginResult {
     sessionID: string;
     rememberMeToken: string;
     userInfo: UserInfo;
+    resultReason: string;
     result: number;
 }
 
@@ -422,16 +424,6 @@ interface RemoteTargetInfo {
     PlatformInfo: PlatformInfo;
     Datastores: InstanceDatastore[];
     DeploysInContainers: boolean;
-}
-
-/**
- * @interface Result
- * @author p0t4t0sandwich
- * @description Generic response type for calls that return a result
- * @property {T} result - The result of the call
- */
-interface Result<T> {
-    result: T;
 }
 
 /**
@@ -657,16 +649,6 @@ interface Status {
 }
 
 /**
- * @interface Task
- * @author p0t4t0sandwich
- * @description Generic response type for calls that return a result
- * @property {T} result - The result of the call
- */
-interface Task<T> {
-    result: T;
-}
-
-/**
  * @interface UpdateInfo
  * @author p0t4t0sandwich
  * @description An interface to represent the object returned by the ADSModule#GetUpdateInfo() method
@@ -761,13 +743,11 @@ export {
     ModuleInfo,
     PlatformInfo,
     RemoteTargetInfo,
-    Result,
     RunningTask,
     SettingsSpec,
     Spec,
     State, lookupState,
     Status,
-    Task,
     UpdateInfo,
     Updates,
     UserInfo,

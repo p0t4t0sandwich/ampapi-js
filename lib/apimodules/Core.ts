@@ -4,7 +4,7 @@
  */
 
 import { AMPAPI } from "../AMPAPI.js";
-import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, RunningTask, SettingsSpec, Spec, State, lookupState, Status, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
+import { ActionResult, AMPVersion, Branding, ConsoleEntry, CPUInfo, EndpointInfo, IADSInstance, Instance, InstanceDatastore, LoginResult, Message, Metric, ModuleInfo, PlatformInfo, RemoteTargetInfo, RunningTask, SettingSpec, State, lookupState, Status, UpdateInfo, Updates, UserInfo, URL, UUID, LicenceInfo } from "../types.js";
 
 
 /**
@@ -332,9 +332,9 @@ export class Core extends AMPAPI {
      * Name Description Optional
      * @param {string} Username  False
      * @param {string} Password  False
-     * @return {Promise<ActionResult<Any>>}
+     * @return {Promise<ActionResult<any>>}
      */
-    async EnableTwoFactor(Username: string, Password: string): Promise<ActionResult<Any>> {
+    async EnableTwoFactor(Username: string, Password: string): Promise<ActionResult<any>> {
         return this.apiCall("Core/EnableTwoFactor", { 
             Username,
             Password
@@ -534,9 +534,9 @@ export class Core extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @return {Promise<{ [key: UUID]: string }>}
+     * @return {Promise<Map<UUID, string>>}
      */
-    async GetRoleIds(): Promise<{ [key: UUID]: string }> {
+    async GetRoleIds(): Promise<Map<UUID, string>> {
         return this.apiCall("Core/GetRoleIds", { 
         });
     }

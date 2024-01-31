@@ -84,7 +84,7 @@ export class AMPAPI {
         // Check if the response is valid
         if (response.ok) {
             // Check for API errors
-            const json = await response.json();
+            const json: any = await response.json();
             if (json != null && (json.hasOwnProperty("Title") || json.hasOwnProperty("Message") || json.hasOwnProperty("StackTrace"))) {
                 throw new Error(`API call failed: ${json.Title}: ${json.Message}\n${json.StackTrace}`);
             }

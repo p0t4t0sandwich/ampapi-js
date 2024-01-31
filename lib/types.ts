@@ -490,7 +490,7 @@ interface RunningTask {
  * @property {string} Meta - The meta
  * @property {boolean} RequiresRestart - Whether the setting requires a restart
  */
-interface Spec {
+interface SettingSpec {
     ReadOnly: boolean;
     Name: string;
     Description: string;

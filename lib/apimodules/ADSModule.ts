@@ -380,9 +380,9 @@ export class ADSModule extends AMPAPI {
     /**
      * Name Description Optional
      * @param {string} ModuleName  False
-     * @return {Promise<{ [key: string]: any }[]>}
+     * @return {Promise<any[]>}
      */
-    async GetProvisionArguments(ModuleName: string): Promise<{ [key: string]: any }[]> {
+    async GetProvisionArguments(ModuleName: string): Promise<any[]> {
         return this.apiCall("ADSModule/GetProvisionArguments", { 
             ModuleName
         });

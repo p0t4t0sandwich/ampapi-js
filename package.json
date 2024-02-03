@@ -1,6 +1,6 @@
 {
   "name": "@neuralnexus/ampapi",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "author": "p0t4t0sandwich <p0t4t0sandwich@gmail.com>",
   "repository": {
     "type": "git",
@@ -12,7 +12,8 @@
   "devDependencies": {
     "bun-types": "latest",
     "@types/node": "^20.6.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "tsc": "^2.0.4"
   },
   "bugs": {
     "url": "https://github.com/p0t4t0sandwich/ampapi-js/issues"
